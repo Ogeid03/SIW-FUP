@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Query Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="logo.png" alt="Logo" class="logo">
+        <nav>
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li class="dropdown">
+                    <a href="#">Servizi</a>
+                    <ul class="submenu">
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Sviluppo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenuto Principale -->
+    <main>
+        <div class="button-container">
+            <button onclick="changeForm('option1')">Opzione 1</button>
+            <button onclick="changeForm('option2')">Opzione 2</button>
+            <button onclick="changeForm('option3')">Opzione 3</button>
+        </div>
+
+        <div class="form-container">
+            <form id="dynamicForm">
+                <!-- Il contenuto del form cambierà dinamicamente -->
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Tutti i diritti riservati.
+    </footer>
+
+    <script>
+        function changeForm(option) {
+            const form = document.getElementById("dynamicForm");
+            form.innerHTML = ""; // Svuota il form prima di aggiungere nuovi campi
+
+            if (option === "option1") {
+                form.innerHTML = `
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" placeholder="Inserisci il tuo nome">
+                `;
+            } else if (option === "option2") {
+                form.innerHTML = `
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Inserisci la tua email">
+                `;
+            } else if (option === "option3") {
+                form.innerHTML = `
+                    <label for="message">Messaggio:</label>
+                    <input type="text" id="message" placeholder="Scrivi un messaggio">
+                `;
+            }
+        }
+    </script>
+
+</body>
+</html>
