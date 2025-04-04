@@ -5,7 +5,9 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+
+    min-height: 100vh; /* Assicura che il body occupi almeno l'intera altezza della finestra */
 }
 
 /* Header */
@@ -15,12 +17,20 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #333;
+    background-color: #346df0;
     color: white;
 }
 
 .logo {
-    height: 40px;
+    height: 5%;
+    width: 5%;
+    padding-left: 2%;
+}
+
+.longLogo {
+    height: 20%;
+    width: 20%;
+    padding-left: 2%;
 }
 
 .menu {
@@ -36,7 +46,7 @@ header {
 .menu a {
     color: white;
     text-decoration: none;
-    padding: 10px;
+    padding: 40px;
 }
 
 .submenu {
@@ -52,7 +62,7 @@ header {
 }
 
 .submenu li {
-    padding: 10px;
+    padding: 20px;
 }
 
 .submenu a {
@@ -67,47 +77,121 @@ header {
 main {
     text-align: center;
     margin-top: 20px;
+    padding: 0 20px;
+    max-width: 2000px;
 }
 
 .button-container {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    margin-bottom: 9;
 }
 
 button {
+    flex: 1;
     padding: 10px 15px;
-    margin: 5px;
+    margin: opx;
     border: none;
-    background-color: #007bff;
+    background-color: #747474;
     color: white;
     cursor: pointer;
+
+    font-weight: bold;
+    transition: background 0.3s;
+    border-radius: 10px 10px 0 0; /* Smussa solo i bordi superiori */
 }
 
 button:hover {
     background-color: #0056b3;
+    
+}
+
+button:active {
+    background-color: #6e6e6e; 
+    font-weight: bold;
+}
+
+button.active {
+    background-color: #346df0;
+    font-weight: bold;
 }
 
 /* Form */
 .form-container {
-    background: #f8f8f8;
+    background: #346df0;
     padding: 20px;
-    width: 300px;
-    border-radius: 5px;
+    width: 100%;
+    max-width: 1600px;
+    border-radius: 0 0 10px 10px;
+
+
+
+    margin: auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 input {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 8px;
+    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
+label {
+    color: white;
+    text-align: left;
+}
+
+/* Attacca il form ai bottoni */
+#dynamicForm {
+    padding: 20px;
+    border-radius: 0 0 10px 10px; /* Smussa solo i bordi inferiori */
+}
+
+
+
+/* Domande Frequenti */
+h1 {
+    text-align: left;
+}
+
+.faq .answer {
+    display: none;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.faq .question {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.faq .icon {
+    float: right;
+    font-size: 20px;
+}
+
+.faq .active .answer {
+    display: block;
+}
+
+.faq .active .icon {
+    transform: rotate(45deg);
+}
+
 /* Footer */
 footer {
-    margin-top: 20px;
+    margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 10px;
-    background: #333;
+    background: #0056b3;
     color: white;
 }
