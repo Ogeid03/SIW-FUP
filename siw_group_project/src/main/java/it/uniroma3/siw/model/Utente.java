@@ -5,7 +5,7 @@ import java.util.Objects;
 import jakarta.persistence.*;
 
 @Entity
-public class User {
+public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,7 +13,7 @@ public class User {
     //private String password;
     private String email;
     private String telefono;
-    private Role ruolo;
+    private Ruolo ruolo;
 
     // Getter e Setter
     public Long getId() {
@@ -48,11 +48,11 @@ public class User {
         this.telefono = telefono;
     }
 
-    public Role getRuolo() {
+    public Ruolo getRuolo() {
         return ruolo;
     }
 
-    public void setRuolo(Role ruolo) {
+    public void setRuolo(Ruolo ruolo) {
         this.ruolo = ruolo;
     }
 
@@ -61,7 +61,7 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User utente = (User) o;
+        Utente utente = (Utente) o;
         return Objects.equals(nomeUtente, utente.nomeUtente);
     }
 

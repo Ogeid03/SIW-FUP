@@ -24,7 +24,7 @@ public class Segnalazione {
     
     @ManyToOne
     @JoinColumn(name = "codUtente")
-    private User codUtente;
+    private Utente codUtente;
     
     @ManyToOne
     @JoinColumn(name = "codStatus")
@@ -95,11 +95,11 @@ public class Segnalazione {
         this.codLuogo = codLuogo;
     }
 
-    public User getCodUtente() {
+    public Utente getCodUtente() {
         return codUtente;
     }
 
-    public void setCodUtente(User codUtente) {
+    public void setCodUtente(Utente codUtente) {
         this.codUtente = codUtente;
     }
 
