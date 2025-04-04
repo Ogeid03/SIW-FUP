@@ -28,7 +28,7 @@ public class Segnalazione {
     
     @ManyToOne
     @JoinColumn(name = "codStatus")
-    private Status codStatus;
+    private Stato codStatus;
 
     // Getter e Setter
     public Long getId() {
@@ -103,11 +103,11 @@ public class Segnalazione {
         this.codUtente = codUtente;
     }
 
-    public Status getCodStatus() {
+    public Stato getCodStatus() {
         return codStatus;
     }
 
-    public void setCodStatus(Status codStatus) {
+    public void setCodStatus(Stato codStatus) {
         this.codStatus = codStatus;
     }
 
