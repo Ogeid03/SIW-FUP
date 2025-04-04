@@ -1,0 +1,4 @@
+⬜ -> ✅
+
+⬜ - il colore dell'animale dovrebbe avere un suo attributo specifico
+⬜ - nel form mettere più menù a tendina

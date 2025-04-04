@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Query Page</title>
+    <title>Find Your Pet</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,9 +29,9 @@
     <!-- Contenuto Principale -->
     <main>
         <div class="button-container">
-            <button onclick="changeForm('option1')">Opzione 1</button>
-            <button onclick="changeForm('option2')">Opzione 2</button>
-            <button onclick="changeForm('option3')">Opzione 3</button>
+            <button onclick="changeForm('option1')">Segnalazioni</button>
+            <button onclick="changeForm('option2')">Denunce Samrrimento</button>
+            <button onclick="changeForm('option3')">Ricerca</button>
         </div>
 
         <div class="form-container">
@@ -53,18 +53,48 @@
 
             if (option === "option1") {
                 form.innerHTML = `
-                    <label for="name">Nome:</label>
-                    <input type="text" id="name" placeholder="Inserisci il tuo nome">
+                    <label for="luogo">Luogo Avvistamento:</label>
+                        <input type="text" id="luogo" placeholder="Inserisci la posizione dell'avvistamento"><br>
+                    <label for="specie">Specie:</label>
+                        <input type="text" id="specie" placeholder="es. cane, gatto, pappagallo..."><br>
+                    <label for="razza">Razza:</label>
+                        <input type="text" id="razza" placeholder="Se conosci la razza inserisci qui"><br>
+                    <label for="descrizione">Descrizione Fisica:</label>
+                        <input type="text" id="descrizione" placeholder="Inserisci segni particolari (es. colore)"><br>
+                    <label for="salute">Stato Salute Apparente:</label>
+                        <input type="text" id="salute" placeholder="Come ti sembra stia l'animale?"><br>
+                    <label for="azione">Azioni Intraprese:</label>
+                        <input type="text" id="azione" placeholder="Hai agito in qualche modo?"><br>
+                    <label for="info">Informazioni Extra:</label>
+                        <input type="text" id="info" placeholder="max 255 caratteri"><br>
+                    <label for="foto">Foto:</label>
+                        <input type="text" id="foto" placeholder=""><br>
                 `;
             } else if (option === "option2") {
                 form.innerHTML = `
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" placeholder="Inserisci la tua email">
+                    <label for="luogo">Luogo Avvistamento:</label>
+                        <input type="text" id="luogo" placeholder="Inserisci la posizione dell'avvistamento"><br>
+                    <label for="nome">Nome del PET:</label>
+                        <input type="text" id="nome" placeholder="es. umberto, filippo, andreaEmilcare..."><br>
+                    <label for="eta">Età del PET:</label>
+                        <input type="text" id="eta" placeholder="es. 33, 101, 0.003..."><br>
+                    <label for="specie">Specie:</label>
+                        <input type="text" id="specie" placeholder="es. cane, gatto, pappagallo..."><br>
+                    <label for="razza">Razza:</label>
+                        <input type="text" id="razza" placeholder="Se conosci la razza inserisci qui"><br>
+                    <label for="descrizione">Descrizione Fisica:</label>
+                        <input type="text" id="descrizione" placeholder="Inserisci segni particolari (es. colore)"><br>
+                    <label for="premio">Premio Offerto:</label>
+                        <input type="text" id="premio" placeholder="Aggiungi una somma in denaro per il riscatto"><br> 
+                    <label for="info">Informazioni Extra:</label>
+                        <input type="text" id="info" placeholder="max 255 caratteri"><br>
+                    <label for="foto">Foto:</label>
+                        <input type="text" id="foto" placeholder=""><br>
                 `;
             } else if (option === "option3") {
                 form.innerHTML = `
-                    <label for="message">Messaggio:</label>
-                    <input type="text" id="message" placeholder="Scrivi un messaggio">
+                    <label for="message">Che cerchi?</label>
+                    <input type="text" id="message" placeholder="work in progress...">
                 `;
             }
         }
