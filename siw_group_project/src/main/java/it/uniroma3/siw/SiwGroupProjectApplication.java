@@ -1,9 +1,11 @@
-package it.uniroma3.siw_group_project;
+package it.uniroma3.siw;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "it.uniroma3.siw")
+@EntityScan(basePackages = "it.uniroma3.siw.model")
 public class SiwGroupProjectApplication {
 
 	public static void main(String[] args) {

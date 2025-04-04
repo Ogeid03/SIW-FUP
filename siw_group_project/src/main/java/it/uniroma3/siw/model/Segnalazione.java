@@ -1,7 +1,8 @@
-package it.uniroma3.siw_group_project.model;
+package it.uniroma3.siw.model;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+
 import jakarta.persistence.*;
 
 @Entity
