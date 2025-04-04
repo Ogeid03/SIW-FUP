@@ -10,6 +10,7 @@ public class SiwGroupProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SiwGroupProjectApplication.class, args);
+		System.out.println("🚀 Spring Boot è partito!");
 	}
 
 }

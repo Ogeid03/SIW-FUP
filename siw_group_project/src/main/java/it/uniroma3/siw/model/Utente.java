@@ -13,6 +13,7 @@ public class Utente {
     //private String password;
     private String email;
     private String telefono;
+    @Enumerated(EnumType.STRING)
     private Ruolo ruolo;
 
     // Getter e Setter

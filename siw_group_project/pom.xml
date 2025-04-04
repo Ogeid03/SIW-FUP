@@ -73,6 +73,7 @@
 				<version>1.61.5</version>
 				<executions>
 					<execution>
+						<?m2e ignore?>
 						<id>dgs-codegen</id>
 						<goals>
 							<goal>generate</goal>
