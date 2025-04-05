@@ -2,3 +2,7 @@
 
 ⬜ - il colore dell'animale dovrebbe avere un suo attributo specifico
 ⬜ - nel form mettere più menù a tendina
+⬜ - Bro scusa, vedevo e i form risultano un po' lunghetti, nulla in contrario in un form a step? 
+        Magari cambiamo l'idea iniziale dell'homoage e facciamo 3 button che rimandano a pagine per i form,
+        che poi sono a step con massimo 3 domande
+⬜ - Altra cosa js va messo esterno dall'html, sennò non si capisce nulla
