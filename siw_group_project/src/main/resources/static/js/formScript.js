@@ -37,6 +37,7 @@ function submitToBackend(option) {
     });
 }
 //PULSANTE 
+
 function changeForm(option, btn) {
     const form = document.getElementById("dynamicForm");
     form.innerHTML = ""; // Svuota il form prima di aggiungere nuovi campi

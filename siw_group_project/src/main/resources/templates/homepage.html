@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-container">
-            <form id="dynamicForm">
+            <form id="dynamicForm" th:action="@{/avvistamento/submit}" th:object="${avvistamento}" method="post">
                 <!-- Il contenuto del form cambierà dinamicamente -->
             </form>
         </div>
