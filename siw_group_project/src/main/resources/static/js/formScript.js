@@ -67,6 +67,7 @@ function changeForm(option, btn) {
                 <input type="text" id="info" placeholder="max 255 caratteri"><br>
             <label for="foto">Foto:</label>
                 <input type="text" id="foto" placeholder=""><br>
+            <button type="button" onclick="showRecap('option1')">INVIA</button>
         `;
     } else if (option === "option2") {
         form.innerHTML = `
@@ -88,6 +89,7 @@ function changeForm(option, btn) {
                 <input type="text" id="info" placeholder="max 255 caratteri"><br>
             <label for="foto">Foto:</label>
                 <input type="text" id="foto" placeholder=""><br>
+            <button type="button" onclick="showRecap('option2')">INVIA</button>
         `;
     } else if (option === "option3") {
         form.innerHTML = `
