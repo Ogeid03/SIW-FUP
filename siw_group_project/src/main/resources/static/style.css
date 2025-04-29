@@ -6,8 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    min-height: 100vh; /* Assicura che il body occupi almeno l'intera altezza della finestra */
+    min-height: 100vh;
 }
 
 /* Header */
@@ -84,31 +83,29 @@ main {
 .button-container {
     display: flex;
     justify-content: space-between;
-    width:100%;
+    width: 100%;
     margin-bottom: 9;
 }
 
 button {
     flex: 1;
     padding: 10px 15px;
-    margin: opx;
+    margin: 0px;
     border: none;
     background-color: #747474;
     color: white;
     cursor: pointer;
-
     font-weight: bold;
     transition: background 0.3s;
-    border-radius: 10px 10px 0 0; /* Smussa solo i bordi superiori */
+    border-radius: 10px 10px 0 0;
 }
 
 button:hover {
     background-color: #0056b3;
-    
 }
 
 button:active {
-    background-color: #6e6e6e; 
+    background-color: #6e6e6e;
     font-weight: bold;
 }
 
@@ -124,9 +121,6 @@ button.active {
     width: 100%;
     max-width: 1600px;
     border-radius: 0 0 10px 10px;
-
-
-
     margin: auto;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -148,10 +142,8 @@ label {
 /* Attacca il form ai bottoni */
 #dynamicForm {
     padding: 20px;
-    border-radius: 0 0 10px 10px; /* Smussa solo i bordi inferiori */
+    border-radius: 0 0 10px 10px;
 }
-
-
 
 /* Domande Frequenti */
 h1 {
