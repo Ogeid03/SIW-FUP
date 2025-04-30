@@ -32,13 +32,8 @@
         <div class="button-container">
             <button id="btn1" onclick="changeForm('option1', this)">Segnalazioni</button>
             <button id="btn2" onclick="changeForm('option2', this)">Denunce Samrrimento</button>
+            <br>
             <button id="btn3" onclick="changeForm('option3', this)">Ricerca</button>
-        </div>
-
-        <div class="form-container">
-            <form id="dynamicForm" th:action="@{/avvistamento/submit}" th:object="${avvistamento}" method="post">
-                <!-- Il contenuto del form cambierà dinamicamente -->
-            </form>
         </div>
 
             <br><br>

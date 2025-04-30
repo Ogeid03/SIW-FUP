@@ -80,12 +80,7 @@ main {
     max-width: 2000px;
 }
 
-.button-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 9;
-}
+
 
 button {
     flex: 1;
@@ -97,7 +92,6 @@ button {
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s;
-    border-radius: 10px 10px 0 0;
 }
 
 button:hover {
