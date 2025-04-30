@@ -20,7 +20,7 @@ function submitToBackend(option) {
         formData[label.trim()] = value.trim();
     });
 
-    fetch(`/${option === "option1" ? "segnalazioni" : "denunce"}`, {
+    post(`/${option === "option1" ? "segnalazioni" : "denunce"}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -53,43 +53,43 @@ function changeForm(option, btn) {
     if (option === "option1") {
         form.innerHTML = `
             <label for="luogo">Luogo Avvistamento:</label>
-                <input type="text" id="luogo" placeholder="Inserisci la posizione dell'avvistamento"><br>
+                <input type="text" id="luogo" name="luogo" placeholder="Inserisci la posizione dell'avvistamento"><br>
             <label for="specie">Specie:</label>
-                <input type="text" id="specie" placeholder="es. cane, gatto, pappagallo..."><br>
+                <input type="text" id="specie" name="specie" placeholder="es. cane, gatto, pappagallo..."><br>
             <label for="razza">Razza:</label>
-                <input type="text" id="razza" placeholder="Se conosci la razza inserisci qui"><br>
+                <input type="text" id="razza" name="razza" placeholder="Se conosci la razza inserisci qui"><br>
             <label for="descrizione">Descrizione Fisica:</label>
-                <input type="text" id="descrizione" placeholder="Inserisci segni particolari (es. colore)"><br>
+                <input type="text" id="descrizione" name="descrizione" placeholder="Inserisci segni particolari (es. colore)"><br>
             <label for="salute">Stato Salute Apparente:</label>
-                <input type="text" id="salute" placeholder="Come ti sembra stia l'animale?"><br>
+                <input type="text" id="salute" name="salute" placeholder="Come ti sembra stia l'animale?"><br>
             <label for="azione">Azioni Intraprese:</label>
-                <input type="text" id="azione" placeholder="Hai agito in qualche modo?"><br>
+                <input type="text" id="azione" name="azione" placeholder="Hai agito in qualche modo?"><br>
             <label for="info">Informazioni Extra:</label>
-                <input type="text" id="info" placeholder="max 255 caratteri"><br>
+                <input type="text" id="info" name="info" placeholder="max 255 caratteri"><br>
             <label for="foto">Foto:</label>
-                <input type="text" id="foto" placeholder=""><br>
+                <input type="text" id="foto" name="foto" placeholder=""><br>
             <button type="button" onclick="showRecap('option1')">INVIA</button>
         `;
     } else if (option === "option2") {
         form.innerHTML = `
             <label for="luogo">Luogo Avvistamento:</label>
-                <input type="text" id="luogo" placeholder="Inserisci la posizione dell'avvistamento"><br>
+                <input type="text" id="luogo" name="luogo" placeholder="Inserisci la posizione dell'avvistamento"><br>
             <label for="nome">Nome del PET:</label>
-                <input type="text" id="nome" placeholder="es. umberto, filippo, andreaEmilcare..."><br>
+                <input type="text" id="nome" name="nome" placeholder="es. umberto, filippo, andreaEmilcare..."><br>
             <label for="eta">Età del PET:</label>
-                <input type="text" id="eta" placeholder="es. 33, 101, 0.003..."><br>
+                <input type="text" id="eta" name="eta" placeholder="es. 33, 101, 0.003..."><br>
             <label for="specie">Specie:</label>
-                <input type="text" id="specie" placeholder="es. cane, gatto, pappagallo..."><br>
+                <input type="text" id="specie" name="specie" placeholder="es. cane, gatto, pappagallo..."><br>
             <label for="razza">Razza:</label>
-                <input type="text" id="razza" placeholder="Se conosci la razza inserisci qui"><br>
+                <input type="text" id="razza" name="razza" placeholder="Se conosci la razza inserisci qui"><br>
             <label for="descrizione">Descrizione Fisica:</label>
-                <input type="text" id="descrizione" placeholder="Inserisci segni particolari (es. colore)"><br>
+                <input type="text" id="descrizione" name="descrizione" placeholder="Inserisci segni particolari (es. colore)"><br>
             <label for="premio">Premio Offerto:</label>
-                <input type="text" id="premio" placeholder="Aggiungi una somma in denaro per il riscatto"><br> 
+                <input type="text" id="premio" name="premio" placeholder="Aggiungi una somma in denaro per il riscatto"><br> 
             <label for="info">Informazioni Extra:</label>
-                <input type="text" id="info" placeholder="max 255 caratteri"><br>
+                <input type="text" id="info" name="info" placeholder="max 255 caratteri"><br>
             <label for="foto">Foto:</label>
-                <input type="text" id="foto" placeholder=""><br>
+                <input type="text" id="foto" name="foto" placeholder=""><br>
             <button type="button" onclick="showRecap('option2')">INVIA</button>
         `;
     } else if (option === "option3") {
