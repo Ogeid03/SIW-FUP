@@ -3,40 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <title>Form a Step</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styleMultiform.css">
 </head>
 <body>
 
 <h2>Modulo a Step</h2>
 
-<form id="multiStepForm">
+<form id="multiStepForm" action="#" th:action="@{/segnalazioni}" th:object="${segnalazione}" method="post">
+  <!-- Step 1 -->
   <div class="step active">
     <label for="luogo">Luogo Avvistamento:</label>
-                <input type="text" id="luogo" placeholder="Inserisci la posizione dell'avvistamento"><br>
-            <label for="specie">Specie:</label>
-                <input type="text" id="specie" placeholder="es. cane, gatto, pappagallo..."><br>
-            <label for="razza">Razza:</label>
-                <input type="text" id="razza" placeholder="Se conosci la razza inserisci qui"><br>
-            
-            
+    <!-- <input type="text" id="luogo"  name="luogo" th:field="*{luogo}" required><br> -->
+
+    <label for="specie">Specie:</label>
+    <input type="text" id="specie"  name="specie" th:field="*{specie}" required><br>
+
+    <label for="razza">Razza:</label>
+    <input type="text" id="razza"  name="razza" th:field="*{razza}"><br>
   </div>
 
+  <!-- Step 2 -->
   <div class="step">
     <label for="descrizione">Descrizione Fisica:</label>
-        <input type="text" id="descrizione" placeholder="Inserisci segni particolari (es. colore)"><br>
+    <input type="text" id="descrizione"  name="descrizione"><br>
+
     <label for="salute">Stato Salute Apparente:</label>
-        <input type="text" id="salute" placeholder="Come ti sembra stia l'animale?"><br>
+    <input type="text" id="salute"  name="salute"><br>
+
     <label for="azione">Azioni Intraprese:</label>
-        <input type="text" id="azione" placeholder="Hai agito in qualche modo?"><br>
+    <input type="text" id="azione"  name="azione"><br>
   </div>
 
+  <!-- Step 3 -->
   <div class="step">
     <label for="info">Informazioni Extra:</label>
-        <textarea type="text" id="info" placeholder="max 255 caratteri"></textarea><br>
-    <label for="foto">Foto:</label>
-        <input type="text" id="foto" placeholder=""><br>
+    <textarea id="info" name="info"  placeholder="max 255 caratteri"></textarea><br>
+
+    <label for="foto">Foto (URL):</label>
+    <input type="text" id="foto"  name="foto"><br>
   </div>
 
+  <!-- Bottoni -->
   <div class="buttons">
     <button type="button" id="prevBtn">Indietro</button>
     <button type="button" id="nextBtn">Avanti</button>
@@ -44,6 +51,7 @@
   </div>
 </form>
 
-<script src="formMultiStepScript.js"></script>
+<script src="/js/formMultiStepScript.js"></script>
+
 </body>
 </html>
