@@ -28,9 +28,9 @@ nextBtn.addEventListener('click', () => changeStep(1));
 prevBtn.addEventListener('click', () => changeStep(-1));
 
 // Gestisci l'invio del form
-document.getElementById('multiStepForm').addEventListener('submit', function(e) {
+/* document.getElementById('multiStepForm').addEventListener('submit', function(e) {
   e.preventDefault();
   alert('Modulo inviato con successo!');
-});
+});*/
 
 showStep(currentStep);

@@ -1,15 +1,22 @@
 package it.uniroma3.siw.controller;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
+
+import java.nio.file.*;
+import java.util.List;
 
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.repository.SegnalazioneRepository;
+
+
 
 @Controller
 public class SegnalazioneController {
@@ -23,20 +30,35 @@ public class SegnalazioneController {
         return "segnalazioneForm";
     }
 
-    @PostMapping("/segnalazioni")
-    public String salvaSegnalazione(@ModelAttribute Avvistamento segnalazione) {
-        if (segnalazione == null) {
-            System.out.println("L'oggetto segnalazione è null");
-        } else {
-            System.out.println("Dati ricevuti: " + segnalazione);
+    @PostMapping("/conferma")
+        public String conferma(@ModelAttribute Avvistamento avvistamento,
+                        @RequestParam("foto") MultipartFile fotoFile) {
+        if (!fotoFile.isEmpty()) {
+            try {
+                String uploadDir = "uploads/";
+                String fileName = System.currentTimeMillis() + "_" + fotoFile.getOriginalFilename();
+                Path uploadPath = Paths.get(uploadDir);
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
+                Path filePath = uploadPath.resolve(fileName);
+                Files.write(filePath, fotoFile.getBytes());
+                avvistamento.setFoto("/uploads/" + fileName); // salva il path per mostrarlo nel sito
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "erroreCaricamento"; // puoi creare una pagina di errore
+            }
         }
-        segnalazioneRepository.save(segnalazione);
-        return "redirect:/conferma"; // oppure torna a una pagina di conferma
+
+        segnalazioneRepository.save(avvistamento);
+        return "redirect:/";
     }
 
-    @GetMapping("/conferma")
-    public String conferma() {
-        return "homepage"; // Pagina di successo dopo l'invio del modulo
+    @GetMapping("/carosello")
+    public String mostraCarosello(Model model) {
+        List<Avvistamento> avvistamenti = segnalazioneRepository.findAll();
+        model.addAttribute("avvistamenti", avvistamenti);
+        return "allAvvistamenti"; // nome del template Thymeleaf
     }
 }
 

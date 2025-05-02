@@ -9,7 +9,7 @@
 
 <h2>Modulo a Step</h2>
 
-<form id="multiStepForm" action="#" th:action="@{/segnalazioni}" th:object="${segnalazione}" method="post">
+<form id="multiStepForm" th:action="@{/conferma}" th:object="${segnalazione}" method="post" enctype="multipart/form-data">
   <!-- Step 1 -->
   <div class="step active">
     <label for="luogo">Luogo Avvistamento:</label>
@@ -25,22 +25,22 @@
   <!-- Step 2 -->
   <div class="step">
     <label for="descrizione">Descrizione Fisica:</label>
-    <input type="text" id="descrizione"  name="descrizione"><br>
+    <input type="text" id="descrizione"  name="descrizione" th:field="*{descrizioneFisica}"><br>
 
     <label for="salute">Stato Salute Apparente:</label>
-    <input type="text" id="salute"  name="salute"><br>
+    <input type="text" id="salute"  name="salute" th:field="*{statoSalute}"><br>
 
     <label for="azione">Azioni Intraprese:</label>
-    <input type="text" id="azione"  name="azione"><br>
+    <input type="text" id="azione"  name="azione" th:field="*{azioniIntraprese}"><br>
   </div>
 
   <!-- Step 3 -->
   <div class="step">
     <label for="info">Informazioni Extra:</label>
-    <textarea id="info" name="info"  placeholder="max 255 caratteri"></textarea><br>
+    <textarea id="info" name="info"  placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
 
     <label for="foto">Foto (URL):</label>
-    <input type="text" id="foto"  name="foto"><br>
+    <input type="file" id="foto"  name="foto" th:field="*{foto}"><br>
   </div>
 
   <!-- Bottoni -->
