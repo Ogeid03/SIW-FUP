@@ -6,51 +6,66 @@
   <link rel="stylesheet" href="styleMultiform.css">
 </head>
 <body>
+  <header>
+    <img src="LongLogo.png" alt="Logo" class="longLogo">
+    <nav>
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li class="dropdown">
+                <a href="#"><i class="fa-solid fa-bars"></i></a>
+                <ul class="submenu">
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Sviluppo</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-<h2>Modulo a Step</h2>
+<main>
+  <form id="multiStepForm" th:action="@{/conferma-avvistamento}" th:object="${segnalazione}" method="post" enctype="multipart/form-data">
+    <!-- Step 1 -->
+    <div class="step active">
+      <label for="luogo">Luogo Avvistamento:</label>
+      <!-- <input type="text" id="luogo"  name="luogo" th:field="*{luogo}" required><br> -->
 
-<form id="multiStepForm" th:action="@{/conferma-avvistamento}" th:object="${segnalazione}" method="post" enctype="multipart/form-data">
-  <!-- Step 1 -->
-  <div class="step active">
-    <label for="luogo">Luogo Avvistamento:</label>
-    <!-- <input type="text" id="luogo"  name="luogo" th:field="*{luogo}" required><br> -->
+      <label for="specie">Specie:</label>
+      <input type="text" id="specie"  name="specie" th:field="*{specie}" required><br>
 
-    <label for="specie">Specie:</label>
-    <input type="text" id="specie"  name="specie" th:field="*{specie}" required><br>
+      <label for="razza">Razza:</label>
+      <input type="text" id="razza"  name="razza" th:field="*{razza}"><br>
+    </div>
 
-    <label for="razza">Razza:</label>
-    <input type="text" id="razza"  name="razza" th:field="*{razza}"><br>
-  </div>
+    <!-- Step 2 -->
+    <div class="step">
+      <label for="descrizione">Descrizione Fisica:</label>
+      <input type="text" id="descrizione"  name="descrizione" th:field="*{descrizioneFisica}"><br>
 
-  <!-- Step 2 -->
-  <div class="step">
-    <label for="descrizione">Descrizione Fisica:</label>
-    <input type="text" id="descrizione"  name="descrizione" th:field="*{descrizioneFisica}"><br>
+      <label for="salute">Stato Salute Apparente:</label>
+      <input type="text" id="salute"  name="salute" th:field="*{statoSalute}"><br>
 
-    <label for="salute">Stato Salute Apparente:</label>
-    <input type="text" id="salute"  name="salute" th:field="*{statoSalute}"><br>
+      <label for="azione">Azioni Intraprese:</label>
+      <input type="text" id="azione"  name="azione" th:field="*{azioniIntraprese}"><br>
+    </div>
 
-    <label for="azione">Azioni Intraprese:</label>
-    <input type="text" id="azione"  name="azione" th:field="*{azioniIntraprese}"><br>
-  </div>
+    <!-- Step 3 -->
+    <div class="step">
+      <label for="info">Informazioni Extra:</label>
+      <textarea id="info" name="info"  placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
 
-  <!-- Step 3 -->
-  <div class="step">
-    <label for="info">Informazioni Extra:</label>
-    <textarea id="info" name="info"  placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
+      <label for="foto">Foto (URL):</label>
+      <input type="file" id="foto"  name="foto"><br>
+    </div>
 
-    <label for="foto">Foto (URL):</label>
-    <input type="file" id="foto"  name="foto" th:field="*{foto}"><br>
-  </div>
-
-  <!-- Bottoni -->
-  <div class="buttons">
-    <button type="button" id="prevBtn">Indietro</button>
-    <button type="button" id="nextBtn">Avanti</button>
-    <button type="submit" id="submitBtn">Invia</button>
-  </div>
-</form>
-
+    <!-- Bottoni -->
+    <div class="buttons">
+      <button type="button" id="prevBtn">Indietro</button>
+      <button type="button" id="nextBtn">Avanti</button>
+      <button type="submit" id="submitBtn">Invia</button>
+    </div>
+  </form>
+</main>
 <script src="/js/formMultiStepScript.js"></script>
 
 </body>
