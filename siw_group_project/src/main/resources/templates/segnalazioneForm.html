@@ -24,7 +24,7 @@
 </header>
 
 <main>
-  <form id="multiStepForm" th:action="@{/conferma-avvistamento}" th:object="${segnalazione}" method="post" enctype="multipart/form-data">
+  <form id="multiStepForm" th:action="@{/conferma-avvistamento}" th:object="${segnalazione}" method="post">
     <!-- Step 1 -->
     <div class="step active">
       <label for="luogo">Luogo Avvistamento:</label>
@@ -55,7 +55,7 @@
       <textarea id="info" name="info"  placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
 
       <label for="foto">Foto (URL):</label>
-      <input type="file" id="foto"  name="foto"><br>
+      <!-- <input type="file" id="foto"  name="foto"><br> -->
     </div>
 
     <!-- Bottoni -->
