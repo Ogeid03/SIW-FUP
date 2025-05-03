@@ -11,28 +11,25 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 
 import java.nio.file.*;
-import java.util.List;
+import it.uniroma3.siw.model.Denuncia;
 
-import it.uniroma3.siw.model.Avvistamento;
-
-import it.uniroma3.siw.repository.SegnalazioneRepository;
-
+import it.uniroma3.siw.repository.DenunciaRepository;
 
 
 @Controller
-public class SegnalazioneController {
+public class DenunciaController {
 
-    @Autowired
-    private SegnalazioneRepository segnalazioneRepository;
+     @Autowired
+    private DenunciaRepository denunciaRepository;
 
-    @GetMapping("/segnalazioni")
-    public String mostraFormSegnalazione(Model model) {
-        model.addAttribute("segnalazione", new Avvistamento());
-        return "segnalazioneForm";
+    @GetMapping("/denunce")
+    public String mostraFormDenunce(Model model) {
+        model.addAttribute("denuncia", new Denuncia());
+        return "denunciaForm";
     }
 
-    @PostMapping("/conferma-avvistamento")
-        public String conferma(@ModelAttribute Avvistamento avvistamento,
+    @PostMapping("/conferma-denuncia")
+        public String conferma(@ModelAttribute Denuncia denuncia,
                         @RequestParam("foto") MultipartFile fotoFile) {
         if (!fotoFile.isEmpty()) {
             try {
@@ -44,22 +41,15 @@ public class SegnalazioneController {
                 }
                 Path filePath = uploadPath.resolve(fileName);
                 Files.write(filePath, fotoFile.getBytes());
-                avvistamento.setFoto("/uploads/" + fileName); // salva il path per mostrarlo nel sito
+                denuncia.setFoto("/uploads/" + fileName); // salva il path per mostrarlo nel sito
             } catch (IOException e) {
                 e.printStackTrace();
                 return "erroreCaricamento"; // puoi creare una pagina di errore
             }
         }
 
-        segnalazioneRepository.save(avvistamento);
+        denunciaRepository.save(denuncia);
         return "redirect:/";
-    }
 
-    @GetMapping("/carosello")
-    public String mostraCarosello(Model model) {
-        List<Avvistamento> avvistamenti = segnalazioneRepository.findAll();
-        model.addAttribute("avvistamenti", avvistamenti);
-        return "allAvvistamenti"; // nome del template Thymeleaf
     }
 }
-
