@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Riepilogo Denuncia</title>
+    <link rel="stylesheet" href="styleRecap.css">
+</head>
+<body>
+    <h1>Riepilogo della Denuncia</h1>
+    <ul>
+        <li><strong>Nome:</strong> <span th:text="${denuncia.nome}"></span></li>
+        <li><strong>Specie:</strong> <span th:text="${denuncia.specie}"></span></li>
+        <li><strong>Razza:</strong> <span th:text="${denuncia.razza}"></span></li>
+        <li><strong>Descrizione Fisica:</strong> <span th:text="${denuncia.descrizioneFisica}"></span></li>
+        <li><strong>Età:</strong> <span th:text="${denuncia.eta}"></span></li>
+        <li><strong>Premio Offerto:</strong> <span th:text="${denuncia.premioOfferto}"></span></li>
+        <li><strong>Informazioni Extra:</strong> <span th:text="${denuncia.informazioniExtra}"></span></li>
+    </ul>
+    <a href="/">Torna alla home</a>
+</body>
+</html>

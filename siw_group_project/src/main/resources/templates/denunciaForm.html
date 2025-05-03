@@ -24,7 +24,7 @@
 </header>
 
 <main>
-  <form id="multiStepForm" th:action="@{/conferma-denuncia}" th:object="${denuncia}" method="post" enctype="multipart/form-data">
+  <form id="multiStepForm" th:action="@{/conferma-denuncia}" th:object="${denuncia}" method="post">
     <!-- Step 1 -->
     <div class="step active">
       <label for="luogo">Luogo Smarrimento:</label>
@@ -57,8 +57,7 @@
       <label for="info">Informazioni Extra:</label>
       <textarea id="info" name="info"  placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
 
-      <label for="foto">Foto (URL):</label>
-      <input type="file" id="foto"  name="foto" th:field="*{foto}"><br>
+
     </div>
 
     <!-- Bottoni -->
