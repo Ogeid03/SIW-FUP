@@ -46,10 +46,10 @@
       <input type="text" id="descrizione"  name="descrizione" th:field="*{descrizioneFisica}"><br>
 
       <label for="eta">Età:</label>
-      <input type="text" id="eta"  name="eta" th:field="*{eta}"><br>
+      <input type="number" id="eta"  name="eta" th:field="*{eta}"><br>
 
       <label for="premioOfferto">Premio offerto:</label>
-      <input type="text" id="premioOfferto"  name="premioOfferto" th:field="*{premioOfferto}"><br>
+      <input type="number" id="premioOfferto"  name="premioOfferto" step="0.01" th:field="*{premioOfferto}"><br>
     </div>
 
     <!-- Step 3 -->

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Riepilogo Avvistamento</title>
+    <link rel="stylesheet" href="styleMultiform.css">
+</head>
+<body>
+<header>
+    <img src="LongLogo.png" alt="Logo" class="longLogo">
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <p><strong>Specie:</strong> <span th:text="${segnalazione.specie}"></span></p>
+    <p><strong>Razza:</strong> <span th:text="${segnalazione.razza}"></span></p>
+    <p><strong>Descrizione Fisica:</strong> <span th:text="${segnalazione.descrizioneFisica}"></span></p>
+    <p><strong>Stato di Salute Apparente:</strong> <span th:text="${segnalazione.statoSalute}"></span></p>
+    <p><strong>Azioni Intraprese:</strong> <span th:text="${segnalazione.azioniIntraprese}"></span></p>
+    <p><strong>Informazioni Extra:</strong> <span th:text="${segnalazione.informazioniExtra}"></span></p>
+    <p><strong>Foto (URL):</strong> <a th:href="${segnalazione.foto}" th:text="${segnalazione.foto}" target="_blank"></a></p>
+
+    <!-- Form per confermare e inviare i dati -->
+    <form action="/salva-avvistamento" method="post" th:object="${segnalazione}">
+        <input type="hidden" name="specie" th:value="*{specie}" />
+        <input type="hidden" name="razza" th:value="*{razza}" />
+        <input type="hidden" name="descrizioneFisica" th:value="*{descrizioneFisica}" />
+        <input type="hidden" name="statoSalute" th:value="*{statoSalute}" />
+        <input type="hidden" name="azioniIntraprese" th:value="*{azioniIntraprese}" />
+        <input type="hidden" name="informazioniExtra" th:value="*{informazioniExtra}" />
+        <input type="hidden" name="foto" th:value="*{foto}" />
+
+        <button type="submit" class="confirmBtn">Conferma e Salva</button>
+    </form>
+
+    <!-- Pulsante per tornare al form precedente -->
+    <button type="button" onclick="history.back()">Modifica</button>
+</main>
+</body>
+</html>

@@ -31,31 +31,32 @@
       <!-- <input type="text" id="luogo"  name="luogo" th:field="*{luogo}" required><br> -->
 
       <label for="specie">Specie:</label>
-      <input type="text" id="specie"  name="specie" th:field="*{specie}" required><br>
+      <input type="text" id="specie"  name="specie"  maxlength="255" th:field="*{specie}" required><br>
 
       <label for="razza">Razza:</label>
-      <input type="text" id="razza"  name="razza" th:field="*{razza}"><br>
+      <input type="text" id="razza"  name="razza"  maxlength="255" th:field="*{razza}"><br>
     </div>
 
     <!-- Step 2 -->
     <div class="step">
       <label for="descrizione">Descrizione Fisica:</label>
-      <input type="text" id="descrizione"  name="descrizione" th:field="*{descrizioneFisica}"><br>
+      <input type="text" id="descrizione"  name="descrizione"  maxlength="255" th:field="*{descrizioneFisica}"><br>
 
       <label for="salute">Stato Salute Apparente:</label>
-      <input type="text" id="salute"  name="salute" th:field="*{statoSalute}"><br>
+      <input type="text" id="salute"  name="salute"  maxlength="255" th:field="*{statoSalute}"><br>
 
       <label for="azione">Azioni Intraprese:</label>
-      <input type="text" id="azione"  name="azione" th:field="*{azioniIntraprese}"><br>
+      <input type="text" id="azione"  name="azione"  maxlength="255" th:field="*{azioniIntraprese}"><br>
     </div>
 
     <!-- Step 3 -->
     <div class="step">
       <label for="info">Informazioni Extra:</label>
-      <textarea id="info" name="info"  placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
+      <textarea id="info" name="info"  placeholder="max 255 caratteri" maxlength="255" th:field="*{informazioniExtra}"></textarea><br>
 
       <label for="foto">Foto (URL):</label>
-      <!-- <input type="file" id="foto"  name="foto"><br> -->
+      <input type="url" id="foto" name="foto"  maxlength="255" placeholder="https://..." required oninput="anteprimaImmagine(this.value)" th:field="*{foto}"> 
+      <div id="preview" style="margin-top: 10px;"></div>
     </div>
 
     <!-- Bottoni -->

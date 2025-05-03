@@ -14,16 +14,14 @@
     <div id="avvistamentiCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <!-- Ciclo per tutti gli avvistamenti -->
-            <div th:each="avv, iterStat : ${avvistamenti}">
-                <div class="carousel-item" th:classappend="${iterStat.first} ? 'active'">
+                <div class="carousel-item" th:each="avv, iterStat : ${avvistamenti}" th:classappend="${iterStat.first} ? 'active'">
                     <!-- Mostra la foto dell'avvistamento -->
-                    <img th:src="@{${avv.foto}}" class="d-block w-100" alt="Avvistamento">
+                    <img th:src="${avv.foto}" class="d-block w-100" alt="Avvistamento">
                     <!-- Mostra la razza sotto la foto -->
                     <div class="carousel-caption d-none d-md-block">
                         <h5 th:text="${avv.razza}">Razza</h5>
                     </div>
                 </div>
-            </div>
         </div>
 
         <!-- Pulsanti per navigare tra le immagini -->

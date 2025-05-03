@@ -69,6 +69,12 @@
 			<version>1.18.24</version> <!-- Verifica l'ultima versione disponibile -->
 			<scope>provided</scope>
 		</dependency>
+		<!-- Jakarta Validation API -->
+    <dependency>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>2.0.2</version> <!-- Use the latest version -->
+    </dependency>
 
 	</dependencies>
 

@@ -1,3 +1,4 @@
+// Variabili per i passi del modulo
 let currentStep = 0;
 const steps = document.querySelectorAll('.step');
 const nextBtn = document.getElementById('nextBtn');
@@ -27,10 +28,30 @@ function changeStep(n) {
 nextBtn.addEventListener('click', () => changeStep(1));
 prevBtn.addEventListener('click', () => changeStep(-1));
 
-// Gestisci l'invio del form
-/* document.getElementById('multiStepForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert('Modulo inviato con successo!');
-});*/
-
+// Mostra il passo iniziale
 showStep(currentStep);
+
+// Funzione per l'anteprima dell'immagine
+function anteprimaImmagine(url) {
+  const preview = document.getElementById("preview");
+  if (url && (url.startsWith("http://") || url.startsWith("https://"))) {
+      preview.innerHTML = `<img src="${url}" alt="Anteprima" style="max-width:300px; margin-top:10px;">`;
+  } else {
+      preview.innerHTML = "<p>Nessuna anteprima</p>";
+  }
+}
+
+// Controllo per il submit del form
+document.getElementById("multiStepForm").addEventListener("submit", function(e) {
+  const fotoInput = document.getElementById("foto");
+  const url = fotoInput.value.trim();
+
+  // Regex base per URL HTTP/HTTPS
+  const urlRegex = /^https?:\/\/[^\s$.?#].[^\s]*$/;
+
+  if (url && !urlRegex.test(url)) {
+    alert("Inserisci un URL valido per la foto (deve iniziare con http:// o https://)");
+    fotoInput.focus();
+    e.preventDefault();
+  }
+});

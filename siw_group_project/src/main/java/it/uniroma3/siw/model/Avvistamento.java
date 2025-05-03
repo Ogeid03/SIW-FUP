@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Avvistamento extends Segnalazione{
+    
     private String statoSalute;
     private String azioniIntraprese;
 

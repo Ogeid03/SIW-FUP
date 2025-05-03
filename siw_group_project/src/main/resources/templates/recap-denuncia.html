@@ -3,19 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Riepilogo Denuncia</title>
-    <link rel="stylesheet" href="styleRecap.css">
+    <link rel="stylesheet" href="styleMultiform.css">
 </head>
 <body>
-    <h1>Riepilogo della Denuncia</h1>
-    <ul>
-        <li><strong>Nome:</strong> <span th:text="${denuncia.nome}"></span></li>
-        <li><strong>Specie:</strong> <span th:text="${denuncia.specie}"></span></li>
-        <li><strong>Razza:</strong> <span th:text="${denuncia.razza}"></span></li>
-        <li><strong>Descrizione Fisica:</strong> <span th:text="${denuncia.descrizioneFisica}"></span></li>
-        <li><strong>Età:</strong> <span th:text="${denuncia.eta}"></span></li>
-        <li><strong>Premio Offerto:</strong> <span th:text="${denuncia.premioOfferto}"></span></li>
-        <li><strong>Informazioni Extra:</strong> <span th:text="${denuncia.informazioniExtra}"></span></li>
-    </ul>
-    <a href="/">Torna alla home</a>
+<header>
+    <img src="LongLogo.png" alt="Logo" class="longLogo">
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Riepilogo Dati</h2>
+    <p><strong>Nome:</strong> <span th:text="${denuncia.nome}"></span></p>
+    <p><strong>Specie:</strong> <span th:text="${denuncia.specie}"></span></p>
+    <p><strong>Razza:</strong> <span th:text="${denuncia.razza}"></span></p>
+    <p><strong>Descrizione:</strong> <span th:text="${denuncia.descrizioneFisica}"></span></p>
+    <p><strong>Età:</strong> <span th:text="${denuncia.eta}"></span></p>
+    <p><strong>Premio offerto:</strong> <span th:text="${denuncia.premioOfferto}"></span></p>
+    <p><strong>Informazioni extra:</strong> <span th:text="${denuncia.informazioniExtra}"></span></p>
+
+    <!-- Form per confermare e salvare i dati -->
+    <form action="/salva-denuncia" method="post" th:object="${denuncia}">
+        <input type="hidden" name="nome" th:value="*{nome}" />
+        <input type="hidden" name="specie" th:value="*{specie}" />
+        <input type="hidden" name="razza" th:value="*{razza}" />
+        <input type="hidden" name="descrizioneFisica" th:value="*{descrizioneFisica}" />
+        <input type="hidden" name="eta" th:value="*{eta}" />
+        <input type="hidden" name="premioOfferto" th:value="*{premioOfferto}" />
+        <input type="hidden" name="informazioniExtra" th:value="*{informazioniExtra}" />
+
+        <button type="submit" class="confirmBtn">Conferma e Salva</button>
+    </form>
+
+    <!-- Pulsante per tornare al form precedente -->
+    <button type="button" onclick="history.back()">Modifica</button>
+</main>
 </body>
 </html>
