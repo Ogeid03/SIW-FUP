@@ -7,6 +7,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+    cursor: url('/cursor.cur'), auto;
 }
 
 /* Header */
@@ -48,6 +49,10 @@ header {
     padding: 40px;
 }
 
+.menu a:hover {
+    cursor: url('/cursorP.cur'), pointer;
+}
+
 .submenu {
     display: none;
     position: absolute;
@@ -62,6 +67,14 @@ header {
 
 .submenu li {
     padding: 20px;
+}
+
+.menu li:hover {
+    cursor: url('/cursorP.cur'), pointer;
+}
+
+.menu .submenu li:hover {
+    cursor: url('/cursorP.cur'), pointer;
 }
 
 .submenu a {
@@ -118,36 +131,6 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Form */
-.form-container {
-    background: #346df0;
-    padding: 20px;
-    width: 100%;
-    max-width: 1600px;
-    border-radius: 0 0 10px 10px;
-    margin: auto;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-label {
-    color: white;
-    text-align: left;
-}
-
-/* Attacca il form ai bottoni */
-#dynamicForm {
-    padding: 20px;
-    border-radius: 0 0 10px 10px;
-}
 
 .faq-title {
     text-align: center;
@@ -164,8 +147,9 @@ label {
     border: 4px solid #004bb0;
 }
 
-
-
+.faq .question:hover{
+    cursor: url('/cursorP.cur'), pointer;
+}
 
 .faq .answer {
     display: none;
@@ -203,4 +187,8 @@ footer {
     padding: 10px;
     background: #0056b3;
     color: white;
+}
+
+button:hover {
+    cursor: url('/cursorP.cur'), pointer;
 }
