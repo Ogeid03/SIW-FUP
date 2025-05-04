@@ -50,7 +50,7 @@ header {
 }
 
 .menu a:hover {
-    cursor: url('/cursorP.cur'), pointer;
+    cursor: url('/cursor.cur'), pointer;
 }
 
 .submenu {
@@ -70,11 +70,11 @@ header {
 }
 
 .menu li:hover {
-    cursor: url('/cursorP.cur'), pointer;
+    cursor: url('/cursor.cur'), pointer;
 }
 
 .menu .submenu li:hover {
-    cursor: url('/cursorP.cur'), pointer;
+    cursor: url('/cursor.cur'), pointer;
 }
 
 .submenu a {
@@ -148,7 +148,7 @@ main {
 }
 
 .faq .question:hover{
-    cursor: url('/cursorP.cur'), pointer;
+    cursor: url('/cursor.cur'), pointer;
 }
 
 .faq .answer {
@@ -190,5 +190,5 @@ footer {
 }
 
 button:hover {
-    cursor: url('/cursorP.cur'), pointer;
+    cursor: url('/cursor.cur'), pointer;
 }

@@ -11,6 +11,7 @@ body {
   background-color: #f4f6f9;
   color: #333;
   line-height: 1.6;
+  cursor: url('/cursor.cur'), auto;
 }
 
 /* Header */
@@ -42,6 +43,14 @@ header {
   position: relative;
 }
 
+.menu li:hover {
+  cursor: url('/cursor.cur'), auto;
+}
+
+.menu .submenu li:hover {
+  cursor: url('/cursor.cur'), auto;
+}
+
 .menu a {
   color: white;
   text-decoration: none;
@@ -53,6 +62,8 @@ header {
 .menu a:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
+  cursor: url('/cursor.cur'), auto;
+  
 }
 
 .submenu {
@@ -150,6 +161,10 @@ form {
   color: #333;
 }
 
+.step label:hover{
+  cursor: url('/cursor.cur'), auto;
+}
+
 .step input,
 .step textarea {
   width: 100%;
@@ -192,6 +207,7 @@ form {
 
 .buttons button:hover {
   background-color: #264ecf;
+  cursor: url('/cursor.cur'), auto;
 }
 
 .confirm-form .buttons {
@@ -263,4 +279,9 @@ form {
   .section-title {
     font-size: 1.5rem;
   }
+}
+
+.step input:hover,
+.step textarea:hover {
+  cursor: url('/cursor.cur'), auto;
 }
