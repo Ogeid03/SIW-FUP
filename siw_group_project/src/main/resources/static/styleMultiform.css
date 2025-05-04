@@ -7,10 +7,10 @@
 
 /* Body */
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f9f9f9;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f6f9;
   color: #333;
+  line-height: 1.6;
 }
 
 /* Header */
@@ -92,7 +92,41 @@ main {
   text-align: left;
 }
 
-/* Step Form */
+/* Section title */
+.section-title {
+  font-size: 1.8rem;
+  color: #346df0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Summary Box */
+.summary-box {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* aggiunta ombra per l'effetto 3D */
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.summary-box p {
+  margin-bottom: 1.5rem;
+}
+
+.summary-box strong {
+  color: #222;
+  font-weight: bold; /* aggiunto per enfatizzare i titoli */
+}
+
+.summary-box i {
+  margin-right: 0.5rem;
+  color: #346df0;
+}
+
+/* Form e Bottone */
 form {
   background-color: #ffffff;
   padding: 2rem;
@@ -160,6 +194,40 @@ form {
   background-color: #264ecf;
 }
 
+.confirm-form .buttons {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.confirmBtn,
+.backBtn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.confirmBtn {
+  background-color: #28a745;
+  color: white;
+}
+
+.confirmBtn:hover {
+  background-color: #218838;
+}
+
+.backBtn {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.backBtn:hover {
+  background-color: #e0a800;
+}
+
 /* Image Preview */
 #preview img {
   max-width: 100%;
@@ -181,3 +249,18 @@ form {
   }
 }
 
+/* Responsive */
+@media (max-width: 600px) {
+  .menu {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .summary-box {
+    padding: 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
