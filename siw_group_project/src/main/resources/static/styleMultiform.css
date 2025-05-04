@@ -187,6 +187,14 @@ form {
   box-shadow: 0 0 0 2px rgba(52, 109, 240, 0.2);
 }
 
+.step input:hover,
+.step textarea:hover {
+  cursor: url('/cursor.cur'), auto;
+  outline: none;
+  border-color: #346df0;
+  box-shadow: 0 0 0 2px rgba(52, 109, 240, 0.2);
+}
+
 /* Buttons */
 .buttons {
   text-align: center;
@@ -281,7 +289,3 @@ form {
   }
 }
 
-.step input:hover,
-.step textarea:hover {
-  cursor: url('/cursor.cur'), auto;
-}
