@@ -1,0 +1,144 @@
+/* Stile generale */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;;
+    min-height: 100vh;
+    cursor: url('/cursor.cur'), auto;
+}
+
+/* Header */
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #346df0;
+    color: white;
+}
+
+.logo {
+    height: 5%;
+    width: 5%;
+    padding-left: 2%;
+}
+
+.longLogo {
+    height: 20%;
+    width: 20%;
+    padding-left: 2%;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Diminuito il gap tra le voci del menu */
+    margin: 0;
+    padding: 0;
+    padding-right: 110px;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 40px;
+}
+
+.menu a:hover {
+    cursor: url('/cursor.cur'), pointer;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.submenu li {
+    padding: 20px;
+}
+
+.submenu li:hover {
+    background: #bfc9e3;
+}
+
+.menu li:hover {
+    cursor: url('/cursor.cur'), pointer;
+}
+
+.menu .submenu li:hover {
+    cursor: url('/cursor.cur'), pointer;
+}
+
+.submenu a {
+    color: black;
+}
+
+.dropdown:hover .submenu {
+    display: block;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background: #0056b3;
+    color: white;
+}
+
+button:hover {
+    cursor: url('/cursor.cur'), pointer;
+}
+
+/* Main Content */
+main {
+    text-align: left;
+    margin-top: 20px;
+    padding: 0 20px;
+    max-width: 2000px;
+}
+
+.scheda {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+.scheda img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+.scheda:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.pulsanti-switch {
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+    margin-bottom: 20px;
+}
