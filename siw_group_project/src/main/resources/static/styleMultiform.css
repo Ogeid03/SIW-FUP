@@ -49,11 +49,13 @@ header {
   position: relative;
 }
 
-.menu li:hover {
-  cursor: url('/cursor.cur'), auto;
-}
-
-.menu .submenu li:hover {
+.menu li:hover,
+.menu .submenu li:hover,
+.menu a:hover,
+.step label:hover,
+.step input:hover,
+.step textarea:hover,
+.buttons button:hover {
   cursor: url('/cursor.cur'), auto;
 }
 
@@ -68,10 +70,9 @@ header {
 .menu a:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
-  cursor: url('/cursor.cur'), auto;
-  
 }
 
+/* Submenu */
 .submenu {
   display: none;
   position: absolute;
@@ -124,7 +125,7 @@ main {
   background: #ffffff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* aggiunta ombra per l'effetto 3D */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
   font-size: 1rem;
 }
@@ -135,7 +136,7 @@ main {
 
 .summary-box strong {
   color: #222;
-  font-weight: bold; /* aggiunto per enfatizzare i titoli */
+  font-weight: bold;
 }
 
 .summary-box i {
@@ -143,12 +144,9 @@ main {
   color: #346df0;
 }
 
-/* Form e Bottone */
+/* Form e Step */
 form {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
 }
 
 .step {
@@ -165,10 +163,6 @@ form {
   margin-bottom: 0.5rem;
   font-weight: bold;
   color: #333;
-}
-
-.step label:hover{
-  cursor: url('/cursor.cur'), auto;
 }
 
 .step input,
@@ -188,14 +182,6 @@ form {
 
 .step input:focus,
 .step textarea:focus {
-  outline: none;
-  border-color: #346df0;
-  box-shadow: 0 0 0 2px rgba(52, 109, 240, 0.2);
-}
-
-.step input:hover,
-.step textarea:hover {
-  cursor: url('/cursor.cur'), auto;
   outline: none;
   border-color: #346df0;
   box-shadow: 0 0 0 2px rgba(52, 109, 240, 0.2);
@@ -221,12 +207,14 @@ form {
 
 .buttons button:hover {
   background-color: #264ecf;
-  cursor: url('/cursor.cur'), auto;
 }
 
-.confirm-form .buttons {
+.confirm-form {
+  background-color: transparent;  
+  box-shadow: none;               
+  padding: 0;                     
+  margin-top: 2rem;
   text-align: center;
-  margin-top: 1.5rem;
 }
 
 .confirmBtn,
@@ -294,4 +282,3 @@ form {
     font-size: 1.5rem;
   }
 }
-
