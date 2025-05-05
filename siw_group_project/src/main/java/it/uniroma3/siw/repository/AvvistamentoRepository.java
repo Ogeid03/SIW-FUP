@@ -8,6 +8,8 @@ import it.uniroma3.siw.model.Avvistamento;
 
 
 
-public interface SegnalazioneRepository extends JpaRepository<Avvistamento, Long> {
+public interface AvvistamentoRepository extends JpaRepository<Avvistamento, Long> {
     List<Avvistamento> findAll();
+    List<Avvistamento> findByRazzaAndIdNot(String razza, Long id);
+    List<Avvistamento> findByRazza(String razza);
 }

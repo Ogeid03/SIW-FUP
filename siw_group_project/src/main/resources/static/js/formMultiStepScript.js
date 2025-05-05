@@ -56,4 +56,51 @@ document.getElementById("multiStepForm").addEventListener("submit", function(e) 
   }
 });
 
+  let map = L.map('map').setView([41.9028, 12.4964], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  let marker;
+
+  const input = document.getElementById('luogo');
+
+  input.addEventListener('input', function () {
+    const query = input.value;
+    if (query.length < 3) return;
+
+    fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=5`)
+      .then(res => res.json())
+      .then(data => {
+        const results = data.features;
+        const datalist = document.getElementById('addressSuggestions');
+        datalist.innerHTML = '';
+
+        results.forEach(place => {
+          const option = document.createElement('option');
+          option.value = place.properties.name + ', ' + (place.properties.city || '') + ', ' + place.properties.country;
+          option.dataset.lat = place.geometry.coordinates[1];
+          option.dataset.lon = place.geometry.coordinates[0];
+          datalist.appendChild(option);
+        });
+      });
+  });
+
+  input.addEventListener('change', function () {
+    const selectedOption = Array.from(document.getElementById('addressSuggestions').options)
+      .find(option => option.value === input.value);
+
+    if (selectedOption) {
+      const lat = selectedOption.dataset.lat;
+      const lon = selectedOption.dataset.lon;
+
+      document.getElementById('lat').value = lat;
+      document.getElementById('lon').value = lon;
+
+      if (marker) map.removeLayer(marker);
+      marker = L.marker([lat, lon]).addTo(map).bindPopup(input.value).openPopup();
+      map.setView([lat, lon], 15);
+    }
+  });
+
 

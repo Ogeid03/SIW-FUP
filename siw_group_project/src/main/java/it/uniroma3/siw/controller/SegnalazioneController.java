@@ -1,50 +1,52 @@
 package it.uniroma3.siw.controller;
 
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.ui.Model;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
+
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Denuncia;
-import it.uniroma3.siw.repository.SegnalazioneRepository;
-
-
+import it.uniroma3.siw.repository.AvvistamentoRepository;
+import it.uniroma3.siw.repository.DenunciaRepository;
 
 @Controller
 public class SegnalazioneController {
 
     @Autowired
-    private SegnalazioneRepository segnalazioneRepository;
+    private AvvistamentoRepository avvistamentoRepository;
 
-    @GetMapping("/segnalazioni")
-    public String mostraFormSegnalazione(Model model) {
-        model.addAttribute("segnalazione", new Avvistamento());
-        return "segnalazioneForm";
-    }
+    @Autowired
+    private DenunciaRepository denunciaRepository;
 
-    @PostMapping("/conferma-avvistamento")
-    public String conferma(@ModelAttribute Avvistamento avvistamento, Model model) {
-        model.addAttribute("segnalazione", avvistamento);
-        return "recap-avvistamento"; // Pagina di successo dopo l'invio del modulo
-    }
+    @GetMapping("/segnalazioni/{id:[0-9]+}")
+    public String dettagliSegnalazione(@PathVariable Long id, Model model) {
+        // Recupera la segnalazione (avvistamento o denuncia)
+        Optional<Avvistamento> avv = avvistamentoRepository.findById(id);
+        if (avv.isPresent()) {
+            model.addAttribute("segnalazione", avv.get());
+            model.addAttribute("tipo", "avvistamento");
 
-    // Conferma e salva la denuncia nel database
-    @PostMapping("/salva-avvistamento")
-    public String salvaDenuncia(@ModelAttribute Avvistamento avvistamento) {
-        segnalazioneRepository.save(avvistamento); // Salva i dati nel database
-        return "redirect:/"; // Torna alla homepage o un'altra pagina di conferma
-    }
+            // Recupera gli avvistamenti simili per razza (escludendo l'id dell'attuale segnalazione)
+            List<Avvistamento> simili = avvistamentoRepository.findByRazzaAndIdNot(avv.get().getRazza(), id);
+            model.addAttribute("simili", simili);
 
-    @GetMapping("/carosello")
-    public String mostraCarosello(Model model) {
-        List<Avvistamento> avvistamenti = segnalazioneRepository.findAll();
-        model.addAttribute("avvistamenti", avvistamenti);
-        return "allAvvistamenti"; // nome del template Thymeleaf
+            return "segnalazione";  // Ritorna il template segnalazione
+        }
+
+        Optional<Denuncia> den = denunciaRepository.findById(id);
+        if (den.isPresent()) {
+            model.addAttribute("segnalazione", den.get());
+            model.addAttribute("tipo", "denuncia");
+            return "segnalazione";  // Ritorna il template segnalazione
+        }
+
+        return "not-found";  // Se non troviamo la segnalazione
     }
 }
-

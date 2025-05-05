@@ -14,12 +14,12 @@
         <img src="LongLogo.png" alt="Logo" class="longLogo">
         <nav>
             <ul class="menu">
-                <li><a href="#">About</a></li>
+                <li><a href="/about">About</a></li>
                 <li class="dropdown">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Sviluppo</a></li>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Segnalazioni</a></li>
                     </ul>
                 </li>
             </ul>
@@ -28,10 +28,21 @@
 
     <!-- Contenuto Principale -->
     <main>
+
+        <img src="/img/mascotte.gif" alt="Mascotte animata" class="gif-fixed">
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Hai perso il tuo amico a quattro zampe?</h1>
+                <p class="hero-text">Noi ti aiutiamo a ritrovarlo. Segnala, cerca e ritrova con FUP.</p>
+                <a href="/denunce"><button class="cta-btn">Denuncia Smarrimento</button></a>
+            </div>
+        </section>
+
         <div class="button-container">
             <a href="/segnalazioni"><button id="btn1">Segnala avvistamento</button></a>
             <a href="/denunce"><button id="btn2">Denuncia Smarrimento</button></a>
-            <br>
+        </div><div class="button-container">
             <a href="/ricerca"><button id="btn3">Ricerca</button></a>
         </div>
 
@@ -169,7 +180,7 @@
 
     <!-- Footer -->
     <footer>
-        &copy; 2025 Tutti i diritti riservati.
+        &copy; 2025 FUP - Find Your Pet. Tutti i diritti riservati.
     </footer>
 
     <script src="/js/formScript.js"></script>

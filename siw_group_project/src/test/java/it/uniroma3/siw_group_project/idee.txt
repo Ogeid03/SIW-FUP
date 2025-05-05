@@ -1,11 +1,26 @@
 ⬜ -> ✅
 
-⬜ - il colore dell'animale dovrebbe avere un suo attributo specifico
-⬜ - nel form mettere più menù a tendina
-⬜ - Bro scusa, vedevo e i form risultano un po' lunghetti, nulla in contrario in un form a step? 
+⬜ - Il colore dell'animale dovrebbe avere un suo attributo specifico ???
+⬜ - Nel form mettere più menù a tendina
+✅ - Bro scusa, vedevo e i form risultano un po' lunghetti, nulla in contrario in un form a step? 
         Magari cambiamo l'idea iniziale dell'homoage e facciamo 3 button che rimandano a pagine per i form,
         che poi sono a step con massimo 3 domande
 ✅ - Altra cosa js va messo esterno dall'html, sennò non si capisce nulla
+⬜ - No copie di avvistamenti (equals luogo e razza) -- magari si aggiorna la data ???
+⬜ - Sistema Visualizzazioni dati in Ricerca e nei caroselli
+⬜ - Fix inserimento Luogo
+⬜ - Più razze (es. [xcane] [xlupo])
+⬜ - Estetica pagina Error
+✅ - Pagina dettaglio segnalazione
+⬜ - Inserisci Luogo da import
+✅ - Carosello segnalazioni simili
+
+⬜ - Crea Pagine per Menu riempitive (es. About, Contatti, Segnalazioni)
+⬜ - Disegni animali estetica sito
+⬜ - Gestione Account (Utente, Gestore, Pagina Utente)
+⬜ - Gestione Messaggistica
+⬜ - Gestione Enum
+
 
 
 INSERT INTO avvistamento (id, data_ora, specie, razza, descrizione_fisica, foto, informazioni_extra, cod_luogo, cod_utente, cod_status, stato_salute, azioni_intraprese)

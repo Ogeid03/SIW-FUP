@@ -1,3 +1,116 @@
+/* Stile specifico */
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)); /* ombra */
+    border: 2px solid black; /* contorno nero */
+    border-radius: 0%;
+    width: 50px;
+    height: 50px;
+    
+    opacity: 0.9;
+    transition: transform 0.2s;
+}
+
+.carousel-item {
+    transition: none; /* Disabilita tutte le transizioni */
+    transform: none; /* Rimuove l'effetto di zoom */
+}
+
+/* Imposta un comportamento di transizione normale */
+.carousel-inner {
+    overflow: hidden; /* Nasconde le immagini in eccesso, se c'è */
+}
+
+/* Impedisci l'animazione di zoom */
+.carousel-item img {
+    transform: none !important; /* Elimina l'effetto di zoom sulle immagini */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-image: none;
+    mask-size: cover;
+    -webkit-mask-size: cover;
+    background-color: #004bb0; /* blu scuro */
+    width: 20px;
+    height: 20px;
+}
+
+
+.container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1000px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.photo-box, .summary-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centra il contenuto nella colonna */
+    text-align: center;
+}
+
+.photo-box {
+    padding-right: 2rem;
+    border-right: 3px solid #007bff; /* linea divisoria blu */
+}
+
+.summary-box {
+    padding-left: 2rem;
+}
+
+.photo-box img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.summary-box p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.summary-box strong {
+    color: #444;
+}
+
+.carousel-inner {
+    display: flex;
+    /*overflow: hidden;*/
+}
+
+.carousel-item {
+    flex: 0 0 33.3333%; /* Mostra 3 elementi alla volta */
+    transition: transform 0.5s ease;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    z-index: 10;
+}
+
+.carousel-item img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 400px;
+}
+
+.carousel-item p {
+    text-align: center;
+}
+
 /* Reset globale */
 * {
     margin: 0;
@@ -10,10 +123,12 @@ body {
     font-family: Arial, sans-serif;
     height: 100vh; /* Evita scroll verticale */
     display: flex;
+    margin: 2rem;
     flex-direction: column;
     justify-content: space-between;
     cursor: url('/cursor.cur'), auto;
-    overflow: hidden; /* Impedisce scroll se non necessario */
+    /*overflow: hidden; /* Impedisce scroll se non necessario */
+    align-items: center;
 }
 
 /* Header */
@@ -200,42 +315,4 @@ footer {
     background: #0056b3;
     color: white;
     flex-shrink: 0;
-}
-
-/* EXTRA */
-.hero {
-    background: url('/img/bannerHPprova.jpg') center/cover no-repeat;
-    color: white;
-    padding: 100px 20px;
-    text-align: center;
-}
-.hero-content h1 {
-    font-size: 3em;
-    margin-bottom: 0.5em;
-}
-
-.hero-text{
-    font-size: 2em;
-    margin-bottom: 0.5em;
-}
-
-.cta-btn {
-    background-color: #ff6b6b;
-    color: white;
-    padding: 15px 30px;
-    margin-top: 2%;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2em;
-    cursor: pointer;
-}
-
-.gif-fixed {
-    position: fixed;
-    bottom: -20px;       /* distanza dal basso */
-    right: -20px;        /* distanza da destra */
-    width: 20%;       /* dimensione della GIF */     
-    height: auto;
-    z-index: 1000;     
-    pointer-events: none; 
 }

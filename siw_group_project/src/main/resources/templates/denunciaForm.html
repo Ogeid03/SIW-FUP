@@ -5,6 +5,10 @@
   <title>Form a Step</title>
   <link rel="stylesheet" href="styleMultiform.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 </head>
 <body>
   <header>
@@ -29,7 +33,7 @@
     <!-- Step 1 -->
     <div class="step active">
       <label for="luogo">Luogo Smarrimento:</label>
-      <!-- <input type="text" id="luogo"  name="luogo" th:field="*{luogo}" required><br> -->
+      <input type="text" id="luogo"  name="luogo" list="addressSuggestions" th:field="*{luogo}" required placeholder="Via Roma, 10"><br><datalist id="addressSuggestions"></datalist>
 
       <label for="nome">Nome:</label>
       <input type="text" id="nome"  name="nome" th:field="*{nome}" required><br>
@@ -58,7 +62,9 @@
       <label for="info">Informazioni Extra:</label>
       <textarea id="info" name="info"  placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
 
-
+      <label for="foto">Foto (URL):</label>
+      <input type="url" id="foto" name="foto"  maxlength="255" placeholder="https://..." required oninput="anteprimaImmagine(this.value)" th:field="*{foto}"> 
+      <div id="preview" style="margin-top: 10px;"></div>
     </div>
 
     <!-- Bottoni -->

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Denuncia;
 import it.uniroma3.siw.repository.DenunciaRepository;
-import it.uniroma3.siw.repository.SegnalazioneRepository;
+import it.uniroma3.siw.repository.AvvistamentoRepository;
 
 @Controller
 public class RicercaController {
 
     @Autowired
-    private SegnalazioneRepository segnalazioneRepository;
+    private AvvistamentoRepository segnalazioneRepository;
     @Autowired
     private DenunciaRepository denunciaRepository;
 

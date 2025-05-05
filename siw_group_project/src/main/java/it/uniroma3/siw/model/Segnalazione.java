@@ -21,10 +21,7 @@ public class Segnalazione {
     private String descrizioneFisica;
     private String foto;
     private String informazioniExtra;
-    
-    @ManyToOne
-    @JoinColumn(name = "codLuogo")
-    private Luogo codLuogo;
+    private String luogo;
     
     @ManyToOne
     @JoinColumn(name = "codUtente")
@@ -91,12 +88,12 @@ public class Segnalazione {
         this.informazioniExtra = informazioniExtra;
     }
 
-    public Luogo getCodLuogo() {
-        return codLuogo;
+    public String getCodLuogo() {
+        return luogo;
     }
 
-    public void setCodLuogo(Luogo codLuogo) {
-        this.codLuogo = codLuogo;
+    public void setCodLuogo(String codLuogo) {
+        this.luogo = codLuogo;
     }
 
     public Utente getCodUtente() {
