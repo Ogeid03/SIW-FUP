@@ -9,106 +9,122 @@ body {
     min-height: 100vh;
     cursor: url('/cursor.cur'), auto;
 }
-
-/* Header */
-header {
+ 
+  /* Header */
+  header {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 1rem 2rem;
     background-color: #346df0;
     color: white;
-}
-
-.logo {
+    flex-wrap: wrap;
+  }
+  
+  .logo {
     height: 5%;
     width: 5%;
     padding-left: 2%;
-}
-
-.longLogo {
+  }
+  
+  .longLogo {
     height: 20%;
     width: 20%;
     padding-left: 2%;
-}
-
-.menu {
+  }
+  
+  .menu {
     list-style: none;
     display: flex;
-    gap: 20px; /* Diminuito il gap tra le voci del menu */
+    gap: 20px; 
     margin: 0;
     padding: 0;
     padding-right: 110px;
-}
-
-.menu li {
+  }
+  
+  .menu li {
     position: relative;
-}
-
-.menu a {
+  }
+  
+  .menu li:hover,
+  .menu .submenu li:hover,
+  .menu a:hover,
+  .step label:hover,
+  .step input:hover,
+  .step textarea:hover,
+  .buttons button:hover {
+    cursor: url('/cursor.cur'), auto;
+  }
+  
+  .menu a {
     color: white;
     text-decoration: none;
-    padding: 40px;
-}
-
-.menu a:hover {
-    cursor: url('/cursor.cur'), pointer;
-}
-
-.submenu {
+    padding: 1rem;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    cursor: url('/cursor.cur'), auto;
+  }
+  
+  .submenu {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
+    top: 100%; 
+    left: 0; 
     background: white;
     list-style: none;
     padding: 0;
     margin: 0;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-}
-
-.submenu li {
-    padding: 20px;
-}
-
-.submenu li:hover {
+  }
+  
+  .submenu li {
+    padding: 10px 20px;
+  }
+  
+  .submenu li:hover {
     background: #bfc9e3;
-}
-
-.menu li:hover {
-    cursor: url('/cursor.cur'), pointer;
-}
-
-.menu .submenu li:hover {
-    cursor: url('/cursor.cur'), pointer;
-}
-
-.submenu a {
+  }
+  
+  .submenu a {
     color: black;
-}
-
-.dropdown:hover .submenu {
+    text-decoration: none;
+  }
+  
+  .menu li:hover .submenu {
     display: block;
-}
-
-/* Footer */
-footer {
+  }
+  
+  /* Hover effetti sul sottomenu */
+  .menu li:hover {
+    cursor: url('/cursor.cur'), pointer;
+  }
+  
+  .menu .submenu li:hover {
+    cursor: url('/cursor.cur'), pointer;
+  }
+  
+  /* Footer */
+  footer {
     margin-top: auto;
     width: 100%;
     text-align: center;
     padding: 10px;
     background: #0056b3;
     color: white;
-}
-
-button,
-button:hover {
+  }
+  
+  button,
+  button:hover {
     cursor: url('/cursor.cur'), auto !important;
-}
-
-
+  }
+  
 
 /* Main Content */
 main {
