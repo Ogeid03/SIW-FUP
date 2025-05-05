@@ -103,9 +103,12 @@ footer {
     color: white;
 }
 
+button,
 button:hover {
-    cursor: url('/cursor.cur'), pointer;
+    cursor: url('/cursor.cur'), auto !important;
 }
+
+
 
 /* Main Content */
 main {
