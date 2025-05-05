@@ -22,6 +22,12 @@
 ⬜ - Gestione Enum
 
 
+proposte
+⬜ -  solo due bottoni, ricerca messo in menu 
+⬜ -  carosello animali simili prima di confermare la segnalazione (automatico e con 3 alla volta)
+⬜ -  cambia nome "Ricerca" con "Consulta Segnalazioni"
+⬜ -  cambia segnalazioni simili con denunce rilevanti
+
 
 INSERT INTO avvistamento (id, data_ora, specie, razza, descrizione_fisica, foto, informazioni_extra, cod_luogo, cod_utente, cod_status, stato_salute, azioni_intraprese)
 VALUES (
