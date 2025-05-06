@@ -12,7 +12,7 @@
 <body>
     <!-- Header -->
     <header>
-        <img th:src="@{/LongLogo.png}" alt="Logo" class="longLogo">
+        <a href="/"><img th:src="@{/LongLogo.png}" alt="Logo" class="longLogo"></a>
         <nav>
             <ul class="menu">
                 <li><a href="/">Home</a></li>
@@ -60,17 +60,17 @@
     </div>
 
     <div class="similar-sightings-section mt-5">
-        <h2 class="text-center mb-4">Avvistamenti Simili</h2>
+        <h2 class="text-center mb-4">Denunce Rilevanti</h2>
         <div class="container">
             <!-- Verifica se ci sono avvistamenti simili -->
-            <div th:if="${#lists.isEmpty(simili)}">
-                <p class="text-center">Nessun avvistamento simile trovato.</p>
+            <div th:if="${#lists.isEmpty(rilevanti)}">
+                <p class="text-center">Nessuna denuncia simile trovata.</p>
             </div>
     
             <!-- Carosello con 3 immagini visibili alla volta -->
-            <div id="similarCarousel" class="carousel slide" data-bs-ride="false" th:if="${not #lists.isEmpty(simili)}">
+            <div id="similarCarousel" class="carousel slide" data-bs-ride="false" th:if="${not #lists.isEmpty(rilevanti)}">
                 <div class="carousel-inner">
-                    <div th:each="avv, iterStat : ${simili}"
+                    <div th:each="avv, iterStat : ${rilevanti}"
                          th:class="'carousel-item' + (${iterStat.index} % 3 == 0 ? ' active' : '')">
                         <div class="d-flex justify-content-center">
                             <img th:src="${avv.foto}" class="d-block rounded" th:alt="${avv.descrizioneFisica}">

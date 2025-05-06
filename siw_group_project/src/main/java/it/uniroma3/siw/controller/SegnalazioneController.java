@@ -44,6 +44,10 @@ public class SegnalazioneController {
         if (den.isPresent()) {
             model.addAttribute("segnalazione", den.get());
             model.addAttribute("tipo", "denuncia");
+
+            List<Denuncia> rilevanti = denunciaRepository.findByRazzaAndIdNot(den.get().getRazza(), id);
+            model.addAttribute("simili", rilevanti);
+
             return "segnalazione";  // Ritorna il template segnalazione
         }
 

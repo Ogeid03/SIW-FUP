@@ -22,10 +22,15 @@
 ⬜ - Gestione Enum
 
 
+fixes
+⬜ - uniformare l'header
+⬜ - fix foto in denunce
+⬜ - fix denunce simili, mostra le denucne con avvistamenti e viceversa
+
 proposte
-⬜ -  solo due bottoni, ricerca messo in menu 
+✅ -  solo due bottoni, ricerca messo in menu 
 ⬜ -  carosello animali simili prima di confermare la segnalazione (automatico e con 3 alla volta)
-⬜ -  cambia nome "Ricerca" con "Consulta Segnalazioni"
+✅ -  cambia nome "Ricerca" con "Consulta Segnalazioni"
 ⬜ -  cambia segnalazioni simili con denunce rilevanti
 
 

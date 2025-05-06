@@ -239,3 +239,31 @@ footer {
     z-index: 1000;     
     pointer-events: none; 
 }
+
+.segnalazione-invito{
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #f4faff;
+    margin-top: 2rem;
+}
+
+.invito-container h2 {
+    font-size: 1.8rem;
+    color: #003366;
+}
+
+.invito-container p,
+.spiegazione-container p {
+    font-size: 1rem;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+}
+
+.linea-blu {
+    border: none;
+    height: 4px;
+    background-color: #007BFF;
+    margin: 3rem auto 2rem;
+    width: 80%;
+}

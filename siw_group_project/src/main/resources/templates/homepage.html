@@ -11,9 +11,10 @@
 
     <!-- Header -->
     <header>
-        <img src="LongLogo.png" alt="Logo" class="longLogo">
+        <a href="/"><img src="LongLogo.png" alt="Logo" class="longLogo"></a>
         <nav>
             <ul class="menu">
+                <li><a href="/ricerca">Consulta Segnalazioni</a></li>
                 <li><a href="/about">About</a></li>
                 <li class="dropdown">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
@@ -35,17 +36,30 @@
             <div class="hero-content">
                 <h1>Hai perso il tuo amico a quattro zampe?</h1>
                 <p class="hero-text">Noi ti aiutiamo a ritrovarlo. Segnala, cerca e ritrova con FUP.</p>
-                <a href="/denunce"><button class="cta-btn">Denuncia Smarrimento</button></a>
+                <div class="button-container">
+                    <a href="/denunce"><button class="cta-btn">Denuncia Smarrimento</button></a>
+                </div>
             </div>
         </section>
 
-        <div class="button-container">
-            <a href="/segnalazioni"><button id="btn1">Segnala avvistamento</button></a>
-            <a href="/denunce"><button id="btn2">Denuncia Smarrimento</button></a>
-        </div><div class="button-container">
-            <a href="/ricerca"><button id="btn3">Ricerca</button></a>
+        <div>
+            <br><br>
+            <!-- Sezione Invito alla Segnalazione -->
+            <section class="segnalazione-invito">
+                <div class="invito-container">
+                    <h2>Hai visto un animale smarrito?</h2>
+                    <p>La tua segnalazione può fare la differenza. Ogni dettaglio può aiutare un animale a tornare a casa.</p>
+                    <div class="button-container">
+                        <a href="/segnalazioni"><button class="cta-btn">Segnala ora</button></a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Linea Divisoria -->
+            <hr class="linea-blu">
         </div>
 
+        <div>
             <br><br>
             <h1 class="faq-title">Domande Frequenti sugli Animali Smarriti e le Segnalazioni</h1>
 
@@ -175,7 +189,7 @@
                     Se il tuo animale smarrito non ha un microchip, cerca di metterti in contatto con i rifugi locali, i veterinari e i gruppi online per animali smarriti. Inoltre, affiggi volantini nei luoghi frequentati dal tuo animale e nelle aree circostanti. Puoi anche cercare il tuo animale nei rifugi e visitare le zone dove potrebbe essere stato avvistato.
                 </div>
             </div>
-        
+        </div>
     </main>
 
     <!-- Footer -->
