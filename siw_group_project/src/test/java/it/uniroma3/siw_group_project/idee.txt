@@ -7,31 +7,30 @@
         che poi sono a step con massimo 3 domande
 ✅ - Altra cosa js va messo esterno dall'html, sennò non si capisce nulla
 ⬜ - No copie di avvistamenti (equals luogo e razza) -- magari si aggiorna la data ???
-⬜ - Sistema Visualizzazioni dati in Ricerca e nei caroselli
-⬜ - Fix inserimento Luogo
+✅ - Sistema Visualizzazioni dati in Ricerca e nei caroselli
 ⬜ - Più razze (es. [xcane] [xlupo])
 ⬜ - Estetica pagina Error
 ✅ - Pagina dettaglio segnalazione
-⬜ - Inserisci Luogo da import
 ✅ - Carosello segnalazioni simili
 
 ⬜ - Crea Pagine per Menu riempitive (es. About, Contatti, Segnalazioni)
 ⬜ - Disegni animali estetica sito
 ⬜ - Gestione Account (Utente, Gestore, Pagina Utente)
 ⬜ - Gestione Messaggistica
-⬜ - Gestione Enum
+✅ - Gestione Enum
 
 
 fixes
-⬜ - uniformare l'header
-⬜ - fix foto in denunce
-⬜ - fix denunce simili, mostra le denucne con avvistamenti e viceversa
+✅ - uniformare l'header
+✅ - fix foto in denunce
+✅ - fix denunce simili, mostra le denucne con avvistamenti e viceversa
+⬜ - Fix inserimento Luogo
 
 proposte
 ✅ -  solo due bottoni, ricerca messo in menu 
 ⬜ -  carosello animali simili prima di confermare la segnalazione (automatico e con 3 alla volta)
 ✅ -  cambia nome "Ricerca" con "Consulta Segnalazioni"
-⬜ -  cambia segnalazioni simili con denunce rilevanti
+✅ -  cambia segnalazioni simili con denunce rilevanti
 
 
 INSERT INTO avvistamento (id, data_ora, specie, razza, descrizione_fisica, foto, informazioni_extra, cod_luogo, cod_utente, cod_status, stato_salute, azioni_intraprese)

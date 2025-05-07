@@ -22,14 +22,12 @@ public class Segnalazione {
     private String foto;
     private String informazioniExtra;
     private String luogo;
+    @Enumerated(EnumType.STRING)
+    private Stato codStatus;
     
     @ManyToOne
     @JoinColumn(name = "codUtente")
     private Utente codUtente;
-    
-    @ManyToOne
-    @JoinColumn(name = "codStatus")
-    private Stato codStatus;
 
     // Getter e Setter
     public Long getId() {
