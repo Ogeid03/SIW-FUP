@@ -208,7 +208,7 @@ footer {
 /* EXTRA */
 .hero {
     background: url('/img/bannerHPprova.jpg') center/cover no-repeat;
-    height: 20rem;
+    height: 60%;
     color: white;
     padding: 100px 20px;
     text-align: center;
