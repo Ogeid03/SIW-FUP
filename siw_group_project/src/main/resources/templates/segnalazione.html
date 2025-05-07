@@ -74,7 +74,9 @@
                             <div th:each="den, iterStat : ${rilevanti}"
                                  th:class="'carousel-item' + (${iterStat.index} == 0 ? ' active' : '')">
                                 <div class="d-flex justify-content-center">
-                                    <img th:src="${den.foto}" class="d-block rounded" th:alt="${den.descrizioneFisica}">
+                                    <a th:href="@{/segnalazioni/{id}(id=${den.id})}">
+                                        <img th:src="${den.foto}" class="d-block rounded" th:alt="${den.descrizioneFisica}">
+                                    </a>
                                 </div>
                                 <p class="text-center mt-2" th:text="${den.descrizioneFisica}"></p>
                             </div>
@@ -94,7 +96,7 @@
 
         <!-- Carosello per AVVISTAMENTI SIMILI -->
         <div th:if="${tipo == 'denuncia'}">
-            <h2 class="text-center mb-4">Avvistamenti Simili</h2>
+            <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
             <div class="container">
                 <div th:if="${#lists.isEmpty(simili)}">
                     <p class="text-center">Nessun avvistamento simile trovato.</p>
@@ -105,7 +107,9 @@
                             <div th:each="avv, iterStat : ${simili}"
                                  th:class="'carousel-item' + (${iterStat.index} == 0 ? ' active' : '')">
                                 <div class="d-flex justify-content-center">
-                                    <img th:src="${avv.foto}" class="d-block rounded" th:alt="${avv.descrizioneFisica}">
+                                    <a th:href="@{/segnalazioni/{id}(id=${avv.id})}">
+                                        <img th:src="${avv.foto}" class="d-block rounded" th:alt="${avv.descrizioneFisica}">
+                                    </a>
                                 </div>
                                 <p class="text-center mt-2" th:text="${avv.descrizioneFisica}"></p>
                             </div>
