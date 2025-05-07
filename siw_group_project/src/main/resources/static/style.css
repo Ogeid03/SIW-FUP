@@ -97,8 +97,11 @@ header {
 .menu li:hover,
 .menu .submenu li:hover,
 button:hover,
-.faq .question:hover {
-    cursor: url('/cursor.cur'), pointer;
+.faq .question:hover,
+.cta-btn:hover,
+.button-container:hover,
+.longLogo{
+    cursor: url('/cursor.cur'), auto;
 }
 
 /* Main Content */
