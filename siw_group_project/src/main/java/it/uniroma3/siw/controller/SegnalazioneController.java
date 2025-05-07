@@ -34,8 +34,8 @@ public class SegnalazioneController {
             model.addAttribute("tipo", "avvistamento");
 
             // Recupera gli avvistamenti simili per razza (escludendo l'id dell'attuale segnalazione)
-            List<Avvistamento> simili = avvistamentoRepository.findByRazzaAndIdNot(avv.get().getRazza(), id);
-            model.addAttribute("simili", simili);
+            List<Denuncia> rilevanti = denunciaRepository.findByRazzaAndIdNot(avv.get().getRazza(), id);
+            model.addAttribute("rilevanti", rilevanti);
 
             return "segnalazione";  // Ritorna il template segnalazione
         }
@@ -45,8 +45,8 @@ public class SegnalazioneController {
             model.addAttribute("segnalazione", den.get());
             model.addAttribute("tipo", "denuncia");
 
-            List<Denuncia> rilevanti = denunciaRepository.findByRazzaAndIdNot(den.get().getRazza(), id);
-            model.addAttribute("simili", rilevanti);
+            List<Avvistamento> simili = avvistamentoRepository.findByRazzaAndIdNot(den.get().getRazza(), id);
+            model.addAttribute("simili", simili);
 
             return "segnalazione";  // Ritorna il template segnalazione
         }

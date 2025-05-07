@@ -29,7 +29,8 @@
         <p><strong><i class="fa-solid fa-hourglass-half"></i> Età:</strong> <span th:text="${denuncia.eta}"></span></p>
         <p><strong><i class="fa-solid fa-coins"></i> Premio offerto:</strong> <span th:text="${denuncia.premioOfferto}"></span></p>
         <p><strong><i class="fa-solid fa-circle-info"></i> Informazioni extra:</strong> <span th:text="${denuncia.informazioniExtra}"></span></p>
-    </div>
+        <p><strong><i class="fa-solid fa-camera"></i> Foto (URL):</strong><br><img th:src="${denuncia.foto}" alt="Foto denuncia" style="max-width: 300px; max-height: 200px;"></p>
+    
     <form action="/salva-denuncia" method="post" th:object="${denuncia}" class="confirm-form">
         <input type="hidden" name="nome" th:value="*{nome}" />
         <input type="hidden" name="specie" th:value="*{specie}" />
@@ -38,6 +39,7 @@
         <input type="hidden" name="eta" th:value="*{eta}" />
         <input type="hidden" name="premioOfferto" th:value="*{premioOfferto}" />
         <input type="hidden" name="informazioniExtra" th:value="*{informazioniExtra}" />
+        <input type="hidden" name="foto" th:value="*{foto}" />
 
         <div class="buttons">
             <button type="button" class="backBtn" onclick="history.back()"><i class="fa-solid fa-arrow-left"></i> Modifica</button>
