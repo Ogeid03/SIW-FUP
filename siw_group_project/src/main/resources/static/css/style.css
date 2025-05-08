@@ -12,7 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    cursor: url('/cursor.cur'), auto;
+    cursor: url('/img/cursor.cur'), auto;
     overflow: hidden; 
 }
 
@@ -59,7 +59,7 @@ header {
 .menu a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    cursor: url('/cursor.cur'), auto;
+    cursor: url('/img/cursor.cur'), auto;
 }
 
 /* Dropdown menu */
@@ -101,7 +101,7 @@ button:hover,
 .cta-btn:hover,
 .button-container:hover,
 .longLogo{
-    cursor: url('/cursor.cur'), auto;
+    cursor: url('/img/cursor.cur'), auto;
 }
 
 /* Main Content */

@@ -8,7 +8,7 @@ body {
   justify-content: flex-start;
   ;
   min-height: 100vh;
-  cursor: url('/cursor.cur'), auto;
+  cursor: url('/img/cursor.cur'), auto;
 }
 
 /* Header */
@@ -50,7 +50,7 @@ header {
 .step input:hover,
 .step textarea:hover,
 .buttons button:hover {
-  cursor: url('/cursor.cur'), auto;
+  cursor: url('/img/cursor.cur'), auto;
 }
 
 .menu a {
@@ -64,7 +64,7 @@ header {
 .menu a:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
-  cursor: url('/cursor.cur'), auto;
+  cursor: url('/img/cursor.cur'), auto;
 }
 
 .submenu {
@@ -99,11 +99,11 @@ header {
 
 /* Hover effetti sul sottomenu */
 .menu li:hover {
-  cursor: url('/cursor.cur'), pointer;
+  cursor: url('/img/cursor.cur'), pointer;
 }
 
 .menu .submenu li:hover {
-  cursor: url('/cursor.cur'), pointer;
+  cursor: url('/img/cursor.cur'), pointer;
 }
 
 /* Footer */
@@ -118,7 +118,7 @@ footer {
 
 button,
 button:hover {
-  cursor: url('/cursor.cur'), auto !important;
+  cursor: url('/img/cursor.cur'), auto !important;
 }
 
 

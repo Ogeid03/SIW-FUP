@@ -126,7 +126,7 @@ body {
     margin: 2rem;
     flex-direction: column;
     justify-content: space-between;
-    cursor: url('/cursor.cur'), auto;
+    cursor: url('/img/cursor.cur'), auto;
     /*overflow: hidden; /* Impedisce scroll se non necessario */
     align-items: center;
 }
@@ -174,7 +174,7 @@ header {
 .menu a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    cursor: url('/cursor.cur'), auto;
+    cursor: url('/img/cursor.cur'), auto;
 }
 
 /* Dropdown menu */
@@ -213,7 +213,7 @@ header {
 .menu .submenu li:hover,
 button:hover,
 .faq .question:hover {
-    cursor: url('/cursor.cur'), pointer;
+    cursor: url('/img/cursor.cur'), pointer;
 }
 
 /* Main Content */
