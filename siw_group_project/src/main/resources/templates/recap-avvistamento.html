@@ -21,6 +21,7 @@
     <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> Riepilogo Avvistamento</h2>
 
     <div class="summary-box">
+        <p><strong><i class="fa-solid fa-location"></i> Luogo:</strong> <span th:text="${segnalazione.luogo}"></span></p>
         <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span th:text="${segnalazione.specie}"></span></p>
         <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span th:text="${segnalazione.razza}"></span></p>
         <p><strong><i class="fa-solid fa-align-left"></i> Descrizione Fisica:</strong> <span th:text="${segnalazione.descrizioneFisica}"></span></p>
@@ -33,6 +34,7 @@
 
     <!-- Form con bottoni -->
     <form action="/salva-avvistamento" method="post" th:object="${segnalazione}" class="confirm-form">
+        <input type="hidden" name="luogo" th:value="*{luogo}" />
         <input type="hidden" name="specie" th:value="*{specie}" />
         <input type="hidden" name="razza" th:value="*{razza}" />
         <input type="hidden" name="descrizioneFisica" th:value="*{descrizioneFisica}" />

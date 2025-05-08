@@ -7,5 +7,5 @@ import it.uniroma3.siw.model.Utente;
 
 @Repository
 public interface UtenteRepository extends CrudRepository<Utente, Long>{
-
+    Utente findByNomeUtente(String nomeUtente);
 }

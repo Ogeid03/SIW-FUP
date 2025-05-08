@@ -4,31 +4,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.UtenteService;
 
 @Controller
 public class UtenteController {
 
     @Autowired
-    private final UtenteService utenteService;
+    private UtenteService utenteService;
 
-    public UtenteController(UtenteService utenteService) {
-        this.utenteService = utenteService;
+   @GetMapping("/login")
+    public String showLoginPage() {
+        return "login"; // Pagina di login
     }
 
-    @GetMapping("/utenti")
-    public String mostraForm(Model model) {
-        model.addAttribute("utente", new Utente());
-        return "utenteForm";
+    @PostMapping("/login")
+    public String handleLogin(@RequestParam String username, @RequestParam String password, Model model) {
+        // Logica per il login dell'utente
+        if (utenteService.authenticate(username, password)) {
+            return "redirect:/";  // Dopo login, reindirizza alla home
+        }
+        model.addAttribute("error", "Credenziali non valide!");
+        return "login"; // Torna alla pagina di login in caso di errore
     }
 
-    @PostMapping("/salva")
-    public String salvaUtente(@ModelAttribute Utente utente) {
-        utenteService.salvaUtente(utente);
-        return "redirect:/";
+    @GetMapping("/home")
+    public String home() {
+        return "home"; // Pagina protetta a cui si accede solo dopo il login
     }
 }
+
