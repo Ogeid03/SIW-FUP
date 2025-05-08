@@ -35,14 +35,14 @@ showStep(currentStep);
 function anteprimaImmagine(url) {
   const preview = document.getElementById("preview");
   if (url && (url.startsWith("http://") || url.startsWith("https://"))) {
-      preview.innerHTML = `<img src="${url}" alt="Anteprima" style="max-width:300px; margin-top:10px;">`;
+    preview.innerHTML = `<img src="${url}" alt="Anteprima" style="max-width:300px; margin-top:10px;">`;
   } else {
-      preview.innerHTML = "<p>Nessuna anteprima</p>";
+    preview.innerHTML = "<p>Nessuna anteprima</p>";
   }
 }
 
 // Controllo per il submit del form
-document.getElementById("multiStepForm").addEventListener("submit", function(e) {
+document.getElementById("multiStepForm").addEventListener("submit", function (e) {
   const fotoInput = document.getElementById("foto");
   const url = fotoInput.value.trim();
 
@@ -56,51 +56,98 @@ document.getElementById("multiStepForm").addEventListener("submit", function(e) 
   }
 });
 
-  let map = L.map('map').setView([41.9028, 12.4964], 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+// Inizializzazione mappa
+let map = L.map('map').setView([41.9028, 12.4964], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
 
-  let marker;
+let marker;
+const input = document.getElementById('luogo');
+const suggestionMessage = document.getElementById('suggestionMessage');
+const customDropdown = document.getElementById('customDropdown');
 
-  const input = document.getElementById('luogo');
+// Gestione suggerimenti input luogo
+input.addEventListener('input', function () {
+  const query = input.value.trim();
+  customDropdown.innerHTML = '';
+  suggestionMessage.textContent = '';
 
-  input.addEventListener('input', function () {
-    const query = input.value;
-    if (query.length < 3) return;
+  if (query.length < 3) {
+    customDropdown.style.display = 'none';
+    return;
+  }
 
-    fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=5`)
-      .then(res => res.json())
-      .then(data => {
-        const results = data.features;
-        const datalist = document.getElementById('addressSuggestions');
-        datalist.innerHTML = '';
+  fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=5`)
+    .then(res => res.json())
+    .then(data => {
+      const results = data.features;
 
+      if (results.length === 0) {
+        suggestionMessage.textContent = 'Nessun risultato trovato.';
+        customDropdown.style.display = 'none';
+        return;
+      }
+
+      requestAnimationFrame(() => {
         results.forEach(place => {
-          const option = document.createElement('option');
-          option.value = place.properties.name + ', ' + (place.properties.city || '') + ', ' + place.properties.country;
-          option.dataset.lat = place.geometry.coordinates[1];
-          option.dataset.lon = place.geometry.coordinates[0];
-          datalist.appendChild(option);
+          const label = place.properties.label ||
+            [place.properties.name, place.properties.street, place.properties.city, place.properties.country]
+              .filter(Boolean)
+              .join(', ');
+
+          const div = document.createElement('div');
+          div.textContent = label;
+          div.dataset.lat = place.geometry.coordinates[1];
+          div.dataset.lon = place.geometry.coordinates[0];
+
+          // Aggiungi evento click per selezionare il risultato
+          div.addEventListener('click', function () {
+            input.value = div.textContent;
+            document.getElementById('lat').value = div.dataset.lat;
+            document.getElementById('lon').value = div.dataset.lon;
+
+            if (marker) map.removeLayer(marker);
+            marker = L.marker([div.dataset.lat, div.dataset.lon]).addTo(map).bindPopup(div.textContent).openPopup();
+            map.setView([div.dataset.lat, div.dataset.lon], 15);
+
+            customDropdown.style.display = 'none'; // Nascondi il dropdown dopo la selezione
+          });
+
+          customDropdown.appendChild(div);
         });
+
+        customDropdown.style.display = 'block'; // Mostra il dropdown se ci sono risultati
       });
-  });
+    })
+    .catch(err => {
+      console.error('Errore durante il fetch degli indirizzi:', err);
+      suggestionMessage.textContent = 'Errore nel caricamento dei risultati.';
+      customDropdown.style.display = 'none';
+    });
+});
 
-  input.addEventListener('change', function () {
-    const selectedOption = Array.from(document.getElementById('addressSuggestions').options)
-      .find(option => option.value === input.value);
+// Nascondi il dropdown quando si clicca fuori
+document.addEventListener('click', function (e) {
+  if (!customDropdown.contains(e.target) && e.target !== input) {
+    customDropdown.style.display = 'none';
+  }
+});
 
-    if (selectedOption) {
-      const lat = selectedOption.dataset.lat;
-      const lon = selectedOption.dataset.lon;
+// Gestione cambio indirizzo selezionato
+input.addEventListener('change', function () {
+  const selectedOption = Array.from(customDropdown.children)
+    .find(option => option.textContent === input.value);
 
-      document.getElementById('lat').value = lat;
-      document.getElementById('lon').value = lon;
+  if (selectedOption) {
+    const lat = selectedOption.dataset.lat;
+    const lon = selectedOption.dataset.lon;
 
-      if (marker) map.removeLayer(marker);
-      marker = L.marker([lat, lon]).addTo(map).bindPopup(input.value).openPopup();
-      map.setView([lat, lon], 15);
-    }
-  });
+    document.getElementById('lat').value = lat;
+    document.getElementById('lon').value = lon;
 
-
+    if (marker) map.removeLayer(marker);
+    marker = L.marker([lat, lon]).addTo(map).bindPopup(input.value).openPopup();
+    map.setView([lat, lon], 15);
+  }
+});

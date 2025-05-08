@@ -22,6 +22,7 @@
     <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> Riepilogo Dati Denuncia</h2>
 
     <div class="summary-box">
+        <p><strong><i class="fa-solid fa-location"></i> Luogo:</strong> <span th:text="${denuncia.luogo}"></span></p>
         <p><strong><i class="fa-solid fa-user"></i> Nome:</strong> <span th:text="${denuncia.nome}"></span></p>
         <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span th:text="${denuncia.specie}"></span></p>
         <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span th:text="${denuncia.razza}"></span></p>
@@ -32,6 +33,7 @@
         <p><strong><i class="fa-solid fa-camera"></i> Foto (URL):</strong><br><img th:src="${denuncia.foto}" alt="Foto denuncia" style="max-width: 300px; max-height: 200px;"></p>
     
     <form action="/salva-denuncia" method="post" th:object="${denuncia}" class="confirm-form">
+        <input type="hidden" name="luogo" th:value="*{luogo}" />
         <input type="hidden" name="nome" th:value="*{nome}" />
         <input type="hidden" name="specie" th:value="*{specie}" />
         <input type="hidden" name="razza" th:value="*{razza}" />

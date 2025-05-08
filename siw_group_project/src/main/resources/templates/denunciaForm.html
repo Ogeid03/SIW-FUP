@@ -33,8 +33,21 @@
     <!-- Step 1 -->
     <div class="step active">
       <label for="luogo">Luogo Smarrimento:</label>
-      <input type="text" id="luogo"  name="luogo" list="addressSuggestions" th:field="*{luogo}" required placeholder="Via Roma, 10"><br><datalist id="addressSuggestions"></datalist>
+      <input type="text" id="luogo" name="luogo" placeholder="Inserisci un luogo" />
+      <div id="customDropdown" class="custom-dropdown"></div>
+      <p id="suggestionMessage" style="color: red; font-style: italic; margin-top: 5px;"></p>
 
+      <!-- Latitudine e Longitudine nascosti -->
+      <input type="hidden" id="lat" name="lat">
+      <input type="hidden" id="lon" name="lon">
+
+      <!-- Mappa -->
+      <div id="map"></div>
+
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
       <label for="nome">Nome:</label>
       <input type="text" id="nome"  name="nome" th:field="*{nome}" required><br>
 
@@ -45,7 +58,7 @@
       <input type="text" id="razza"  name="razza" th:field="*{razza}"><br>
     </div>
 
-    <!-- Step 2 -->
+    <!-- Step 3 -->
     <div class="step">
       <label for="descrizione">Descrizione Fisica:</label>
       <input type="text" id="descrizione"  name="descrizione" th:field="*{descrizioneFisica}"><br>
@@ -57,7 +70,7 @@
       <input type="number" id="premioOfferto"  name="premioOfferto" step="0.01" th:field="*{premioOfferto}"><br>
     </div>
 
-    <!-- Step 3 -->
+    <!-- Step 4 -->
     <div class="step">
       <label for="info">Informazioni Extra:</label>
       <textarea id="info" name="info"  placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
@@ -75,7 +88,9 @@
     </div>
   </form>
 </main>
+
 <script src="/js/formMultiStepScript.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </body>
 </html>
