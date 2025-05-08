@@ -19,7 +19,6 @@
 ⬜ - Gestione Messaggistica
 ✅ - Gestione Enum
 
-
 fixes
 ✅ - uniformare l'header
 ✅ - fix foto in denunce
