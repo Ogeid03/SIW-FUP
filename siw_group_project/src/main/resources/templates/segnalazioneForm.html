@@ -14,12 +14,14 @@
             <li><a href="/">Home</a></li>
             <li><a href="#">About</a></li>
             <li class="dropdown">
-                <a href="#"><i class="fa-solid fa-bars"></i></a>
-                <ul class="submenu">
-                    <li><a href="#">Web Design</a></li>
-                    <li><a href="#">Sviluppo</a></li>
-                </ul>
-            </li>
+              <a href="#"><i class="fa-solid fa-bars"></i></a>
+              <ul class="submenu">
+                  <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
+                  <li><a href="/segnala">Segnalazioni</a></li>
+                  <!-- Se non autenticato, mostra un link per il login -->
+                  <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
+              </ul>
+          </li>
         </ul>
     </nav>
 </header>
