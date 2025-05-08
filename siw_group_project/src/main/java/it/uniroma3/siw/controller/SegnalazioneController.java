@@ -9,48 +9,47 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
-
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Denuncia;
-import it.uniroma3.siw.repository.AvvistamentoRepository;
-import it.uniroma3.siw.repository.DenunciaRepository;
+import it.uniroma3.siw.service.SegnalazioneService;
 
 @Controller
 public class SegnalazioneController {
 
     @Autowired
-    private AvvistamentoRepository avvistamentoRepository;
+    private final SegnalazioneService segnalazioneService;
 
-    @Autowired
-    private DenunciaRepository denunciaRepository;
+    public SegnalazioneController(SegnalazioneService segnalazioneService) {
+        this.segnalazioneService = segnalazioneService;
+    }
 
     @GetMapping("/segnalazioni/{id:[0-9]+}")
     public String dettagliSegnalazione(@PathVariable Long id, Model model) {
-        // Recupera la segnalazione (avvistamento o denuncia)
-        Optional<Avvistamento> avv = avvistamentoRepository.findById(id);
+
+        Optional<Avvistamento> avv = segnalazioneService.getAvvistamentoById(id);
         if (avv.isPresent()) {
-            model.addAttribute("segnalazione", avv.get());
+            Avvistamento avvistamento = avv.get();
+            model.addAttribute("segnalazione", avvistamento);
             model.addAttribute("tipo", "avvistamento");
 
-            // Recupera gli avvistamenti simili per razza (escludendo l'id dell'attuale segnalazione)
-            List<Denuncia> rilevanti = denunciaRepository.findByRazzaAndIdNot(avv.get().getRazza(), id);
+            List<Denuncia> rilevanti = segnalazioneService.getDenunceSimiliPerRazza(avvistamento.getRazza(), id);
             model.addAttribute("rilevanti", rilevanti);
 
-            return "segnalazione";  // Ritorna il template segnalazione
+            return "segnalazione";
         }
 
-        Optional<Denuncia> den = denunciaRepository.findById(id);
+        Optional<Denuncia> den = segnalazioneService.getDenunciaById(id);
         if (den.isPresent()) {
-            model.addAttribute("segnalazione", den.get());
+            Denuncia denuncia = den.get();
+            model.addAttribute("segnalazione", denuncia);
             model.addAttribute("tipo", "denuncia");
 
-            List<Avvistamento> simili = avvistamentoRepository.findByRazzaAndIdNot(den.get().getRazza(), id);
+            List<Avvistamento> simili = segnalazioneService.getAvvistamentiSimiliPerRazza(denuncia.getRazza(), id);
             model.addAttribute("simili", simili);
 
-            return "segnalazione";  // Ritorna il template segnalazione
+            return "segnalazione";
         }
 
-        return "not-found";  // Se non troviamo la segnalazione
+        return "not-found";
     }
 }

@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.model.Utente;
-import it.uniroma3.siw.repository.UtenteRepository;
+import it.uniroma3.siw.service.UtenteService;
 
 @Controller
 public class UtenteController {
+
     @Autowired
-    private UtenteRepository utenteRepository;
+    private final UtenteService utenteService;
+
+    public UtenteController(UtenteService utenteService) {
+        this.utenteService = utenteService;
+    }
 
     @GetMapping("/utenti")
     public String mostraForm(Model model) {
@@ -23,7 +28,7 @@ public class UtenteController {
 
     @PostMapping("/salva")
     public String salvaUtente(@ModelAttribute Utente utente) {
-        utenteRepository.save(utente);
+        utenteService.salvaUtente(utente);
         return "redirect:/";
     }
 }
