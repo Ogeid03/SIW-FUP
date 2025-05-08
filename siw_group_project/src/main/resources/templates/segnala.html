@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Segnala un contenuto</title>
+    <link rel="stylesheet" href="styleMultiform.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <a href="/"><img src="LongLogo.png" alt="Logo" class="longLogo"></a>
+        <nav>
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                    <ul class="submenu">
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Sviluppo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+<main>
+    <h1 class="section-title">📢 Segnala un contenuto</h1>
+
+    <form action="/invia-segnalazione" method="post" class="summary-box">
+        <div class="step active">
+            <label for="email">La tua email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="motivo">Motivo della segnalazione</label>
+            <textarea id="motivo" name="motivo" rows="5" required></textarea>
+        </div>
+
+        <div class="buttons">
+            <button type="submit">Invia Segnalazione</button>
+        </div>
+    </form>
+</main>
+
+<footer>
+    <p>Contatti: info@esempio.com | +39 0123 456789</p>
+    <p>Via dei Finti, 123 - 00100 Roma (RM)</p>
+</footer>
+
+</body>
+</html>
