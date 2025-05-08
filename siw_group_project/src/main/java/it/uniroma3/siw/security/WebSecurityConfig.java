@@ -17,7 +17,9 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/", "/login", "/register", "/img/**", "/css/**", "/js/**").permitAll() // Consenti l'accesso a login e register senza autenticazione
+                        .requestMatchers("/", "/login", "/register", "/img/**", "/css/**", "/js/**", "/segnalazioni/{id:[0-9]+}",
+                            "/ricerca")
+                        .permitAll() // Consenti l'accesso a login e register senza autenticazione
                         .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginPage("/login") // Imposta la pagina di login
