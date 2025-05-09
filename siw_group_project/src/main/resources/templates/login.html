@@ -31,13 +31,15 @@
     </header>
     <main>
         <h2>Login</h2>
-        <form action="/login" method="POST">
-            <label for="email">email</label>
-            <input type="email" name="email" id="email" required>
-
+        <form th:action="@{/login}" method="POST">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        
+            <label for="email">Email</label>
+            <input type="email" name="username" id="username" required>
+        
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
-
+        
             <button type="submit">Login</button>
             <a href="/register">oppure Registrati</a>
         </form>

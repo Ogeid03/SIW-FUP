@@ -42,7 +42,7 @@ public class UtenteController {
     public String registerUser(@ModelAttribute Utente utente,
                                @RequestParam("password") String password) {
         utenteService.register(utente, password);
-        return "redirect:/";
+        return "login";
     }
 }
 
