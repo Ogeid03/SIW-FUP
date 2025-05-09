@@ -10,7 +10,7 @@
 <body>
     <!-- Header -->
     <header>
-        <img src="LongLogo.png" alt="Logo" class="longLogo">
+        <img src="/img/LongLogo.png" alt="Logo" class="longLogo">
         <nav>
             <ul class="menu">
                 <li><a href="/">Home</a></li>
@@ -18,7 +18,7 @@
                 <li class="dropdown">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
-                        <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
+                        <li sec:authorize="isAuthenticated()"><a href="/account">Account</a></li>
                         <li><a href="/segnala">Segnalazioni</a></li>
                         <!-- Se non autenticato, mostra un link per il login -->
                         <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>

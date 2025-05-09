@@ -18,10 +18,10 @@
 ⬜ - Gestione Account (Utente, Gestore, Pagina Utente)
 ⬜ - Gestione Messaggistica
 ✅ - Gestione Enum
-⬜ - Elimina file inutili (es. recap uno solo non 2)
+⬜ - Elimina file inutili (es. di "recap" uno solo non 2)
 
 fixes
-✅ - uniformare l'header
+⬜ - uniformare l'header
 ✅ - fix foto in denunce
 ✅ - fix denunce simili, mostra le denucne con avvistamenti e viceversa
 ✅ - Fix inserimento Luogo
@@ -31,6 +31,7 @@ proposte
 ⬜ -  carosello animali simili prima di confermare la segnalazione (automatico e con 3 alla volta)
 ✅ -  cambia nome "Ricerca" con "Consulta Segnalazioni"
 ✅ -  cambia segnalazioni simili con denunce rilevanti
+✅ -  accedi nel menu principale e al suo posto appare il nomeUtente al  (es. ciao Mario)
 
 
 INSERT INTO avvistamento (id, data_ora, specie, razza, descrizione_fisica, foto, informazioni_extra, cod_luogo, cod_utente, cod_status, stato_salute, azioni_intraprese)

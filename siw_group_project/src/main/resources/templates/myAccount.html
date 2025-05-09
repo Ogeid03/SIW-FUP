@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Le Mie Segnalazioni</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="/img/LongLogo.png" alt="Logo" class="longLogo">
+        <nav>
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                    <ul class="submenu">
+                        <li><a href="/segnala">Segnalazioni</a></li>
+                        <!-- Se non autenticato, mostra un link per il login -->
+                        <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-container">
+
+        <section class="left-section">
+            <h2>Denunce di smarrimento</h2>
+            <ul th:if="${denunce != null and !denunce.isEmpty()}">
+                <li th:each="den : ${denunce}">
+                    <strong th:text="${den.nome}">Nome animale</strong> -
+                    <span th:text="${den.razza}">Razza</span> -
+                    <span th:text="${denuncia.luogo}">Luogo</span>
+                </li>
+            </ul>
+            <p th:if="${denunce == null or denunce.isEmpty()}">Nessuna denuncia trovata.</p>
+        </section>
+
+        <section class="right-section">
+            <h2>Avvistamenti effettuati</h2>
+            <ul th:if="${avvistamenti != null and !avvistamenti.isEmpty()}">
+                <li th:each="avv : ${avvistamenti}">
+                    <strong th:text="${avv.animaleDescrizione}">Descrizione</strong> -
+                    <span th:text="${avv.dataAvvistamento}">Data</span> -
+                    <span th:text="${avv.luogo}">Luogo</span>
+                </li>
+            </ul>
+            <p th:if="${avvistamenti == null or avvistamenti.isEmpty()}">Nessun avvistamento trovato.</p>
+        </section>
+
+    </main>
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Tutti i diritti riservati.
+    </footer>
+</body>
+
+</html>

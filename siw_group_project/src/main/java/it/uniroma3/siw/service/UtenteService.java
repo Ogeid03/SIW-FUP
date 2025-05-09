@@ -4,11 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Ruolo;
@@ -39,6 +38,15 @@ public class UtenteService implements UserDetailsService {
         utente.setPassword(passwordEncoder.encode(password));
         utente.setRuolo(Ruolo.USER); // Imposta il ruolo di default
         utenteRepository.save(utente);
+    }
+    
+    public Utente getUtenteAutenticato() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated())
+            return null;
+
+        String email = authentication.getName();
+        return utenteRepository.findByEmail(email);
     }
 
     @Override

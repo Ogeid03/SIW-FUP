@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Riepilogo Denuncia</title>
-    <link rel="stylesheet" href="styleMultiform.css"> 
+    <link rel="stylesheet" href="/css/styleMultiform.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
 <header>
-    <img src="LongLogo.png" alt="Logo" class="longLogo">
+    <img src="/img/LongLogo.png" alt="Logo" class="longLogo">
     <nav>
         <ul class="menu">
             <li><a href="/">Home</a></li>
@@ -33,6 +33,7 @@
         <p><strong><i class="fa-solid fa-camera"></i> Foto (URL):</strong><br><img th:src="${denuncia.foto}" alt="Foto denuncia" style="max-width: 300px; max-height: 200px;"></p>
     
     <form action="/salva-denuncia" method="post" th:object="${denuncia}" class="confirm-form">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input type="hidden" name="luogo" th:value="*{luogo}" />
         <input type="hidden" name="nome" th:value="*{nome}" />
         <input type="hidden" name="specie" th:value="*{specie}" />
