@@ -18,8 +18,8 @@ public class UtenteService {
     private PasswordEncoder passwordEncoder;
 
     // Metodo di login che verifica il nome utente e la password
-    public boolean authenticate(String nomeUtente, String password) {
-        Utente utente = utenteRepository.findByNomeUtente(nomeUtente);
+    public boolean authenticate(String email, String password) {
+        Utente utente = utenteRepository.findByEmail(email);
         if (utente == null) {
             return false;
         }
