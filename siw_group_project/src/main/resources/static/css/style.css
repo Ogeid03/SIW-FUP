@@ -182,6 +182,8 @@ main {
     margin-top: 10px;
 }
 
+
+
 .faq .icon {
     float: right;
     font-size: 20px;
@@ -270,4 +272,78 @@ footer {
     background-color: #007BFF;
     margin: 3rem auto 2rem;
     width: 80%;
+}
+
+/* ===== FORM REGISTRAZIONE ===== */
+form {
+    background-color: #ffffff;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 15px;
+    max-width: 500px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+form h2 {
+    font-size: 2rem;
+    color: #003366;
+    margin-bottom: 1rem;
+}
+
+form label {
+    font-weight: bold;
+    color: #003366;
+    text-align: left;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    width: 100%;
+}
+
+form input:focus {
+    border-color: #346df0;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 109, 240, 0.4);
+}
+
+form button[type="submit"] {
+    background: linear-gradient(135deg, #346df0, #0056b3);
+    color: #ffffff;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: linear-gradient(135deg, #0056b3, #003f88);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+form button:active {
+    transform: scale(0.98);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    form {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
 }
