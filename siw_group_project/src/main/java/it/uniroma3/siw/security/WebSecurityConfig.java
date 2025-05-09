@@ -18,7 +18,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/", "/login", "/register", "/img/**", "/css/**", "/js/**", "/segnalazioni/{id:[0-9]+}",
-                            "/ricerca", "/error")
+                            "/ricerca", "/error", "/about")
                         .permitAll() // Consenti l'accesso a login e register senza autenticazione
                         .anyRequest().authenticated())
                 .formLogin(login -> login
