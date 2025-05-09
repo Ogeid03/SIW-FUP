@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title>Errore</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
     <header>
-        <img src="LongLogo.png" alt="Logo" class="longLogo">
+        <a href="/"><img src="/img/LongLogo.png" alt="Logo" class="longLogo"></a>
         <nav>
             <ul class="menu">
                 <li><a href="/">Home</a></li>
@@ -18,7 +19,6 @@
                     <ul class="submenu">
                         <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
                         <li><a href="/segnala">Segnalazioni</a></li>
-                        <!-- Se non autenticato, mostra un link per il login -->
                         <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
                     </ul>
                 </li>
@@ -26,7 +26,15 @@
         </nav>
     </header>
 
-    <h2>Si è verificato un errore interno del server. Riprova più tardi.</h2>
+    <!-- Main -->
+    <main class="error-page">
+        <div class="error-container">
+            <div class="error-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <h2>Errore 500 - Errore interno del server</h2>
+            <p>Qualcosa è andato storto. Ci scusiamo per il disagio. Riprova più tardi oppure torna alla home.</p>
+            <a href="/" class="home-button"><i class="fa-solid fa-house"></i> Torna alla Home</a>
+        </div>
+    </main>
 
     <!-- Footer -->
     <footer>
