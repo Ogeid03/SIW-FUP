@@ -22,16 +22,6 @@ public class UtenteController {
         return "login"; // Pagina di login
     }
 
-    @PostMapping("/login")
-    public String handleLogin(@RequestParam String email, @RequestParam String password, Model model) {
-        // Logica per il login dell'utente
-        if (utenteService.authenticate(email, password)) {
-            return "redirect:/";  // Dopo login, reindirizza alla home
-        }
-        model.addAttribute("error", "Credenziali non valide!");
-        return "login"; // Torna alla pagina di login in caso di errore
-    }
-
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("utente", new Utente());
