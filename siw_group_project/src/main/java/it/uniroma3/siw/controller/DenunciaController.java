@@ -1,5 +1,7 @@
 package it.uniroma3.siw.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 import it.uniroma3.siw.model.Denuncia;
+import it.uniroma3.siw.model.Stato;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.DenunciaService;
 import it.uniroma3.siw.service.UtenteService;
@@ -42,6 +45,8 @@ public class DenunciaController {
         }
 
         denuncia.setCodUtente(utente);
+        denuncia.setDataOra(LocalDateTime.now());
+        denuncia.setCodStatus(Stato.ATTIVO);
         denunciaService.salvaDenuncia(denuncia);
         return "redirect:/";
     }

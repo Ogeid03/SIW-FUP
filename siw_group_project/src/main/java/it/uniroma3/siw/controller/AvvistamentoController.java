@@ -1,15 +1,16 @@
 package it.uniroma3.siw.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import it.uniroma3.siw.model.Avvistamento;
+import it.uniroma3.siw.model.Stato;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.AvvistamentoService;
 import it.uniroma3.siw.service.UtenteService;
@@ -44,6 +45,8 @@ public class AvvistamentoController {
             return "redirect:/login";
         }
         avvistamento.setCodUtente(utente);
+        avvistamento.setDataOra(LocalDateTime.now());
+        avvistamento.setCodStatus(Stato.ATTIVO);
         avvistamentoService.salvaAvvistamento(avvistamento);
         return "redirect:/";
     }
