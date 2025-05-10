@@ -1,21 +1,24 @@
 package it.uniroma3.siw.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import it.uniroma3.siw.model.Avvistamento;
+import it.uniroma3.siw.model.Denuncia;
+import it.uniroma3.siw.model.Segnalazione;
 import it.uniroma3.siw.repository.AvvistamentoRepository;
+import it.uniroma3.siw.repository.DenunciaRepository;
 
 @Service
 public class AvvistamentoService {
-    @Autowired
-    private final AvvistamentoRepository avvistamentoRepository;
-
     
-    public AvvistamentoService(AvvistamentoRepository avvistamentoRepository) {
+    private final AvvistamentoRepository avvistamentoRepository;
+    private final DenunciaRepository denunciaRepository;
+
+    public AvvistamentoService(AvvistamentoRepository avvistamentoRepository, DenunciaRepository denunciaRepository) {
         this.avvistamentoRepository = avvistamentoRepository;
+        this.denunciaRepository = denunciaRepository;
     }
 
     public void salvaAvvistamento(Avvistamento avvistamento) {
@@ -24,5 +27,14 @@ public class AvvistamentoService {
 
     public List<Avvistamento> getTuttiGliAvvistamenti() {
         return avvistamentoRepository.findAll();
+    }
+
+    public List<Denuncia> trovaDenunceSimili(Segnalazione denuncia) {
+        // Esempio grezzo: puoi raffinarlo molto!
+        return denunciaRepository.findBySpecieAndRazzaAndLuogoContainingIgnoreCase(
+            denuncia.getSpecie(), 
+            denuncia.getRazza(), 
+            denuncia.getLuogo()
+        );
     }
 }

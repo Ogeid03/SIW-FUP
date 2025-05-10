@@ -34,6 +34,8 @@ public class DenunciaController {
     @PostMapping("/conferma-denuncia")
     public String conferma(@ModelAttribute Denuncia denuncia, Model model) {
         model.addAttribute("denuncia", denuncia);
+        var simili = denunciaService.trovaAvvistamentiSimili(denuncia);
+        model.addAttribute("simili", simili);
         return "recap-denuncia";
     }
 

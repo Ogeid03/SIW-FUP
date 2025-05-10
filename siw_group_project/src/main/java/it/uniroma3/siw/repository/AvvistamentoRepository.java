@@ -14,4 +14,5 @@ public interface AvvistamentoRepository extends JpaRepository<Avvistamento, Long
     List<Avvistamento> findByRazzaAndIdNot(String razza, Long id);
     List<Avvistamento> findByRazza(String razza);
     List<Avvistamento> findByCodUtente(Utente utente);
+    List<Avvistamento> findBySpecieAndRazzaAndLuogoContainingIgnoreCase(String specie, String razza, String luogo);
 }

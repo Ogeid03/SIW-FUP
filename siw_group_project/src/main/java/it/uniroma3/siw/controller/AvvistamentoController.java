@@ -35,6 +35,8 @@ public class AvvistamentoController {
     @PostMapping("/conferma-avvistamento")
     public String conferma(@ModelAttribute Avvistamento avvistamento, Model model) {
         model.addAttribute("segnalazione", avvistamento);
+        var simili = avvistamentoService.trovaDenunceSimili(avvistamento);
+        model.addAttribute("simili", simili);
         return "recap-avvistamento";
     }
 
