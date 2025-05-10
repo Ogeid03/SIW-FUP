@@ -31,6 +31,7 @@ fixes
 ⬜ - Caroselli in segnalazione
 ⬜ - Visualizzazione data su Account
 ⬜ - Visualizzazione dati sulle segnalazioni
+⬜ - Visualizzazione non a colonna sul myAccount
 
 proposte
 ✅ -  solo due bottoni, ricerca messo in menu 
@@ -38,4 +39,11 @@ proposte
 ✅ -  cambia nome "Ricerca" con "Consulta Segnalazioni"
 ✅ -  cambia segnalazioni simili con denunce rilevanti
 ✅ -  accedi nel menu principale e al suo posto appare il nomeUtente al  (es. ciao Mario)
- 
+
+⬜ - logo e botton homepage più grande
+⬜ - fare login prima di salvare la segnalazione
+⬜ - messaggi popup resoconto azioni
+⬜ - sul filtro ritornare messaggio di errore
+⬜ - poco intuitivo design ricerca
+⬜ - aggiungi FAQ a menu a tendina e pure about (??) e cambia design
+⬜ - resoconto percentuale successo (reale su % finiti e non )
