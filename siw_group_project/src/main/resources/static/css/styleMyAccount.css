@@ -185,10 +185,58 @@ footer {
     pointer-events: none; 
 }
 
+/* myAccount */
+
+.user-info {
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    padding: 20px;
+    background-color: #eef2fb;
+    border: 1px solid #d0d7e4;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.user-info h2 {
+    color: #346df0;
+    margin-bottom: 15px;
+}
+
+.user-info p {
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+.user-info strong {
+    color: #003f88;
+}
+
+hr.separator {
+    border: 0;                
+    height: 2px;
+    width: 75%;
+    background-color: #346df0; 
+    margin: 40px auto;           
+}
+
+.status-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
 
 .card {
     display: flex;
     align-items: center;
+    position: relative;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 10px;
@@ -199,8 +247,8 @@ footer {
 }
 
 .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 20px;
 }
 
@@ -221,13 +269,23 @@ footer {
 }
 
 .content-wrapper {
-    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* due colonne uguali */
+    gap: 40px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr; /* una sola colonna */
+    }
+}
+
 .left-section, .right-section {
     margin-bottom: 40px;
+    width: 100%;
 }
 
 

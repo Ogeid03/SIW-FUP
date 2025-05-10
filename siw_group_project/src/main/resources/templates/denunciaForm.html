@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8">
   <title>Form a Step</title>
@@ -10,89 +11,131 @@
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 </head>
+
 <body>
   <header>
     <a href="/"><img src="/img/LongLogo.png" alt="Logo" class="longLogo"></a>
     <nav>
-        <ul class="menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li class="dropdown">
-              <a href="#"><i class="fa-solid fa-bars"></i></a>
-              <ul class="submenu">
-                  <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
-                  <li><a href="/segnala">Contattaci</a></li>
-                  <!-- Se non autenticato, mostra un link per il login -->
-                  <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
-              </ul>
-          </li>
-        </ul>
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="dropdown">
+          <a href="#"><i class="fa-solid fa-bars"></i></a>
+          <ul class="submenu">
+            <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
+            <li><a href="/segnala">Contattaci</a></li>
+            <!-- Se non autenticato, mostra un link per il login -->
+            <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-<main>
-  <form id="multiStepForm" th:action="@{/conferma-denuncia}" th:object="${denuncia}" method="post">
-    <!-- Step 1 -->
-    <div class="step active">
-      <label for="luogo">Luogo Smarrimento:</label>
-      <input type="text" id="luogo" name="luogo" placeholder="Inserisci un luogo" />
-      <div id="customDropdown" class="custom-dropdown"></div>
-      <p id="suggestionMessage" style="color: red; font-style: italic; margin-top: 5px;"></p>
+  <main>
+    <form id="multiStepForm" th:action="@{/conferma-denuncia}" th:object="${denuncia}" method="post">
+      <!-- Step 1 -->
+      <div class="step active">
+        <label for="luogo">Luogo Smarrimento:</label>
+        <input type="text" id="luogo" name="luogo" placeholder="Inserisci un luogo" />
+        <div id="customDropdown" class="custom-dropdown"></div>
+        <p id="suggestionMessage" style="color: red; font-style: italic; margin-top: 5px;"></p>
 
-      <!-- Latitudine e Longitudine nascosti -->
-      <input type="hidden" id="lat" name="lat">
-      <input type="hidden" id="lon" name="lon">
+        <!-- Latitudine e Longitudine nascosti -->
+        <input type="hidden" id="lat" name="lat">
+        <input type="hidden" id="lon" name="lon">
 
-      <!-- Mappa -->
-      <div id="map"></div>
+        <!-- Mappa -->
+        <div id="map"></div>
 
-    </div>
+      </div>
 
-    <!-- Step 2 -->
-    <div class="step">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome"  name="nome" th:field="*{nome}" required><br>
+      <!-- Step 2 -->
+      <div class="step">
+        <label for="nome">Nome Animale Smarrito:</label>
+        <input type="text" id="nome" name="nome" th:field="*{nome}" required><br>
 
-      <label for="specie">Specie:</label>
-      <input type="text" id="specie"  name="specie" th:field="*{specie}" required><br>
+        <label for="specie">Specie:</label>
+        <select name="specie" id="specie" class="form-select" th:field="*{specie}" required>
+          <option value="">Seleziona...</option>
+          <option value="Cane">Cane</option>
+          <option value="Gatto">Gatto</option>
+          <option value="Pappagallo">Pappagallo</option>
+          <option value="Pappagallo">Roditore</option>
+          <option value="Pappagallo">Rettile</option>
+        </select><br>
 
-      <label for="razza">Razza:</label>
-      <input type="text" id="razza"  name="razza" th:field="*{razza}"><br>
-    </div>
+        <label for="razza">Razza:</label>
+        <select id="razza" name="razza" th:field="*{razza}">
+          <option value="">-- Seleziona una razza --</option>
+        </select><br>
+      </div>
 
-    <!-- Step 3 -->
-    <div class="step">
-      <label for="descrizione">Descrizione Fisica:</label>
-      <input type="text" id="descrizione"  name="descrizione" th:field="*{descrizioneFisica}"><br>
+      <!-- Step 3 -->
+      <div class="step">
+        <label for="descrizione">Descrizione Fisica:</label>
+        <input type="text" id="descrizione" name="descrizione" th:field="*{descrizioneFisica}"><br>
 
-      <label for="eta">Età:</label>
-      <input type="number" id="eta"  name="eta" th:field="*{eta}"><br>
+        <label for="eta">Età:</label>
+        <select name="eta" id="eta" class="form-select" required>
+          <option value="">Seleziona...</option>
+          <option value="Cucciolo">Cucciolo</option>
+          <option value="Adulto">Adulto</option>
+          <option value="Anziano">Anziano</option>
+        </select>
 
-      <label for="premioOfferto">Premio offerto:</label>
-      <input type="number" id="premioOfferto"  name="premioOfferto" step="0.01" th:field="*{premioOfferto}"><br>
-    </div>
+        <label for="premioOfferto">Premio offerto:</label>
+        <input type="number" id="premioOfferto" name="premioOfferto" step="0.01" th:field="*{premioOfferto}"><br>
+      </div>
 
-    <!-- Step 4 -->
-    <div class="step">
-      <label for="info">Informazioni Extra:</label>
-      <textarea id="info" name="info"  placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
+      <!-- Step 4 -->
+      <div class="step">
+        <label for="info">Informazioni Extra:</label>
+        <textarea id="info" name="info" placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
 
-      <label for="foto">Foto (URL):</label>
-      <input type="url" id="foto" name="foto"  maxlength="255" placeholder="https://..." required oninput="anteprimaImmagine(this.value)" th:field="*{foto}"> 
-      <div id="preview" style="margin-top: 10px;"></div>
-    </div>
+        <label for="foto">Foto (URL):</label>
+        <input type="url" id="foto" name="foto" maxlength="255" placeholder="https://..." required
+          oninput="anteprimaImmagine(this.value)" th:field="*{foto}">
+        <div id="preview" style="margin-top: 10px;"></div>
+      </div>
 
-    <!-- Bottoni -->
-    <div class="buttons">
-      <button type="button" id="prevBtn">Indietro</button>
-      <button type="button" id="nextBtn">Avanti</button>
-      <button type="submit" id="submitBtn">Invia</button>
-    </div>
-  </form>
-</main>
+      <!-- Bottoni -->
+      <div class="buttons">
+        <button type="button" id="prevBtn">Indietro</button>
+        <button type="button" id="nextBtn">Avanti</button>
+        <button type="submit" id="submitBtn">Invia</button>
+      </div>
+    </form>
+  </main>
 
-<script src="/js/formMultiStepScript.js"></script>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const razzePerSpecie = {
+      "Cane": ["Labrador", "Bulldog", "Pastore Tedesco", "Barboncino"],
+      "Gatto": ["Persiano", "Siamese", "Maine Coon", "Europeo"],
+      "Pappagallo": ["Cacatua", "Ara", "Inseparabile", "Calopsitta"]
+    };
+
+    document.getElementById("specie").addEventListener("change", function () {
+      const specie = this.value;
+      const razzaSelect = document.getElementById("razza");
+
+      // Svuota le opzioni precedenti
+      razzaSelect.innerHTML = '<option value="">-- Seleziona una razza --</option>';
+
+      if (razzePerSpecie[specie]) {
+        razzePerSpecie[specie].forEach(razza => {
+          const option = document.createElement("option");
+          option.value = razza;
+          option.textContent = razza;
+          razzaSelect.appendChild(option);
+        });
+      }
+    });
+  </script>
+
+  <script src="/js/formMultiStepScript.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </body>
+
 </html>

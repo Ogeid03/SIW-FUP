@@ -1,8 +1,9 @@
 ⬜ -> ✅
 
 ⬜ - Il colore dell'animale dovrebbe avere un suo attributo specifico ???
-⬜ - Nel form mettere più menù a tendina
-⬜ - Più razze (es. [xcane] [xlupo])
+✅ - Nel form mettere più menù a tendina
+⬜ - Più razze (es. [xcane] [xlupo]) va vambiato in list(razza)
+⬜ - Gestione Luogo simile su base distanza
 ✅ - Bro scusa, vedevo e i form risultano un po' lunghetti, nulla in contrario in un form a step? 
         Magari cambiamo l'idea iniziale dell'homoage e facciamo 3 button che rimandano a pagine per i form,
         che poi sono a step con massimo 3 domande
@@ -16,22 +17,27 @@
 ✅ - Crea Pagine per Menu riempitive (es. About, Contatti, Segnalazioni)
 ⬜ - Disegni animali estetica sito
 ✅ - Gestione Account (Utente, Pagina Utente)
-⬜ - Nella parte iniziale di myAccount aggiungere i dati dell'utente su due colonne poi una linea blu e sotto l'elenco delle segnalazioni
-⬜ - Aggiugni lo status alle segnalazioni
+✅ - Nella parte iniziale di myAccount aggiungere i dati dell'utente su due colonne poi una linea blu e sotto l'elenco delle segnalazioni
+✅ - Aggiugni lo status alle segnalazioni
 ⬜ - Gestione Account Gestore
+⬜ - Modifica e recupera account
 ⬜ - Gestione Messaggistica
 ✅ - Gestione Enum
 ⬜ - Elimina file inutili (es. di "recap" uno solo non 2)
+
+
 
 fixes
 ✅ - Uniformare l'header
 ✅ - Fix foto in denunce
 ✅ - Fix denunce simili, mostra le denucne con avvistamenti e viceversa
 ✅ - Fix inserimento Luogo
-⬜ - Caroselli in segnalazione
-⬜ - Visualizzazione data su Account
-⬜ - Visualizzazione dati sulle segnalazioni
-⬜ - Visualizzazione non a colonna sul myAccount
+✅ - Visualizzazione data su Account
+✅ - Visualizzazione dati sulle segnalazioni
+✅ - Visualizzazione non a colonna sul myAccount
+⬜ - Scritta decentrata in homepage/ dividere equo
+✅ - Nome "Pet" in denunciaForm
+✅ - piuttosto che età numerico meglio eta a step (cucciolo, adulto, vecchio)
 
 proposte
 ✅ -  solo due bottoni, ricerca messo in menu 
@@ -47,3 +53,8 @@ proposte
 ⬜ - poco intuitivo design ricerca
 ⬜ - aggiungi FAQ a menu a tendina e pure about (??) e cambia design
 ⬜ - resoconto percentuale successo (reale su % finiti e non )
+⬜ - Mappa con tutte le segnalazioni
+⬜ - Mettere la ricerca su homepage, stile "subito"
+⬜ - Notifiche su mail
+⬜ - Disclamer su informazioni date
+⬜ - Il filter va rivisto

@@ -51,8 +51,8 @@
                         <img th:src="${avv.foto}" alt="Foto Avvistamento">
                         <div>
                             <p><strong>Razza:</strong> <span th:text="${avv.razza}"></span></p>
-                            <!-- <p><strong>Data:</strong> <span th:text="${#dates.format(avv.data, 'dd/MM/yyyy')}"></span></p> -->
-                            <!-- <p><strong>Via:</strong> <span th:text="${avv.via}"></span></p> -->
+                            <p><strong>Data:</strong> <span th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}">Data</span></p>
+                            <p><strong>Via:</strong> <span th:text="${avv.luogo}"></span></p>
                         </div>
                     </div>
                 </a>
@@ -69,8 +69,8 @@
                         <img th:src="${den.foto}" alt="Foto Denuncia">
                         <div>
                             <p><strong>Razza:</strong> <span th:text="${den.razza}"></span></p>
-                            <!-- <p><strong>Data:</strong> <span th:text="${#dates.format(den.data, 'dd/MM/yyyy')}"></span></p> -->
-                            <!-- <p><strong>Via:</strong> <span th:text="${den.via}"></span></p> -->
+                            <p><strong>Data:</strong> <span th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}">Data</span></p>
+                            <p><strong>Via:</strong> <span th:text="${den.luogo}"></span></p>
                         </div>
                     </div>
                 </a>

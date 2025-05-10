@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Le Mie Segnalazioni</title>
@@ -30,16 +31,33 @@
     </header>
 
     <main class="main-container">
+        <section class="user-info" th:if="${utente != null}">
+            <h2><i class="fa-solid fa-user"></i> Dati Utente</h2>
+            <p><i class="fa-solid fa-user-circle"></i> <strong> Nome utente:</strong> <span
+                    th:text="${utente.nomeUtente}"></span></p>
+            <p><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> <span th:text="${utente.email}"></span></p>
+            <p><i class="fa-solid fa-phone"></i> <strong>Telefono:</strong> <span th:text="${utente.telefono}"></span>
+            </p>
+        </section>
+
+        <!-- Linea blu di separazione -->
+        <hr class="separator">
+
         <div class="content-wrapper">
             <section class="left-section">
                 <h2><i class="fa-solid fa-file-circle-exclamation"></i> Denunce di smarrimento</h2>
                 <div class="card-grid" th:if="${denunce != null and !denunce.isEmpty()}">
                     <a th:each="den : ${denunce}" th:href="@{'/segnalazioni/' + ${den.id}}" class="card">
+                        <div class="status-badge" th:text="${den.codStatus}"></div>
                         <img th:src="@{${den.foto}}" alt="Foto" class="card-image">
                         <div class="card-content">
-                            <strong><i class="fa-solid fa-dog"></i> <span th:text="${den.nome}">Nome animale</span></strong><br>
+                            <strong><i class="fa-regular fa-calendar"></i> <span
+                                    th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
+                            <strong><i class="fa-solid fa-dog"></i> <span th:text="${den.nome}">Nome
+                                    animale</span></strong><br>
                             <span><i class="fa-solid fa-paw"></i> <span th:text="${den.razza}">Razza</span></span><br>
-                            <span><i class="fa-solid fa-map-marker-alt"></i> <span th:text="${den.luogo}">Luogo</span></span>
+                            <span><i class="fa-solid fa-map-marker-alt"></i> <span
+                                    th:text="${den.luogo}">Luogo</span></span>
                         </div>
                     </a>
                 </div>
@@ -52,9 +70,11 @@
                     <a th:each="avv : ${avvistamenti}" th:href="@{'/segnalazioni/' + ${avv.id}}" class="card">
                         <img th:src="@{${avv.foto}}" alt="Foto" class="card-image">
                         <div class="card-content">
-                            <strong><i class="fa-regular fa-calendar"></i> <span th:text="${avv.dataOra}">Data e ora</span></strong><br>
+                            <strong><i class="fa-regular fa-calendar"></i> <span
+                                    th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
                             <span><i class="fa-solid fa-paw"></i> <span th:text="${avv.razza}">Razza</span></span><br>
-                            <span><i class="fa-solid fa-location-dot"></i> <span th:text="${avv.luogo}">Luogo</span></span>
+                            <span><i class="fa-solid fa-location-dot"></i> <span
+                                    th:text="${avv.luogo}">Luogo</span></span>
                         </div>
                     </a>
                 </div>
@@ -68,4 +88,5 @@
         &copy; 2025 Tutti i diritti riservati.
     </footer>
 </body>
+
 </html>

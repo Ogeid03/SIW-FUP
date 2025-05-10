@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 public class Denuncia extends Segnalazione {
     private String nome;
     private Double premioOfferto;
-    private Integer eta;
+    private String eta;
 
     // Getter e Setter
     public String getNome() {
@@ -25,11 +25,11 @@ public class Denuncia extends Segnalazione {
         this.premioOfferto = premioOfferto;
     }
 
-    public Integer getEta() {
+    public String getEta() {
         return eta;
     }
 
-    public void setEta(Integer eta) {
+    public void setEta(String eta) {
         this.eta = eta;
     }
 }
