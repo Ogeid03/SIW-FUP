@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Le Mie Segnalazioni</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/styleMyAccount.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
@@ -30,32 +30,39 @@
     </header>
 
     <main class="main-container">
+        <div class="content-wrapper">
+            <section class="left-section">
+                <h2>Denunce di smarrimento</h2>
+                <div class="card-grid" th:if="${denunce != null and !denunce.isEmpty()}">
+                    <a th:each="den : ${denunce}" th:href="@{'/segnalazioni/' + ${den.id}}" class="card">
+                        <img th:src="@{${den.foto}}" alt="Foto" class="card-image">
+                        <div class="card-content">
+                            <strong th:text="${den.nome}">Nome animale</strong><br>
+                            <span th:text="${den.razza}">Razza</span><br>
+                            <span th:text="${den.luogo}">Luogo</span>
+                        </div>
+                    </a>
+                </div>
+                <p th:if="${denunce == null or denunce.isEmpty()}">Nessuna denuncia trovata.</p>
+            </section>
 
-        <section class="left-section">
-            <h2>Denunce di smarrimento</h2>
-            <ul th:if="${denunce != null and !denunce.isEmpty()}">
-                <li th:each="den : ${denunce}">
-                    <strong th:text="${den.nome}">Nome animale</strong> -
-                    <span th:text="${den.razza}">Razza</span> -
-                    <span th:text="${denuncia.luogo}">Luogo</span>
-                </li>
-            </ul>
-            <p th:if="${denunce == null or denunce.isEmpty()}">Nessuna denuncia trovata.</p>
-        </section>
-
-        <section class="right-section">
-            <h2>Avvistamenti effettuati</h2>
-            <ul th:if="${avvistamenti != null and !avvistamenti.isEmpty()}">
-                <li th:each="avv : ${avvistamenti}">
-                    <strong th:text="${avv.animaleDescrizione}">Descrizione</strong> -
-                    <span th:text="${avv.dataAvvistamento}">Data</span> -
-                    <span th:text="${avv.luogo}">Luogo</span>
-                </li>
-            </ul>
-            <p th:if="${avvistamenti == null or avvistamenti.isEmpty()}">Nessun avvistamento trovato.</p>
-        </section>
-
+            <section class="right-section">
+                <h2>Avvistamenti effettuati</h2>
+                <div class="card-grid" th:if="${avvistamenti != null and !avvistamenti.isEmpty()}">
+                    <a th:each="avv : ${avvistamenti}" th:href="@{'/segnalazioni/' + ${avv.id}}" class="card">
+                        <img th:src="@{${avv.foto}}" alt="Foto" class="card-image">
+                        <div class="card-content">
+                            <strong th:text="${avv.dataOra}">Data e ora</strong><br>
+                            <span th:text="${avv.razza}">Razza</span><br>
+                            <span th:text="${avv.luogo}">Luogo</span>
+                        </div>
+                    </a>
+                </div>
+                <p th:if="${avvistamenti == null or avvistamenti.isEmpty()}">Nessun avvistamento trovato.</p>
+            </section>
+        </div>
     </main>
+
     <!-- Footer -->
     <footer>
         &copy; 2025 Tutti i diritti riservati.
