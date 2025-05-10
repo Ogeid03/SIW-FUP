@@ -185,7 +185,7 @@ footer {
     pointer-events: none; 
 }
 
-/* gestione riquadri in myAccount */
+
 .card {
     display: flex;
     align-items: center;
@@ -228,4 +228,23 @@ footer {
 
 .left-section, .right-section {
     margin-bottom: 40px;
+}
+
+
+h2 i {
+    margin-right: 10px;
+    color: #346df0;
+}
+
+.card-content i {
+    margin-right: 6px;
+    color: #0056b3;
+}
+
+.menu a i {
+    margin-right: 8px;
+}
+
+footer i {
+    margin-right: 8px;
 }

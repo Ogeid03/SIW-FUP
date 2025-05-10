@@ -9,7 +9,7 @@
 <body>
 
     <header>
-        <a href="/"><img src="LongLogo.png" alt="Logo" class="longLogo"></a>
+        <a href="/"><img src="/img/LongLogo.png" alt="Logo" class="longLogo"></a>
         <nav>
             <ul class="menu">
                 <li><a href="/">Home</a></li>
@@ -18,7 +18,7 @@
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
                         <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
-                        <li><a href="/segnala">Segnalazioni</a></li>
+                        <li><a href="/segnala">Contattaci</a></li>
                         <!-- Se non autenticato, mostra un link per il login -->
                         <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
                     </ul>

@@ -19,7 +19,7 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <a href="/login">Accedi</a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
-                    <p>Ciao <span th:text="${nomeUtente}">Utente</span></p>
+                    <a href="/account">Ciao <span th:text="${nomeUtente}">Utente</span></a>
                 </li>
                 <li><a href="/ricerca">Consulta Segnalazioni</a></li>
                 <li><a href="/about">About</a></li>
@@ -27,7 +27,7 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
                         <li sec:authorize="isAuthenticated()"><a href="/account">Account</a></li>
-                        <li><a href="/segnala">Segnalazioni</a></li>                        
+                        <li><a href="/segnala">Contattaci</a></li>                        
                         <li sec:authorize="isAuthenticated()">
                             <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
                         </li>
