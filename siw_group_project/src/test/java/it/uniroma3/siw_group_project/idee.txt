@@ -2,14 +2,14 @@
 
 ⬜ - Il colore dell'animale dovrebbe avere un suo attributo specifico ???
 ✅ - Nel form mettere più menù a tendina
-⬜ - Più razze (es. [xcane] [xlupo]) va vambiato in list(razza)
-⬜ - Gestione Luogo simile su base distanza
+⬜ - Più razze (es. [xcane] [xlupo]) va cambiato in list(razza)
+✅ - Gestione Luogo simile su base distanza
 ✅ - Bro scusa, vedevo e i form risultano un po' lunghetti, nulla in contrario in un form a step? 
         Magari cambiamo l'idea iniziale dell'homoage e facciamo 3 button che rimandano a pagine per i form,
         che poi sono a step con massimo 3 domande
 ✅ - Altra cosa js va messo esterno dall'html, sennò non si capisce nulla
 ⬜ - No copie di avvistamenti (equals luogo e razza) -- magari si aggiorna la data ???
-⬜ - Aggiungi "Denuncia Smarrimento" o "Avvistamento" dopo segnalazione - 000X in SEGNALAZIONE
+✅ - Aggiungi "Denuncia Smarrimento" o "Avvistamento" dopo segnalazione - 000X in SEGNALAZIONE
 ✅ - Sistema Visualizzazioni dati in Ricerca e nei caroselli
 ✅ - Estetica pagina Error
 ✅ - Pagina dettaglio segnalazione
@@ -20,6 +20,7 @@
 ✅ - Nella parte iniziale di myAccount aggiungere i dati dell'utente su due colonne poi una linea blu e sotto l'elenco delle segnalazioni
 ✅ - Aggiugni lo status alle segnalazioni
 ⬜ - Gestione Account Gestore
+⬜ - Modifica/Elimina Segnalazione
 ⬜ - Modifica e recupera account
 ⬜ - Gestione Messaggistica
 ✅ - Gestione Enum
@@ -35,9 +36,13 @@ fixes
 ✅ - Visualizzazione data su Account
 ✅ - Visualizzazione dati sulle segnalazioni
 ✅ - Visualizzazione non a colonna sul myAccount
-⬜ - Scritta decentrata in homepage/ dividere equo
+✅ - Scritta decentrata in homepage/ dividere equo
+⬜ - css homepage (tra cui logo e botton homepage più grande,
+         movimento background in relazione al mouse non più button ma il button è tutto il back ground e i button diventano scritte)
 ✅ - Nome "Pet" in denunciaForm
 ✅ - piuttosto che età numerico meglio eta a step (cucciolo, adulto, vecchio)
+⬜ - inserire informazioni nel carosello oltre la foto
+⬜ - correggere i caroselli nei recap come quelli su segnalazioni
 
 proposte
 ✅ -  solo due bottoni, ricerca messo in menu 
@@ -46,15 +51,17 @@ proposte
 ✅ -  cambia segnalazioni simili con denunce rilevanti
 ✅ -  accedi nel menu principale e al suo posto appare il nomeUtente al  (es. ciao Mario)
 
-⬜ - logo e botton homepage più grande
 ⬜ - fare login prima di salvare la segnalazione
 ⬜ - messaggi popup resoconto azioni
-⬜ - sul filtro ritornare messaggio di errore
-⬜ - poco intuitivo design ricerca
-⬜ - aggiungi FAQ a menu a tendina e pure about (??) e cambia design
+⬜ - Mettere la ricerca su homepage, stile "subito"      ------------------------
+⬜ - sul filtro ritornare messaggio di errore                  CAMBIAMENTI
+⬜ - Il filter va rivisto (più tipo subito)                      RICERCA
+⬜ - poco intuitivo design ricerca                       ------------------------
+⬜ - aggiungi FAQ a menu a tendina e pure about (??) e cambia design FAQ
 ⬜ - resoconto percentuale successo (reale su % finiti e non )
 ⬜ - Mappa con tutte le segnalazioni
-⬜ - Mettere la ricerca su homepage, stile "subito"
 ⬜ - Notifiche su mail
 ⬜ - Disclamer su informazioni date
-⬜ - Il filter va rivisto
+
+REFERENCES: 
+  --> https://www.canismarritietrovati.it/

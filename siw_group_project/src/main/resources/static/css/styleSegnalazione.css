@@ -263,49 +263,18 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* FAQ */
-.faq-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #346df0, #0056b3);
-    padding: 25px 35px;
-    margin: 40px auto 30px;
-    border-radius: 30px;
-    max-width: 900px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    letter-spacing: 0.5px;
-    border: 4px solid #004bb0;
+
+.card-wrapper {
+    max-width: 80%px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 3px solid orange;
+    border-radius: 10px;
+    background-color: #fffdf8;
+    box-shadow: 0 4px 8px rgba(255, 165, 0, 0.2);
 }
 
-.faq .question {
-    cursor: pointer;
-    padding: 10px;
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
-    border-radius: 5px;
-}
 
-.faq .answer {
-    display: none;
-    padding-left: 20px;
-    margin-top: 10px;
-}
-
-.faq .icon {
-    float: right;
-    font-size: 20px;
-}
-
-.faq .active .answer {
-    display: block;
-}
-
-.faq .active .icon {
-    transform: rotate(45deg);
-}
 
 /* Footer */
 footer {

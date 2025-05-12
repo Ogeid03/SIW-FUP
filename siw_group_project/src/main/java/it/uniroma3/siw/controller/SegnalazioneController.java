@@ -32,8 +32,19 @@ public class SegnalazioneController {
             model.addAttribute("segnalazione", avvistamento);
             model.addAttribute("tipo", "avvistamento");
 
-            List<Denuncia> rilevanti = segnalazioneService.getDenunceSimiliPerRazza(avvistamento.getRazza(), id);
-            model.addAttribute("rilevanti", rilevanti);
+            if (avvistamento.getLatitudine() != null && avvistamento.getLongitudine() != null) {
+                List<Denuncia> rilevanti = segnalazioneService.getDenunceVicinePerSpecieERazza(
+                    avvistamento.getSpecie(),
+                    avvistamento.getRazza(),
+                    avvistamento.getLatitudine(),
+                    avvistamento.getLongitudine(),
+                    5.0 // raggio in km
+                );
+                model.addAttribute("rilevanti", rilevanti);
+            } else {
+                model.addAttribute("rilevanti", List.of());
+            }
+            
 
             return "segnalazione";
         }
@@ -44,8 +55,18 @@ public class SegnalazioneController {
             model.addAttribute("segnalazione", denuncia);
             model.addAttribute("tipo", "denuncia");
 
-            List<Avvistamento> simili = segnalazioneService.getAvvistamentiSimiliPerRazza(denuncia.getRazza(), id);
-            model.addAttribute("simili", simili);
+            if (denuncia.getLatitudine() != null && denuncia.getLongitudine() != null) {
+                List<Avvistamento> simili = segnalazioneService.getAvvistamentiViciniPerSpecieERazza(
+                    denuncia.getSpecie(),
+                    denuncia.getRazza(),
+                    denuncia.getLatitudine(),
+                    denuncia.getLongitudine(),
+                    5.0  // raggio in km
+                );
+                model.addAttribute("simili", simili);
+            } else {
+                model.addAttribute("simili", List.of());
+            }
 
             return "segnalazione";
         }

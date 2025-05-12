@@ -22,6 +22,9 @@ public class Segnalazione {
     private String foto;
     private String informazioniExtra;
     private String luogo;
+        private Double latitudine;
+        private Double longitudine;
+
     @Enumerated(EnumType.STRING)
     private Stato codStatus;
     
@@ -92,6 +95,22 @@ public class Segnalazione {
 
     public void setCodLuogo(String codLuogo) {
         this.luogo = codLuogo;
+    }
+
+    public Double getLatitudine() {
+        return latitudine;
+    }
+
+    public void setLatitudine(Double latitudine) {
+        this.latitudine = latitudine;
+    }
+
+    public Double getLongitudine() {
+        return longitudine;
+    }
+
+    public void setLongitudine(Double longitudine) {
+        this.longitudine = longitudine;
     }
 
     public Utente getCodUtente() {

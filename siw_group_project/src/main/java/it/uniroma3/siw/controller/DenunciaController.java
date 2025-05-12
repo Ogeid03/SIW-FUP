@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 import it.uniroma3.siw.model.Denuncia;
@@ -32,7 +33,12 @@ public class DenunciaController {
     }
 
     @PostMapping("/conferma-denuncia")
-    public String conferma(@ModelAttribute Denuncia denuncia, Model model) {
+    public String conferma(@ModelAttribute Denuncia denuncia, 
+                                @RequestParam("latitudine") Double lat,
+                                @RequestParam("longitudine") Double lon, 
+                                Model model) {
+        denuncia.setLatitudine(lat);
+        denuncia.setLongitudine(lon);
         model.addAttribute("denuncia", denuncia);
         var simili = denunciaService.trovaAvvistamentiSimili(denuncia);
         model.addAttribute("simili", simili);

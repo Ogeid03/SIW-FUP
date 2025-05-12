@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 import java.time.LocalDateTime;
@@ -33,7 +34,12 @@ public class AvvistamentoController {
     }
 
     @PostMapping("/conferma-avvistamento")
-    public String conferma(@ModelAttribute Avvistamento avvistamento, Model model) {
+    public String conferma(@ModelAttribute Avvistamento avvistamento, 
+                                @RequestParam("latitudine") Double lat,
+                                @RequestParam("longitudine") Double lon, 
+                                Model model) {
+        avvistamento.setLatitudine(lat);
+        avvistamento.setLongitudine(lon);
         model.addAttribute("segnalazione", avvistamento);
         var simili = avvistamentoService.trovaDenunceSimili(avvistamento);
         model.addAttribute("simili", simili);

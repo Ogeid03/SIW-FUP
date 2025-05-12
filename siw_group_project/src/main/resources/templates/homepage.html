@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="it" xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
 
     <!-- Header -->
@@ -22,16 +23,17 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <a href="/account">Ciao <span th:text="${nomeUtente}">Utente</span></a>
                 </li>
                 <li><a href="/ricerca">Consulta Segnalazioni</a></li>
-                <li><a href="/about">About</a></li>
                 <li class="dropdown">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
                         <li sec:authorize="isAuthenticated()"><a href="/account">Account</a></li>
-                        <li><a href="/segnala">Contattaci</a></li>                        
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/segnala">Contattaci</a></li>
                         <li sec:authorize="isAuthenticated()">
-                            <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+                            <a href="#"
+                                onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
                         </li>
-                        
+
                     </ul>
                 </li>
             </ul>
@@ -47,28 +49,26 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
         <section class="hero">
             <div class="hero-content">
                 <h1>Hai perso il tuo amico a quattro zampe?</h1>
-                <p class="hero-text">Noi ti aiutiamo a ritrovarlo. Segnala, cerca e ritrova con FUP.</p>
+                <p class="hero-text">Noi ti aiutiamo a ritrovarlo. Cerca e ritrova con FUP.</p>
                 <div class="button-container">
                     <a href="/denunce"><button class="cta-btn">Denuncia Smarrimento</button></a>
                 </div>
             </div>
         </section>
 
-        <div>
-            <!-- Sezione Invito alla Segnalazione -->
-            <section class="segnalazione-invito">
-                <div class="invito-container">
-                    <h2>Hai visto un animale smarrito?</h2>
-                    <p>La tua segnalazione può fare la differenza. Ogni dettaglio può aiutare un animale a tornare a casa.</p>
-                    <div class="button-container">
-                        <a href="/segnalazioni"><button class="cta-btn">Segnala ora</button></a>
-                    </div>
+        <section class="segnalazione-invito">
+            <div class="invito-container">
+                <h1>Hai visto un animale smarrito?</h1>
+                <p>La tua segnalazione può fare la differenza. 
+                </p>
+                <div class="button-container">
+                    <a href="/segnalazioni"><button class="cta-btn">Segnala ora</button></a>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Linea Divisoria -->
-            <hr class="linea-blu">
-        </div>
+        <!-- Linea Divisoria -->
+        <hr class="linea-blu">
 
         <div>
             <br><br>
@@ -80,7 +80,11 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <span class="icon">+</span>
                 </div>
                 <div class="answer">
-                    Se trovi un animale smarrito, prima di tutto cerca di avvicinarti con cautela. Se l'animale sembra ferito o in pericolo, contatta un veterinario o un rifugio locale per assistenza immediata. Se l'animale sembra sano, cerca di scoprire se ha un collare con un'identificazione, come un microchip o un tag. Puoi anche segnalarlo ai rifugi locali, ai servizi di soccorso per animali o utilizzare i social media e siti web dedicati agli smarriti per trovare il proprietario.
+                    Se trovi un animale smarrito, prima di tutto cerca di avvicinarti con cautela. Se l'animale sembra
+                    ferito o in pericolo, contatta un veterinario o un rifugio locale per assistenza immediata. Se
+                    l'animale sembra sano, cerca di scoprire se ha un collare con un'identificazione, come un microchip
+                    o un tag. Puoi anche segnalarlo ai rifugi locali, ai servizi di soccorso per animali o utilizzare i
+                    social media e siti web dedicati agli smarriti per trovare il proprietario.
                 </div>
             </div>
 
@@ -90,7 +94,11 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <span class="icon">+</span>
                 </div>
                 <div class="answer">
-                    Per segnalare un animale smarrito, puoi utilizzare diverse risorse. Molte città e comuni hanno gruppi sui social media o siti web dove è possibile pubblicare avvistamenti. Inoltre, molti rifugi per animali e associazioni locali permettono di segnalare gli animali smarriti online. Puoi anche affiggere volantini nei luoghi pubblici, indicando una descrizione dell'animale e il tuo numero di contatto.
+                    Per segnalare un animale smarrito, puoi utilizzare diverse risorse. Molte città e comuni hanno
+                    gruppi sui social media o siti web dove è possibile pubblicare avvistamenti. Inoltre, molti rifugi
+                    per animali e associazioni locali permettono di segnalare gli animali smarriti online. Puoi anche
+                    affiggere volantini nei luoghi pubblici, indicando una descrizione dell'animale e il tuo numero di
+                    contatto.
                 </div>
             </div>
 
@@ -100,13 +108,16 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <span class="icon">+</span>
                 </div>
                 <div class="answer">
-                    Se un animale è stato smarrito, ci sono alcune azioni che puoi intraprendere per aiutare a ritrovarlo:
+                    Se un animale è stato smarrito, ci sono alcune azioni che puoi intraprendere per aiutare a
+                    ritrovarlo:
                     <ul>
                         <li>Contatta i rifugi e i veterinari locali per segnalare l’animale.</li>
                         <li>Diffondi la notizia sui social media, chiedendo agli altri di fare lo stesso.</li>
                         <li>Verifica se l’animale è microchippato chiedendo a un veterinario di fare un controllo.</li>
-                        <li>Distribuisci volantini con una foto e una descrizione dettagliata dell'animale smarrito.</li>
-                        <li>Se hai visto l'animale in una zona specifica, cerca di monitorare l'area e avvisare altre persone di prestare attenzione.</li>
+                        <li>Distribuisci volantini con una foto e una descrizione dettagliata dell'animale smarrito.
+                        </li>
+                        <li>Se hai visto l'animale in una zona specifica, cerca di monitorare l'area e avvisare altre
+                            persone di prestare attenzione.</li>
                     </ul>
                 </div>
             </div>
@@ -117,7 +128,11 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <span class="icon">+</span>
                 </div>
                 <div class="answer">
-                    Se vedi un animale che sembra smarrito, cerca di non spaventarlo. Se possibile, prova a avvicinarti lentamente per verificare se ha un microchip o un collare con informazioni sul proprietario. Se l'animale è spaventato o rischia di correre per strada, è meglio chiamare un rifugio o una società di soccorso animali per assistenza. Non cercare di prenderlo in braccio se l'animale sembra aggressivo o troppo spaventato, per evitare di metterti in pericolo.
+                    Se vedi un animale che sembra smarrito, cerca di non spaventarlo. Se possibile, prova a avvicinarti
+                    lentamente per verificare se ha un microchip o un collare con informazioni sul proprietario. Se
+                    l'animale è spaventato o rischia di correre per strada, è meglio chiamare un rifugio o una società
+                    di soccorso animali per assistenza. Non cercare di prenderlo in braccio se l'animale sembra
+                    aggressivo o troppo spaventato, per evitare di metterti in pericolo.
                 </div>
             </div>
 
@@ -132,7 +147,8 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                         <li>Rifugi locali per animali e centri di accoglienza.</li>
                         <li>Pagine e gruppi di social media dedicati agli animali smarriti.</li>
                         <li>Siti web specializzati nella segnalazione di animali smarriti.</li>
-                        <li>I servizi comunali di protezione animali, che possono avere un elenco degli animali recuperati.</li>
+                        <li>I servizi comunali di protezione animali, che possono avere un elenco degli animali
+                            recuperati.</li>
                         <li>Chiedi ai vicini o passa nei luoghi frequentati di solito dal tuo animale.</li>
                     </ul>
                 </div>
@@ -144,7 +160,11 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <span class="icon">+</span>
                 </div>
                 <div class="answer">
-                    Se il tuo animale smarrito ha un microchip, è importante aggiornare le informazioni di contatto con il registro del microchip. Se qualcuno trova il tuo animale, il microchip permetterà di risalire facilmente ai tuoi dati. Se il tuo animale è stato trovato da un rifugio o un veterinario, contatteranno immediatamente il numero associato al microchip. Se non hai ancora registrato il microchip, fallo il prima possibile.
+                    Se il tuo animale smarrito ha un microchip, è importante aggiornare le informazioni di contatto con
+                    il registro del microchip. Se qualcuno trova il tuo animale, il microchip permetterà di risalire
+                    facilmente ai tuoi dati. Se il tuo animale è stato trovato da un rifugio o un veterinario,
+                    contatteranno immediatamente il numero associato al microchip. Se non hai ancora registrato il
+                    microchip, fallo il prima possibile.
                 </div>
             </div>
 
@@ -157,9 +177,11 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     Per prevenire lo smarrimento del tuo animale, considera questi consigli:
                     <ul>
                         <li>Fai in modo che il tuo animale abbia sempre un collare con un tag identificativo.</li>
-                        <li>Verifica regolarmente che il microchip sia funzionante e che le informazioni siano aggiornate.</li>
+                        <li>Verifica regolarmente che il microchip sia funzionante e che le informazioni siano
+                            aggiornate.</li>
                         <li>Evita di lasciare il tuo animale all'aperto senza sorveglianza.</li>
-                        <li>Insegna al tuo animale a rispondere al richiamo, per renderlo più facile da recuperare in caso di smarrimento.</li>
+                        <li>Insegna al tuo animale a rispondere al richiamo, per renderlo più facile da recuperare in
+                            caso di smarrimento.</li>
                     </ul>
                 </div>
             </div>
@@ -170,13 +192,17 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <span class="icon">+</span>
                 </div>
                 <div class="answer">
-                    Sì, è sempre meglio segnalare un avvistamento, anche se non sei sicuro che l'animale sia smarrito. Molte persone preferiscono avere più informazioni possibili su animali sospetti, in modo da poter agire di conseguenza. Se l'animale non è smarrito, il proprietario o chi lo sta cercando potrà comunque raccogliere utili informazioni.
+                    Sì, è sempre meglio segnalare un avvistamento, anche se non sei sicuro che l'animale sia smarrito.
+                    Molte persone preferiscono avere più informazioni possibili su animali sospetti, in modo da poter
+                    agire di conseguenza. Se l'animale non è smarrito, il proprietario o chi lo sta cercando potrà
+                    comunque raccogliere utili informazioni.
                 </div>
             </div>
 
             <div class="faq">
                 <div class="question">
-                    <span>Quali sono i rifugi e le organizzazioni che posso contattare per segnalare un animale smarrito?</span>
+                    <span>Quali sono i rifugi e le organizzazioni che posso contattare per segnalare un animale
+                        smarrito?</span>
                     <span class="icon">+</span>
                 </div>
                 <div class="answer">
@@ -197,7 +223,10 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
                     <span class="icon">+</span>
                 </div>
                 <div class="answer">
-                    Se il tuo animale smarrito non ha un microchip, cerca di metterti in contatto con i rifugi locali, i veterinari e i gruppi online per animali smarriti. Inoltre, affiggi volantini nei luoghi frequentati dal tuo animale e nelle aree circostanti. Puoi anche cercare il tuo animale nei rifugi e visitare le zone dove potrebbe essere stato avvistato.
+                    Se il tuo animale smarrito non ha un microchip, cerca di metterti in contatto con i rifugi locali, i
+                    veterinari e i gruppi online per animali smarriti. Inoltre, affiggi volantini nei luoghi frequentati
+                    dal tuo animale e nelle aree circostanti. Puoi anche cercare il tuo animale nei rifugi e visitare le
+                    zone dove potrebbe essere stato avvistato.
                 </div>
             </div>
         </div>
@@ -212,4 +241,5 @@ xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 
 
 </body>
+
 </html>

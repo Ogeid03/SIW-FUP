@@ -39,6 +39,10 @@ public class SitoController {
         return "about"; 
     }
 
+    @GetMapping("/segnala")
+    public String mostraForm() {
+        return "segnala";
+    }
     
     @GetMapping("/error")
     public String error() {

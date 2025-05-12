@@ -56,6 +56,8 @@
             <form action="/salva-denuncia" method="post" th:object="${denuncia}" class="confirm-form">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <input type="hidden" name="luogo" th:value="*{luogo}" />
+                <input type="hidden" name="latitudine" th:value="${denuncia.latitudine}" />
+                <input type="hidden" name="longitudine" th:value="${denuncia.longitudine}" />
                 <input type="hidden" name="nome" th:value="*{nome}" />
                 <input type="hidden" name="specie" th:value="*{specie}" />
                 <input type="hidden" name="razza" th:value="*{razza}" />

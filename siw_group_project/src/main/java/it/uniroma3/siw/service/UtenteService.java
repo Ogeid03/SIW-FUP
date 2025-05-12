@@ -39,6 +39,14 @@ public class UtenteService implements UserDetailsService {
         utente.setRuolo(Ruolo.USER); // Imposta il ruolo di default
         utenteRepository.save(utente);
     }
+
+    public Utente getUtenteByEmail(String email) {
+        return utenteRepository.findByEmail(email);
+    }
+
+    public Utente getUtenteById(Long id) {
+        return utenteRepository.findById(id).orElse(null);
+    }
     
     public Utente getUtenteAutenticato() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

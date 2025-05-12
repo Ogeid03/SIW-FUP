@@ -42,8 +42,8 @@
         <p id="suggestionMessage" style="color: red; font-style: italic; margin-top: 5px;"></p>
 
         <!-- Latitudine e Longitudine nascosti -->
-        <input type="hidden" id="lat" name="lat">
-        <input type="hidden" id="lon" name="lon">
+        <input type="hidden" id="lat" name="latitudine">
+        <input type="hidden" id="lon" name="longitudine">
 
         <!-- Mappa -->
         <div id="map"></div>
@@ -61,8 +61,8 @@
           <option value="Cane">Cane</option>
           <option value="Gatto">Gatto</option>
           <option value="Pappagallo">Pappagallo</option>
-          <option value="Pappagallo">Roditore</option>
-          <option value="Pappagallo">Rettile</option>
+          <option value="Roditore">Roditore</option>
+          <option value="Rettile">Rettile</option>
         </select><br>
 
         <label for="razza">Razza:</label>
@@ -112,7 +112,9 @@
     const razzePerSpecie = {
       "Cane": ["Labrador", "Bulldog", "Pastore Tedesco", "Barboncino"],
       "Gatto": ["Persiano", "Siamese", "Maine Coon", "Europeo"],
-      "Pappagallo": ["Cacatua", "Ara", "Inseparabile", "Calopsitta"]
+      "Pappagallo": ["Cacatua", "Ara", "Inseparabile", "Calopsitta"],
+      "Roditore": ["Topo", "Cavia", "Porcellino D'India", "Coniglio"],
+      "Rettile": ["Tartaruga", "Serpente", "Iguana", "Coccodrillo"]
     };
 
     document.getElementById("specie").addEventListener("change", function () {

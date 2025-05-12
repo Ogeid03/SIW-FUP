@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuovo Messaggio</title>
+</head>
+<body>
+    <h2>Invia un messaggio</h2>
+    <form th:action="@{/messaggi/invia}" method="post" th:object="${messaggio}">
+        <input type="hidden" th:field="*{codDestinatario.id}"/>
+        <input type="hidden" th:field="*{codSegnalazione.id}"/>
+        <div>
+            <label>Contenuto:</label>
+            <textarea th:field="*{contenuto}" rows="5" required></textarea>
+        </div>
+        <button type="submit">Invia</button>
+    </form>
+</body>
+</html>
