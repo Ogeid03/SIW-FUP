@@ -2,7 +2,6 @@ package it.uniroma3.siw.model;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Optional;
 
 import jakarta.persistence.*;
 
@@ -25,7 +24,7 @@ public class Messaggio {
 
     @ManyToOne
     @JoinColumn(name = "codSegnalazione")
-    private Optional<Segnalazione> codSegnalazione;
+    private Segnalazione codSegnalazione;
 
     // Getter e Setter
     public Long getId() {
@@ -68,11 +67,11 @@ public class Messaggio {
         this.codDestinatario = codDestinatario;
     }
 
-    public Optional<Segnalazione> getCodSegnalazione() {
+    public Segnalazione getCodSegnalazione() {
         return codSegnalazione;
     }
 
-    public void setCodSegnalazione(Optional<Segnalazione> codSegnalazione) {
+    public void setCodSegnalazione(Segnalazione codSegnalazione) {
         this.codSegnalazione = codSegnalazione;
     }
 
