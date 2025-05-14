@@ -54,7 +54,7 @@ public class MessaggioController {
         return "chat";
     }
 
-    @PostMapping("/invia")
+    @PostMapping("/messaggi/invia")
     public String inviaMessaggio(@ModelAttribute("messaggio") Messaggio messaggio) {
         messaggio.setDataOra(LocalDateTime.now());
         messaggioRepository.save(messaggio);
