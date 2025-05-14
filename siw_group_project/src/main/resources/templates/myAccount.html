@@ -82,6 +82,20 @@
             </section>
         </div>
     </main>
+    <!-- <section class="messages-section" th:if="${messaggiRicevuti != null and !messaggiRicevuti.isEmpty()}">
+        <h2><i class="fa-solid fa-envelope"></i> Messaggi Ricevuti</h2>
+        <div class="message-list">
+            <div class="message-card" th:each="msg : ${messaggiRicevuti}">
+                <div class="message-header">
+                    <strong th:text="${msg.codUtente.nomeUtente}">Mittente</strong>
+                    <span th:text="${#temporals.format(msg.dataOra, 'dd/MM/yyyy HH:mm')}">Data</span>
+                </div>
+                <div class="message-content" th:text="${msg.contenuto}"></div>
+            </div>
+        </div>
+    </section>
+
+    <p th:if="${messaggiRicevuti == null or messaggiRicevuti.isEmpty()}">Non hai ricevuto alcun messaggio.</p> -->
 
     <!-- Footer -->
     <footer>

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Denuncia;
+import it.uniroma3.siw.model.Messaggio;
 import it.uniroma3.siw.model.Utente;
+import it.uniroma3.siw.service.MessaggioService;
 import it.uniroma3.siw.service.RicercaService;
 import it.uniroma3.siw.service.UtenteService;
 
@@ -23,8 +25,10 @@ public class UtenteController {
     private UtenteService utenteService;
     @Autowired
     private RicercaService ricercaService;
+    @Autowired
+    private MessaggioService messaggioService;
 
-   @GetMapping("/login")
+    @GetMapping("/login")
     public String showLoginPage() {
         return "login"; // Pagina di login
     }
@@ -37,7 +41,7 @@ public class UtenteController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute Utente utente,
-                               @RequestParam("password") String password) {
+            @RequestParam("password") String password) {
         utenteService.register(utente, password);
         return "login";
     }
@@ -47,18 +51,19 @@ public class UtenteController {
         Utente utente = utenteService.getUtenteAutenticato();
 
         if (utente == null) {
-            return "redirect:/error"; // o una pagina di errore
+            return "redirect:/error";
         }
 
         List<Denuncia> denunce = ricercaService.getDenByUtente(utente);
         List<Avvistamento> avvistamenti = ricercaService.getAvvByUtente(utente);
+        List<Messaggio> messaggiRicevuti = messaggioService.getMessaggiRicevuti(utente);
 
         model.addAttribute("utente", utente);
         model.addAttribute("denunce", denunce);
         model.addAttribute("avvistamenti", avvistamenti);
+        model.addAttribute("messaggiRicevuti", messaggiRicevuti);
 
-        return "myAccount"; // Thymeleaf HTML
+        return "myAccount";
     }
 
 }
-
