@@ -22,13 +22,14 @@
 ⬜ - Gestione Account Gestore
 ⬜ - Modifica/Elimina Segnalazione
 ⬜ - Modifica e recupera account
-⬜ - Gestione Messaggistica
+⬜ - Gestione Messaggistica (pagina Visualizzazione)
 ✅ - Gestione Enum
 ⬜ - Elimina file inutili (es. di "recap" uno solo non 2)  ---> DIEGO (evitabile)
 
 
 
 fixes
+⬜ - il cursore fa schifo, aggiungi icona utente
 ✅ - Uniformare l'header
 ✅ - Fix foto in denunce
 ✅ - Fix denunce simili, mostra le denucne con avvistamenti e viceversa
@@ -43,6 +44,7 @@ fixes
 ✅ - piuttosto che età numerico meglio eta a step (cucciolo, adulto, vecchio)
 ⬜ - inserire informazioni nel carosello oltre la foto
 ⬜ - correggere i caroselli nei recap come quelli su segnalazioni
+⬜ - correggere pagina errore
 
 proposte
 ✅ -  solo due bottoni, ricerca messo in menu 

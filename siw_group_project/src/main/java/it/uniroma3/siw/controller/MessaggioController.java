@@ -3,7 +3,8 @@ package it.uniroma3.siw.controller;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Optional;
-
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,9 +56,34 @@ public class MessaggioController {
     }
 
     @PostMapping("/messaggi/invia")
-    public String inviaMessaggio(@ModelAttribute("messaggio") Messaggio messaggio) {
+    public String inviaMessaggio(@ModelAttribute("messaggio") Messaggio messaggio, Principal principal) {
+        // Recupera l'utente mittente dal Principal
+        Utente mittente = utenteService.getUtenteByEmail(principal.getName());
+        messaggio.setCodUtente(mittente);
+
+        // Imposta la data/ora corrente
         messaggio.setDataOra(LocalDateTime.now());
+
+        // Salva il messaggio
         messaggioRepository.save(messaggio);
+
+        // Redirect alla pagina della segnalazione
         return "redirect:/segnalazioni/" + messaggio.getCodSegnalazione().getId();
     }
+
+    @GetMapping("/messaggi/recap")
+    public String recapMessaggi(Model model, Principal principal) {
+        Utente utenteLoggato = utenteService.getUtenteByEmail(principal.getName());
+
+        List<Messaggio> messaggi = messaggioRepository.findByCodDestinatarioOrderByDataOraDesc(utenteLoggato);
+
+        if (messaggi == null) {
+            messaggi = new ArrayList<>();
+        }
+
+        model.addAttribute("messaggi", messaggi);
+        model.addAttribute("utenteLoggato", utenteLoggato);
+        return "recapChat";
+    }
+
 }

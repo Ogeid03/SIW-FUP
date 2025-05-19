@@ -20,13 +20,13 @@
                     <a href="/login">Accedi</a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
-                    <a href="/account">Ciao <span th:text="${nomeUtente}">Utente</span></a>
+                    <a href="/account">Ciao <span th:text="${nomeUtente}">Utente</span><i class="fa-solid fa-user"></i></a>
                 </li>
                 <li><a href="/ricerca">Consulta Segnalazioni</a></li>
                 <li class="dropdown">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
-                        <li sec:authorize="isAuthenticated()"><a href="/account">Account</a></li>
+                        <li sec:authorize="isAuthenticated()"><a href="/messaggi/recap">Messaggi</a></li>
                         <li><a href="/about">About Us</a></li>
                         <li><a href="/segnala">Contattaci</a></li>
                         <li sec:authorize="isAuthenticated()">
