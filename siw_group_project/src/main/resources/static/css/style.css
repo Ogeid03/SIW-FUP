@@ -11,8 +11,7 @@ body {
     height: 100vh; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    cursor: url('/img/cursor.cur'), auto;
+    justify-content: space-between; 
     overflow: auto; 
 }
 
@@ -59,7 +58,6 @@ header {
 .menu a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    cursor: url('/img/cursor.cur'), auto;
 }
 
 /* Dropdown menu */
@@ -91,17 +89,6 @@ header {
 
 .menu li:hover .submenu {
     display: block;
-}
-
-/* Hover effetti sul sottomenu */
-.menu li:hover,
-.menu .submenu li:hover,
-button:hover,
-.faq .question:hover,
-.cta-btn:hover,
-.button-container:hover,
-.longLogo{
-    cursor: url('/img/cursor.cur'), auto;
 }
 
 /* Main Content */
@@ -171,6 +158,7 @@ main {
 .faq .question {
     cursor: pointer;
     padding: 10px;
+    text-align: left;
     background-color: #f4f4f4;
     border: 1px solid #ddd;
     margin-bottom: 5px;
@@ -179,6 +167,7 @@ main {
 
 .faq .answer {
     display: none;
+    text-align: left;
     padding-left: 20px;
     margin-top: 10px;
 }
@@ -333,7 +322,7 @@ form button[type="submit"] {
     border-radius: 12px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    cursor: url('/img/cursor.cur'), auto;
+    
 }
 
 form button:hover {

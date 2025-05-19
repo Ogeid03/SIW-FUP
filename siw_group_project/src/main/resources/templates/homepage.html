@@ -20,7 +20,7 @@
                     <a href="/login">Accedi</a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
-                    <a href="/account">Ciao <span th:text="${nomeUtente}">Utente</span><i class="fa-solid fa-user"></i></a>
+                    <a href="/account">Ciao <span th:text="${nomeUtente}">Utente</span> <i class="fa-solid fa-user"></i></a>
                 </li>
                 <li><a href="/ricerca">Consulta Segnalazioni</a></li>
                 <li class="dropdown">
@@ -44,7 +44,7 @@
     <!-- Contenuto Principale -->
     <main>
 
-        <img src="/img/mascotte.gif" alt="Mascotte animata" class="gif-fixed">
+        <!-- <img src="/img/mascotte.gif" alt="Mascotte animata" class="gif-fixed"> -->
 
         <section class="hero">
             <div class="hero-content">

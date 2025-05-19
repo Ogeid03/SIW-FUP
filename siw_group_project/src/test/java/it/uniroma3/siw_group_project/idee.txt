@@ -1,6 +1,6 @@
 ⬜ -> ✅
 
-⬜ - Il colore dell'animale dovrebbe avere un suo attributo specifico ???
+⬜ - Il colore dell'animale dovrebbe avere un suo attributo specifico ??? (Colore, Lunghezza pelo, Caratteristiche mantello, sesso, micrichip?)
 ✅ - Nel form mettere più menù a tendina
 ⬜ - Più razze (es. [xcane] [xlupo]) va cambiato in list(razza) ---> DIEGO (inutile)
 ✅ - Gestione Luogo simile su base distanza
@@ -29,8 +29,8 @@
 
 
 fixes
-⬜ - il cursore fa schifo, aggiungi icona utente
-✅ - Uniformare l'header
+✅ - il cursore fa schifo, aggiungi icona utente
+⬜ - Uniformare l'header
 ✅ - Fix foto in denunce
 ✅ - Fix denunce simili, mostra le denucne con avvistamenti e viceversa
 ✅ - Fix inserimento Luogo
@@ -52,7 +52,14 @@ proposte
 ✅ -  cambia nome "Ricerca" con "Consulta Segnalazioni"
 ✅ -  cambia segnalazioni simili con denunce rilevanti
 ✅ -  accedi nel menu principale e al suo posto appare il nomeUtente al  (es. ciao Mario)
-
+⬜ - footer dopo % ed elimina sgorbio gif
+⬜ - doggo assistente chatbot semplice
+⬜ - gli elenchi devono essere ordinati su base della data (sse attivi)
+⬜ - spostare messaggio su segnalazione e riepilogo messaggi su account a destra dei dati utente
+⬜ - in riepilogo fare 2 colonne e aggiungere in fondo la foto a largehzza piena
+⬜ - notifica con pallino rosso su account post segnalazione
+⬜ - cambia bottoni in segnalazione, giallo minimal (senza button solo scritta con link) e blu nel riquadro arancio (riquaro riempito di arancio)
+⬜ - riempere meglio nei form (sfrutta la suddivisione arancione blu per avvistamenti e denunce)
 ⬜ - fare login prima di salvare la segnalazione
 ⬜ - messaggi popup resoconto azioni
 ⬜ - Mettere la ricerca su homepage, stile "subito"      ------------------------
