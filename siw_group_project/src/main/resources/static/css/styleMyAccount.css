@@ -92,6 +92,7 @@ header {
 }
 
 
+
 /* Main Content */
 main {
     flex: 1;
@@ -229,7 +230,6 @@ hr.separator {
     border-radius: 10px;
     padding: 10px;
     background-color: #fff;
-    text-decoration: none;
     color: inherit;
     transition: box-shadow 0.3s ease;
 }
@@ -250,12 +250,54 @@ hr.separator {
     object-fit: cover;
     border-radius: 8px;
     margin-right: 15px;
+    flex-shrink: 0;
 }
 
 .card-content {
     flex: 1;
 }
 
+/* Nuova classe per i bottoni in alto a destra */
+.card-actions-top {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+/* Stile bottone generico */
+.btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    font-size: 1.1em;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover e focus */
+.btn:hover,
+.btn:focus {
+    background-color: #eee;
+    color: #007bff;
+    outline: none;
+}
+
+.edit-btn i,
+.delete-btn i {
+    pointer-events: none; /* evitare conflitti click sull'icona */
+}
+
+/* Per il form delete, evitare larghezza eccessiva */
+.card-actions-top form {
+    margin: 0;
+}
+
+/* Container principale */
 .content-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr; /* due colonne uguali */
@@ -264,6 +306,7 @@ hr.separator {
     margin: 0 auto;
     padding: 20px;
 }
+
 
 @media (max-width: 768px) {
     .content-wrapper {

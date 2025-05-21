@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <link rel="stylesheet" href="/css/styleModifica.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Modifica Segnalazione</title>
 </head>
+
 <body>
+    <header>
+        <a href="/"><img src="/img/LongLogo.png" alt="Logo" class="longLogo"></a>
+        <nav>
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                    <ul class="submenu">
+                        <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
+                        <li><a href="/segnala">Contattaci</a></li>
+                        <!-- Se non autenticato, mostra un link per il login -->
+                        <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
     <h2>Modifica Segnalazione</h2>
     <form th:action="@{'/segnalazioni/modifica/' + ${segnalazione.id}}" th:object="${segnalazione}" method="post">
         <label>Nome animale:</label>
@@ -19,7 +41,8 @@
 
         <button type="submit">Salva Modifiche</button>
 
-        
+
     </form>
 </body>
+
 </html>

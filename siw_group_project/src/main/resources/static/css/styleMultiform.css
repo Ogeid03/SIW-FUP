@@ -310,3 +310,23 @@ form {
 }
 
 /* Carosello */
+
+/* Stile per il messaggio di suggerimento */
+.suggestion-message {
+  color: red;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+/* Anteprima immagine URL inserito */
+.image-preview {
+  margin-top: 10px;
+}
+
+/* Immagine anteprima (se presente nel contenuto dinamico) */
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}

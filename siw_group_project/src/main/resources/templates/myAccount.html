@@ -47,36 +47,31 @@
             <section class="left-section">
                 <h2><i class="fa-solid fa-file-circle-exclamation"></i> Denunce di smarrimento</h2>
                 <div class="card-grid" th:if="${denunce != null and !denunce.isEmpty()}">
-                    <a th:each="den : ${denunce}" th:href="@{'/segnalazioni/' + ${den.id}}" class="card">
+                    <div th:each="den : ${denunce}" class="card">
+                        <!-- Bottoni in alto a destra -->
+                        <div class="card-actions-top">
+                            <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn edit-btn" title="Modifica">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
+                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="btn delete-btn" title="Elimina">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+
                         <div class="status-badge" th:text="${den.codStatus}"></div>
                         <img th:src="@{${den.foto}}" alt="Foto" class="card-image">
                         <div class="card-content">
                             <strong><i class="fa-regular fa-calendar"></i> <span
                                     th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
-                            <strong><i class="fa-solid fa-dog"></i> <span th:text="${den.nome}">Nome
-                                    animale</span></strong><br>
+                            <strong><i class="fa-solid fa-dog"></i> <span th:text="${den.nome}">Nome animale</span></strong><br>
                             <span><i class="fa-solid fa-paw"></i> <span th:text="${den.razza}">Razza</span></span><br>
-                            <span><i class="fa-solid fa-map-marker-alt"></i> <span
-                                    th:text="${den.luogo}">Luogo</span></span>
+                            <span><i class="fa-solid fa-map-marker-alt"></i> <span th:text="${den.luogo}">Luogo</span></span>
                         </div>
-                        <!-- Bottoni azione -->
-                        <div class="card-actions">
-                            <!-- Modifica -->
-                            <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn edit-btn">
-                                <i class="fa-solid fa-pen-to-square"></i> Modifica
-                            </a>
-
-                            <!-- Elimina -->
-                            <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
-                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
-                                <input type="hidden" name="_method" value="delete" />
-                                <!-- utile se usi Spring con HiddenHttpMethodFilter -->
-                                <button type="submit" class="btn delete-btn">
-                                    <i class="fa-solid fa-trash"></i> Elimina
-                                </button>
-                            </form>
-                        </div>
-                    </a>
+                    </div>
                 </div>
                 <p th:if="${denunce == null or denunce.isEmpty()}">Nessuna denuncia trovata.</p>
             </section>
@@ -84,7 +79,21 @@
             <section class="right-section">
                 <h2><i class="fa-solid fa-binoculars"></i> Avvistamenti effettuati</h2>
                 <div class="card-grid" th:if="${avvistamenti != null and !avvistamenti.isEmpty()}">
-                    <a th:each="avv : ${avvistamenti}" th:href="@{'/segnalazioni/' + ${avv.id}}" class="card">
+                    <div th:each="avv : ${avvistamenti}" class="card">
+                        <!-- Bottoni in alto a destra -->
+                        <div class="card-actions-top">
+                            <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn edit-btn" title="Modifica">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
+                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="btn delete-btn" title="Elimina">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+
                         <div class="status-badge" th:text="${avv.codStatus}"></div>
                         <img th:src="@{${avv.foto}}" alt="Foto" class="card-image">
                         <div class="card-content">
@@ -94,30 +103,12 @@
                             <span><i class="fa-solid fa-location-dot"></i> <span
                                     th:text="${avv.luogo}">Luogo</span></span>
                         </div>
-                        <!-- Bottoni azione -->
-                        <div class="card-actions">
-                            <!-- Modifica -->
-                            <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn edit-btn">
-                                <i class="fa-solid fa-pen-to-square"></i> Modifica
-                            </a>
-
-                            <!-- Elimina -->
-                            <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
-                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
-                                <input type="hidden" name="_method" value="delete" />
-                                <!-- utile se usi Spring con HiddenHttpMethodFilter -->
-                                <button type="submit" class="btn delete-btn">
-                                    <i class="fa-solid fa-trash"></i> Elimina
-                                </button>
-                            </form>
-                        </div>
-                    </a>
+                    </div>
                 </div>
                 <p th:if="${avvistamenti == null or avvistamenti.isEmpty()}">Nessun avvistamento trovato.</p>
             </section>
         </div>
     </main>
-    
 
     <div id="confirmModal" class="modal hidden">
         <div class="modal-content">
