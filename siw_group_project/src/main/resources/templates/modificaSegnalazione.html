@@ -30,21 +30,53 @@
         <h2 class="section-title">Modifica Segnalazione</h2>
         <form th:action="@{'/segnalazioni/modifica/' + ${segnalazione.id}}" th:object="${segnalazione}" method="post"
             class="form-modifica">
-            <label>Nome animale:</label>
-            <input type="text" th:field="*{nome}" required>
+
+            <!-- Campi comuni -->
+            <label>Specie:</label>
+            <input type="text" th:field="*{specie}" />
 
             <label>Razza:</label>
-            <input type="text" th:field="*{razza}">
+            <input type="text" th:field="*{razza}" />
 
             <label>Luogo:</label>
-            <input type="text" th:field="*{luogo}" required>
+            <input type="text" th:field="*{luogo}" required />
 
-            <!-- altri campi se servono -->
+            <label>Descrizione Fisica:</label>
+            <textarea th:field="*{descrizioneFisica}"></textarea>
+
+            <label>Foto (URL):</label>
+            <input type="text" th:field="*{foto}" placeholder="https://..." />
+
+            <label>Data e Ora:</label>
+            <input type="datetime-local" th:field="*{dataOra}" />
+
+            <!-- Campi solo per DENUNCIA -->
+            <div th:if="${tipoSegnalazione == 'denuncia'}">
+                <label>Nome:</label>
+                <input type="text" th:field="*{nome}" />
+
+                <label>Età:</label>
+                <input type="text" th:field="*{eta}" />
+
+                <label>Premio Offerto:</label>
+                <input type="number" step="0.01" th:field="*{premioOfferto}" />
+            </div>
+
+            <!-- Campi solo per AVVISTAMENTO -->
+            <div th:if="${tipoSegnalazione == 'avvistamento'}">
+                <label>Stato di Salute:</label>
+                <input type="text" th:field="*{statoSalute}" />
+
+                <label>Azioni Intraprese:</label>
+                <textarea th:field="*{azioniIntraprese}"></textarea>
+            </div>
 
             <div class="buttons">
                 <button type="submit">Salva Modifiche</button>
             </div>
         </form>
+
+
     </main>
 </body>
 

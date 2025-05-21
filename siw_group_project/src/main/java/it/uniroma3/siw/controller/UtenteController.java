@@ -80,12 +80,25 @@ public class UtenteController {
 
     @GetMapping("/segnalazioni/modifica/{id}")
     public String mostraFormModifica(@PathVariable Long id, Model model) {
-        Optional<Segnalazione> segnalazione = segnalazioneService.getSegnalazioneById(id);
-        if (segnalazione.isPresent()) {
-            model.addAttribute("segnalazione", segnalazione.get());
-            return "modificaSegnalazione"; // nome del template
+        Optional<Segnalazione> segnalazioneOpt = segnalazioneService.getSegnalazioneById(id);
+
+        if (segnalazioneOpt.isPresent()) {
+            Segnalazione segnalazione = segnalazioneOpt.get();
+            model.addAttribute("segnalazione", segnalazione);
+
+            String tipoSegnalazione;
+            if (segnalazione instanceof Denuncia) {
+                tipoSegnalazione = "denuncia";
+            } else if (segnalazione instanceof Avvistamento) {
+                tipoSegnalazione = "avvistamento";
+            } else {
+                tipoSegnalazione = "generico";
+            }
+
+            model.addAttribute("tipoSegnalazione", tipoSegnalazione);
+            return "modificaSegnalazione";
         } else {
-            return "redirect:/error"; // o pagina di errore
+            return "redirect:/error"; // oppure puoi mostrare un messaggio di errore
         }
     }
 

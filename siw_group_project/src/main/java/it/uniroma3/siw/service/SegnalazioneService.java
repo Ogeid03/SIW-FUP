@@ -15,12 +15,12 @@ import it.uniroma3.siw.repository.SegnalazioneRepository;
 @Service
 public class SegnalazioneService {
 
-    
     private final AvvistamentoRepository avvistamentoRepository;
     private final DenunciaRepository denunciaRepository;
     private final SegnalazioneRepository segnalazioneRepository;
 
-    public SegnalazioneService(AvvistamentoRepository avvistamentoRepository, DenunciaRepository denunciaRepository, SegnalazioneRepository segnalazioneRepository) {
+    public SegnalazioneService(AvvistamentoRepository avvistamentoRepository, DenunciaRepository denunciaRepository,
+            SegnalazioneRepository segnalazioneRepository) {
         this.avvistamentoRepository = avvistamentoRepository;
         this.denunciaRepository = denunciaRepository;
         this.segnalazioneRepository = segnalazioneRepository;
@@ -56,27 +56,44 @@ public class SegnalazioneService {
                 specie, razza, lat, lng, raggioKm);
     }
 
-    public void eliminaById(Long id){
+    public void eliminaById(Long id) {
         segnalazioneRepository.deleteById(id);
     }
 
     public void aggiorna(Long id, Segnalazione segnalazioneModificata) {
-    Optional<Segnalazione> optionalEsistente = segnalazioneRepository.findById(id);
+        Optional<Segnalazione> optionalEsistente = segnalazioneRepository.findById(id);
 
-    if (optionalEsistente.isPresent()) {
-        Segnalazione esistente = optionalEsistente.get();
+        if (optionalEsistente.isPresent()) {
+            Segnalazione esistente = optionalEsistente.get();
 
-        // Aggiorna i campi rilevanti
-        //esistente.setNome(segnalazioneModificata.getNomeUtente()); //questo solo in denuncia
-        esistente.setRazza(segnalazioneModificata.getRazza());
-        esistente.setLuogo(segnalazioneModificata.getLuogo());
-        esistente.setFoto(segnalazioneModificata.getFoto());
-        esistente.setDataOra(segnalazioneModificata.getDataOra());
-        esistente.setCodStatus(segnalazioneModificata.getCodStatus());
+            // Campi comuni
+            esistente.setRazza(segnalazioneModificata.getRazza());
+            esistente.setLuogo(segnalazioneModificata.getLuogo());
+            esistente.setFoto(segnalazioneModificata.getFoto());
+            esistente.setDataOra(segnalazioneModificata.getDataOra());
+            esistente.setCodStatus(segnalazioneModificata.getCodStatus());
 
-        segnalazioneRepository.save(esistente);
-    } else {
-        throw new IllegalArgumentException("Segnalazione con ID " + id + " non trovata.");
+            // Controllo tipo specifico
+            if (esistente instanceof Denuncia && segnalazioneModificata instanceof Denuncia) {
+                Denuncia esistenteDenuncia = (Denuncia) esistente;
+                Denuncia modDenuncia = (Denuncia) segnalazioneModificata;
+
+                esistenteDenuncia.setNome(modDenuncia.getNome());
+                esistenteDenuncia.setEta(modDenuncia.getEta());
+                esistenteDenuncia.setPremioOfferto(modDenuncia.getPremioOfferto());
+
+            } else if (esistente instanceof Avvistamento && segnalazioneModificata instanceof Avvistamento) {
+                Avvistamento esistenteAvv = (Avvistamento) esistente;
+                Avvistamento modAvv = (Avvistamento) segnalazioneModificata;
+
+                esistenteAvv.setStatoSalute(modAvv.getStatoSalute());
+                esistenteAvv.setAzioniIntraprese(modAvv.getAzioniIntraprese());
+            }
+
+            segnalazioneRepository.save(esistente);
+        } else {
+            throw new IllegalArgumentException("Segnalazione con ID " + id + " non trovata.");
+        }
     }
-}
+
 }
