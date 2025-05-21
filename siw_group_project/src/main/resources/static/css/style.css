@@ -401,3 +401,6 @@ main.error-page {
     margin-bottom: 1rem;
 }
 
+#logoutForm {
+    display: none;
+}

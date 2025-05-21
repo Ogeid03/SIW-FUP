@@ -12,7 +12,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden; /* Per evitare scroll in body, lo gestiamo nel main se serve */
+    overflow: hidden;
+    /* Per evitare scroll in body, lo gestiamo nel main se serve */
 }
 
 /* Header */
@@ -116,12 +117,12 @@ h1 {
 
 form {
     background-color: #ffffff;
-    padding: 0; 
+    padding: 0;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 500px; 
-    height: 200px; 
+    max-width: 500px;
+    height: 200px;
     overflow: hidden;
     position: relative;
 }
@@ -193,4 +194,38 @@ footer {
     form {
         padding: 1.5rem;
     }
+}
+
+.chat-user {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-user:hover {
+    background-color: #f5f5f5;
+}
+
+.chat-box {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.sent {
+    text-align: right;
+    background-color: #dcf8c6;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.received {
+    text-align: left;
+    background-color: #f1f0f0;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 10px;
 }

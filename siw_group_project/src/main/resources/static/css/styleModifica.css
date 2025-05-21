@@ -88,70 +88,74 @@ header {
   display: block;
 }
 
-/* Main Content */
+/* Main container */
 main {
-  max-width: 600px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  padding-bottom: 3rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  text-align: left;
 }
 
-/* Title */
-h2 {
-  font-size: 2rem;
+/* Section title */
+.section-title {
+  font-size: 1.8rem;
   color: #346df0;
   margin-bottom: 1.5rem;
-  text-align: center;
   font-weight: 700;
   letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
 }
 
-/* Form */
-form {
+/* Form styling */
+form.form-modifica {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-label {
+form.form-modifica label {
   font-weight: 600;
   color: #444;
-  margin-bottom: 0.4rem;
-  display: block;
   font-size: 1.1rem;
+  display: block;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
-  padding: 0.75rem 1rem;
-  border: 1.8px solid #ccc;
+form.form-modifica input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-textarea:focus {
-  border-color: #346df0;
-  box-shadow: 0 0 8px rgba(52, 109, 240, 0.3);
+form.form-modifica input[type="text"]:focus {
   outline: none;
+  border-color: #346df0;
+  box-shadow: 0 0 0 2px rgba(52, 109, 240, 0.2);
 }
 
-/* Button */
-button[type="submit"] {
+/* Button container */
+.buttons {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.buttons button {
+  padding: 0.75rem 1.5rem;
   background-color: #346df0;
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 0.9rem 0;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
@@ -159,24 +163,24 @@ button[type="submit"] {
   box-shadow: 0 4px 10px rgba(52, 109, 240, 0.3);
 }
 
-button[type="submit"]:hover {
+.buttons button:hover {
   background-color: #264ecf;
   box-shadow: 0 6px 15px rgba(38, 78, 207, 0.5);
 }
 
-/* Responsive */
-@media (max-width: 480px) {
+/* Responsive tweaks */
+@media (max-width: 600px) {
   main {
-    margin: 2rem 1rem;
-    padding: 1.5rem;
+    max-width: 95%;
+    padding: 1rem;
   }
 
-  h2 {
+  .section-title {
     font-size: 1.5rem;
   }
 
-  input[type="text"],
-  button[type="submit"] {
+  form.form-modifica input[type="text"],
+  .buttons button {
     font-size: 1rem;
   }
 }

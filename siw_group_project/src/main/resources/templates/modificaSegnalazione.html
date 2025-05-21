@@ -26,23 +26,26 @@
             </ul>
         </nav>
     </header>
-    <h2>Modifica Segnalazione</h2>
-    <form th:action="@{'/segnalazioni/modifica/' + ${segnalazione.id}}" th:object="${segnalazione}" method="post">
-        <label>Nome animale:</label>
-        <input type="text" th:field="*{nome}" required><br>
+    <main>
+        <h2 class="section-title">Modifica Segnalazione</h2>
+        <form th:action="@{'/segnalazioni/modifica/' + ${segnalazione.id}}" th:object="${segnalazione}" method="post"
+            class="form-modifica">
+            <label>Nome animale:</label>
+            <input type="text" th:field="*{nome}" required>
 
-        <label>Razza:</label>
-        <input type="text" th:field="*{razza}"><br>
+            <label>Razza:</label>
+            <input type="text" th:field="*{razza}">
 
-        <label>Luogo:</label>
-        <input type="text" th:field="*{luogo}" required><br>
+            <label>Luogo:</label>
+            <input type="text" th:field="*{luogo}" required>
 
-        <!-- altri campi se servono -->
+            <!-- altri campi se servono -->
 
-        <button type="submit">Salva Modifiche</button>
-
-
-    </form>
+            <div class="buttons">
+                <button type="submit">Salva Modifiche</button>
+            </div>
+        </form>
+    </main>
 </body>
 
 </html>

@@ -50,8 +50,9 @@
                     th:text="${denuncia.premioOfferto}"></span></p>
             <p><strong><i class="fa-solid fa-circle-info"></i> Informazioni extra:</strong> <span
                     th:text="${denuncia.informazioniExtra}"></span></p>
-            <p><strong><i class="fa-solid fa-camera"></i> Foto (URL):</strong><br><img th:src="${denuncia.foto}"
-                    alt="Foto denuncia" style="max-width: 300px; max-height: 200px;"></p>
+            <p><strong><i class="fa-solid fa-camera"></i> Foto (URL):</strong><br><img th:src="${segnalazione.foto}" 
+                alt="Foto avvistamento" class="segnalazione-img">
+</p>
 
             <form action="/salva-denuncia" method="post" th:object="${denuncia}" class="confirm-form">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />

@@ -24,7 +24,6 @@
           <ul class="submenu">
             <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
             <li><a href="/segnala">Contattaci</a></li>
-            <!-- Se non autenticato, mostra un link per il login -->
             <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
           </ul>
         </li>
@@ -39,13 +38,10 @@
         <label for="luogo">Luogo Smarrimento:</label>
         <input type="text" id="luogo" name="luogo" placeholder="Inserisci un luogo" />
         <div id="customDropdown" class="custom-dropdown"></div>
-        <p id="suggestionMessage" style="color: red; font-style: italic; margin-top: 5px;"></p>
+        <p id="suggestionMessage" class="suggestion-message"></p>
 
-        <!-- Latitudine e Longitudine nascosti -->
         <input type="hidden" id="lat" name="latitudine">
         <input type="hidden" id="lon" name="longitudine">
-
-        <!-- Mappa -->
         <div id="map"></div>
       </div>
 
@@ -57,8 +53,8 @@
           <option value="Cane">Cane</option>
           <option value="Gatto">Gatto</option>
           <option value="Pappagallo">Pappagallo</option>
-          <option value="Pappagallo">Roditore</option>
-          <option value="Pappagallo">Rettile</option>
+          <option value="Roditore">Roditore</option>
+          <option value="Rettile">Rettile</option>
         </select><br>
 
         <label for="razza">Razza:</label>
@@ -88,7 +84,7 @@
         <label for="foto">Foto (URL):</label>
         <input type="url" id="foto" name="foto" maxlength="255" placeholder="https://..." required
           oninput="anteprimaImmagine(this.value)" th:field="*{foto}">
-        <div id="preview" style="margin-top: 10px;"></div>
+        <div id="preview" class="image-preview"></div>
       </div>
 
       <!-- Bottoni -->
@@ -110,10 +106,7 @@
     document.getElementById("specie").addEventListener("change", function () {
       const specie = this.value;
       const razzaSelect = document.getElementById("razza");
-
-      // Svuota le opzioni precedenti
       razzaSelect.innerHTML = '<option value="">-- Seleziona una razza --</option>';
-
       if (razzePerSpecie[specie]) {
         razzePerSpecie[specie].forEach(razza => {
           const option = document.createElement("option");
@@ -125,7 +118,6 @@
     });
   </script>
   <script src="/js/formMultiStepScript.js"></script>
-
 </body>
 
 </html>
