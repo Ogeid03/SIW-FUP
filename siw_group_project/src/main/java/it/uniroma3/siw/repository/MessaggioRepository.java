@@ -11,5 +11,7 @@ public interface MessaggioRepository extends JpaRepository<Messaggio, Long> {
     List<Messaggio> findByCodDestinatarioOrderByDataOraDesc(Utente codDestinatario);
     List<Messaggio> findByCodUtenteOrderByDataOraDesc(Utente mittente);
     List<Messaggio> findByCodUtenteAndCodDestinatario(Utente mittente, Utente destinatario);
-
+    List<Messaggio> findByCodUtenteAndCodDestinatarioOrderByDataOraAsc(Utente mittente, Utente destinatario);
+    List<Messaggio> findByCodUtente(Utente utente);
+    List<Messaggio> findByCodDestinatario(Utente utente);
 }
