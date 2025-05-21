@@ -1,21 +1,25 @@
 package it.uniroma3.siw.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Denuncia;
 import it.uniroma3.siw.model.Messaggio;
+import it.uniroma3.siw.model.Segnalazione;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.MessaggioService;
 import it.uniroma3.siw.service.RicercaService;
+import it.uniroma3.siw.service.SegnalazioneService;
 import it.uniroma3.siw.service.UtenteService;
 
 @Controller
@@ -23,6 +27,8 @@ public class UtenteController {
 
     @Autowired
     private UtenteService utenteService;
+     @Autowired
+    private SegnalazioneService segnalazioneService;
     @Autowired
     private RicercaService ricercaService;
     @Autowired
@@ -65,5 +71,25 @@ public class UtenteController {
 
         return "myAccount";
     }
+        @PostMapping("/segnalazioni/elimina/{id}")
+        public String eliminaSegnalazione(@PathVariable Long id) {
+            segnalazioneService.eliminaById(id);
+            return "myAccount";
+        }
+
+        @GetMapping("/segnalazioni/modifica/{id}")
+        public String mostraFormModifica(@PathVariable Long id, Model model) {
+            Optional<Segnalazione> segnalazione = segnalazioneService.getSegnalazioneById(id);
+            model.addAttribute("segnalazione", segnalazione);
+            return "modificaSegnalazione"; // nome del template HTML
+        }
+
+        @PostMapping("/segnalazioni/modifica/{id}")
+        public String salvaModifica(@PathVariable Long id, @ModelAttribute Segnalazione segnalazione) {
+            segnalazioneService.aggiorna(id, segnalazione);
+            return "redirect:/myAccount";
+        }
+
+    
 
 }

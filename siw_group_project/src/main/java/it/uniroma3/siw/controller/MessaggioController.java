@@ -85,5 +85,4 @@ public class MessaggioController {
         model.addAttribute("utenteLoggato", utenteLoggato);
         return "recapChat";
     }
-
 }

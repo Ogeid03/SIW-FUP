@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifica Segnalazione</title>
+</head>
+<body>
+    <h2>Modifica Segnalazione</h2>
+    <form th:action="@{'/segnalazioni/modifica/' + ${segnalazione.id}}" th:object="${segnalazione}" method="post">
+        <label>Nome animale:</label>
+        <input type="text" th:field="*{nome}" required><br>
+
+        <label>Razza:</label>
+        <input type="text" th:field="*{razza}"><br>
+
+        <label>Luogo:</label>
+        <input type="text" th:field="*{luogo}" required><br>
+
+        <!-- altri campi se servono -->
+
+        <button type="submit">Salva Modifiche</button>
+    </form>
+</body>
+</html>

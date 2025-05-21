@@ -13,6 +13,7 @@ import it.uniroma3.siw.model.Segnalazione;
 public interface SegnalazioneRepository extends JpaRepository<Segnalazione, Long> {
 
     Optional<Segnalazione> findById(Long id);
+    public void deleteById(Long id);
 
     @Query(value = """
             SELECT d.*,

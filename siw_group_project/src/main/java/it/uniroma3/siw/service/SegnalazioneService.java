@@ -55,4 +55,28 @@ public class SegnalazioneService {
         return avvistamentoRepository.findAvvistamentiBySpecieAndRazzaAndDistanza(
                 specie, razza, lat, lng, raggioKm);
     }
+
+    public void eliminaById(Long id){
+        segnalazioneRepository.deleteById(id);
+    }
+
+    public void aggiorna(Long id, Segnalazione segnalazioneModificata) {
+    Optional<Segnalazione> optionalEsistente = segnalazioneRepository.findById(id);
+
+    if (optionalEsistente.isPresent()) {
+        Segnalazione esistente = optionalEsistente.get();
+
+        // Aggiorna i campi rilevanti
+        //esistente.setNome(segnalazioneModificata.getNomeUtente()); //questo solo in denuncia
+        esistente.setRazza(segnalazioneModificata.getRazza());
+        esistente.setLuogo(segnalazioneModificata.getLuogo());
+        esistente.setFoto(segnalazioneModificata.getFoto());
+        esistente.setDataOra(segnalazioneModificata.getDataOra());
+        esistente.setCodStatus(segnalazioneModificata.getCodStatus());
+
+        segnalazioneRepository.save(esistente);
+    } else {
+        throw new IllegalArgumentException("Segnalazione con ID " + id + " non trovata.");
+    }
+}
 }

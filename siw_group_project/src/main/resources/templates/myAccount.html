@@ -59,6 +59,23 @@
                             <span><i class="fa-solid fa-map-marker-alt"></i> <span
                                     th:text="${den.luogo}">Luogo</span></span>
                         </div>
+                        <!-- Bottoni azione -->
+                        <div class="card-actions">
+                            <!-- Modifica -->
+                            <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn edit-btn">
+                                <i class="fa-solid fa-pen-to-square"></i> Modifica
+                            </a>
+
+                            <!-- Elimina -->
+                            <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
+                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                                <input type="hidden" name="_method" value="delete" />
+                                <!-- utile se usi Spring con HiddenHttpMethodFilter -->
+                                <button type="submit" class="btn delete-btn">
+                                    <i class="fa-solid fa-trash"></i> Elimina
+                                </button>
+                            </form>
+                        </div>
                     </a>
                 </div>
                 <p th:if="${denunce == null or denunce.isEmpty()}">Nessuna denuncia trovata.</p>
@@ -68,6 +85,7 @@
                 <h2><i class="fa-solid fa-binoculars"></i> Avvistamenti effettuati</h2>
                 <div class="card-grid" th:if="${avvistamenti != null and !avvistamenti.isEmpty()}">
                     <a th:each="avv : ${avvistamenti}" th:href="@{'/segnalazioni/' + ${avv.id}}" class="card">
+                        <div class="status-badge" th:text="${avv.codStatus}"></div>
                         <img th:src="@{${avv.foto}}" alt="Foto" class="card-image">
                         <div class="card-content">
                             <strong><i class="fa-regular fa-calendar"></i> <span
@@ -97,10 +115,23 @@
 
     <p th:if="${messaggiRicevuti == null or messaggiRicevuti.isEmpty()}">Non hai ricevuto alcun messaggio.</p> -->
 
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content">
+            <p>Sei sicuro di voler eliminare questa segnalazione?</p>
+            <form id="deleteForm" method="post" th:action="@{'/segnalazioni/elimina/'}">
+                <input type="hidden" name="id" id="deleteId">
+                <button type="submit" class="btn confirm-delete">Conferma</button>
+                <button type="button" class="btn cancel-delete" onclick="closeModal()">Annulla</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         &copy; 2025 Tutti i diritti riservati.
     </footer>
+
+    <script src="/js/modificaSegnalazioneScript.js"></script>
 </body>
 
 </html>
