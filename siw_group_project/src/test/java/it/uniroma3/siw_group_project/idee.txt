@@ -20,11 +20,13 @@
 ✅ - Nella parte iniziale di myAccount aggiungere i dati dell'utente su due colonne poi una linea blu e sotto l'elenco delle segnalazioni
 ✅ - Aggiugni lo status alle segnalazioni
 ⬜ - Gestione Account Gestore
-⬜ - Modifica/Elimina Segnalazione
+✅ - Modifica/Elimina Segnalazione
 ⬜ - Modifica e recupera account
-⬜ - Gestione Messaggistica (pagina Visualizzazione)
+✅ - Gestione Messaggistica (pagina Visualizzazione)
 ✅ - Gestione Enum
 ⬜ - Elimina file inutili (es. di "recap" uno solo non 2)  ---> DIEGO (evitabile)
+⬜ - File al posto di url per le Foto
+⬜ - Carica Online
 
 
 
@@ -44,7 +46,7 @@ fixes
 ✅ - piuttosto che età numerico meglio eta a step (cucciolo, adulto, vecchio)
 ⬜ - inserire informazioni nel carosello oltre la foto
 ⬜ - correggere i caroselli nei recap come quelli su segnalazioni
-⬜ - correggere pagina errore
+⬜ - rendere più carino about us
 
 proposte
 ✅ -  solo due bottoni, ricerca messo in menu 
@@ -52,7 +54,7 @@ proposte
 ✅ -  cambia nome "Ricerca" con "Consulta Segnalazioni"
 ✅ -  cambia segnalazioni simili con denunce rilevanti
 ✅ -  accedi nel menu principale e al suo posto appare il nomeUtente al  (es. ciao Mario)
-⬜ - footer dopo % ed elimina sgorbio gif
+⬜ - footer dopo %
 ⬜ - doggo assistente chatbot semplice
 ⬜ - gli elenchi devono essere ordinati su base della data (sse attivi)
 ⬜ - spostare messaggio su segnalazione e riepilogo messaggi su account a destra dei dati utente
