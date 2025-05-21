@@ -30,8 +30,8 @@ public class MessaggioController {
 
     @GetMapping("/messaggi/nuovo")
     public String nuovoMessaggio(@RequestParam Long segnalazioneId,
-                                 @RequestParam Long destinatarioId,
-                                 Model model, Principal principal) {
+            @RequestParam Long destinatarioId,
+            Model model, Principal principal) {
         Utente mittente = utenteService.getUtenteByEmail(principal.getName());
         Utente destinatario = utenteService.getUtenteById(destinatarioId);
         Optional<Segnalazione> optionalSegnalazione = segnalazioneService.getSegnalazioneById(segnalazioneId);
@@ -58,18 +58,25 @@ public class MessaggioController {
         messaggio.setDataOra(LocalDateTime.now());
         messaggioService.save(messaggio);
 
+        // Dopo l'invio, ricarica correttamente la conversazione con la lista aggiornata
         return "redirect:/chat/" + messaggio.getCodDestinatario().getId();
     }
 
     @GetMapping("/chat")
-    public String chatDefaultView(Model model, Principal principal) {
-        Utente utenteLoggato = utenteService.getUtenteByEmail(principal.getName());
-        List<Utente> utentiConConversazioni = trovaUtentiConConversazioni(utenteLoggato);
+public String chatDefaultView(Model model, Principal principal) {
+    Utente utenteLoggato = utenteService.getUtenteByEmail(principal.getName());
+    List<Utente> utentiConConversazioni = trovaUtentiConConversazioni(utenteLoggato);
 
-        model.addAttribute("utentiConConversazioni", utentiConConversazioni);
-        model.addAttribute("utenteLoggato", utenteLoggato);
-        return "recapChat";
+    if (!utentiConConversazioni.isEmpty()) {
+        Utente utenteSelezionato = utentiConConversazioni.get(0);
+        return "redirect:/chat/" + utenteSelezionato.getId();
     }
+
+    model.addAttribute("utentiConConversazioni", utentiConConversazioni);
+    model.addAttribute("utenteLoggato", utenteLoggato);
+    return "recapChat";
+}
+
 
     @GetMapping("/chat/{utenteId}")
     public String chatConUtente(@PathVariable Long utenteId, Model model, Principal principal) {
@@ -77,9 +84,7 @@ public class MessaggioController {
         Utente utenteSelezionato = utenteService.getUtenteById(utenteId);
 
         // Recupera messaggi tra i due utenti (in entrambi i sensi)
-        List<Messaggio> messaggi = messaggioService.getMessaggiTraUtenti(utenteLoggato, utenteSelezionato);
-        messaggi.addAll(messaggioService.getMessaggiTraUtenti(utenteSelezionato, utenteLoggato));
-        messaggi.sort(Comparator.comparing(Messaggio::getDataOra)); // Ordine cronologico
+        List<Messaggio> messaggi = messaggioService.getConversazioneCompleta(utenteLoggato, utenteSelezionato);
 
         // Lista utenti con cui ha chattato
         List<Utente> utentiConConversazioni = trovaUtentiConConversazioni(utenteLoggato);
@@ -97,12 +102,20 @@ public class MessaggioController {
         List<Messaggio> inviati = messaggioService.getUtenteOrd(utente);
 
         Set<Utente> utenti = new HashSet<>();
-        ricevuti.forEach(m -> utenti.add(m.getCodUtente()));
-        inviati.forEach(m -> utenti.add(m.getCodDestinatario()));
+        for (Messaggio m : ricevuti) {
+            if (m.getCodUtente() != null)
+                utenti.add(m.getCodUtente());
+        }
+        for (Messaggio m : inviati) {
+            if (m.getCodDestinatario() != null)
+                utenti.add(m.getCodDestinatario());
+        }
+
+        utenti.removeIf(u -> u.getId().equals(utente.getId()));
 
         return utenti.stream()
-                .filter(u -> !u.getId().equals(utente.getId())) // esclude se stesso
                 .sorted(Comparator.comparing(Utente::getNomeUtente))
                 .collect(Collectors.toList());
     }
+
 }

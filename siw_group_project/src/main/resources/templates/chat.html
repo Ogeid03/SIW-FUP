@@ -33,11 +33,16 @@
     <!-- Main Content -->
     <main>
         <h2>Invia un messaggio</h2>
-        <form th:action="@{/messaggi/invia}" method="post" th:object="${messaggio}">
+        <form th:action="@{/messaggi/invia}" method="post" th:object="${messaggio}" class="container mt-4">
             <input type="hidden" th:field="*{codDestinatario.id}" />
             <input type="hidden" th:field="*{codSegnalazione.id}" />
-            <textarea th:field="*{contenuto}" placeholder="Scrivi il tuo messaggio..." required></textarea>
-            <button type="submit">Invia</button>
+
+            <div class="mb-3">
+                <label for="contenuto" class="form-label">Messaggio</label>
+                <textarea th:field="*{contenuto}" id="contenuto" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Invia</button>
         </form>
 
     </main>
