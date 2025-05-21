@@ -27,7 +27,7 @@ public class UtenteController {
 
     @Autowired
     private UtenteService utenteService;
-     @Autowired
+    @Autowired
     private SegnalazioneService segnalazioneService;
     @Autowired
     private RicercaService ricercaService;
@@ -71,25 +71,28 @@ public class UtenteController {
 
         return "myAccount";
     }
-        @PostMapping("/segnalazioni/elimina/{id}")
-        public String eliminaSegnalazione(@PathVariable Long id) {
-            segnalazioneService.eliminaById(id);
-            return "myAccount";
-        }
 
-        @GetMapping("/segnalazioni/modifica/{id}")
-        public String mostraFormModifica(@PathVariable Long id, Model model) {
-            Optional<Segnalazione> segnalazione = segnalazioneService.getSegnalazioneById(id);
-            model.addAttribute("segnalazione", segnalazione);
-            return "modificaSegnalazione"; // nome del template HTML
-        }
+    @PostMapping("/segnalazioni/elimina/{id}")
+    public String eliminaSegnalazione(@PathVariable Long id) {
+        segnalazioneService.eliminaById(id);
+        return "redirect:/account";
+    }
 
-        @PostMapping("/segnalazioni/modifica/{id}")
-        public String salvaModifica(@PathVariable Long id, @ModelAttribute Segnalazione segnalazione) {
-            segnalazioneService.aggiorna(id, segnalazione);
-            return "redirect:/myAccount";
+    @GetMapping("/segnalazioni/modifica/{id}")
+    public String mostraFormModifica(@PathVariable Long id, Model model) {
+        Optional<Segnalazione> segnalazione = segnalazioneService.getSegnalazioneById(id);
+        if (segnalazione.isPresent()) {
+            model.addAttribute("segnalazione", segnalazione.get());
+            return "modificaSegnalazione"; // nome del template
+        } else {
+            return "redirect:/error"; // o pagina di errore
         }
+    }
 
-    
+    @PostMapping("/segnalazioni/modifica/{id}")
+    public String salvaModifica(@PathVariable Long id, @ModelAttribute Segnalazione segnalazione) {
+        segnalazioneService.aggiorna(id, segnalazione);
+        return "redirect:/account";
+    }
 
 }

@@ -94,26 +94,30 @@
                             <span><i class="fa-solid fa-location-dot"></i> <span
                                     th:text="${avv.luogo}">Luogo</span></span>
                         </div>
+                        <!-- Bottoni azione -->
+                        <div class="card-actions">
+                            <!-- Modifica -->
+                            <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn edit-btn">
+                                <i class="fa-solid fa-pen-to-square"></i> Modifica
+                            </a>
+
+                            <!-- Elimina -->
+                            <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
+                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                                <input type="hidden" name="_method" value="delete" />
+                                <!-- utile se usi Spring con HiddenHttpMethodFilter -->
+                                <button type="submit" class="btn delete-btn">
+                                    <i class="fa-solid fa-trash"></i> Elimina
+                                </button>
+                            </form>
+                        </div>
                     </a>
                 </div>
                 <p th:if="${avvistamenti == null or avvistamenti.isEmpty()}">Nessun avvistamento trovato.</p>
             </section>
         </div>
     </main>
-    <!-- <section class="messages-section" th:if="${messaggiRicevuti != null and !messaggiRicevuti.isEmpty()}">
-        <h2><i class="fa-solid fa-envelope"></i> Messaggi Ricevuti</h2>
-        <div class="message-list">
-            <div class="message-card" th:each="msg : ${messaggiRicevuti}">
-                <div class="message-header">
-                    <strong th:text="${msg.codUtente.nomeUtente}">Mittente</strong>
-                    <span th:text="${#temporals.format(msg.dataOra, 'dd/MM/yyyy HH:mm')}">Data</span>
-                </div>
-                <div class="message-content" th:text="${msg.contenuto}"></div>
-            </div>
-        </div>
-    </section>
-
-    <p th:if="${messaggiRicevuti == null or messaggiRicevuti.isEmpty()}">Non hai ricevuto alcun messaggio.</p> -->
+    
 
     <div id="confirmModal" class="modal hidden">
         <div class="modal-content">
@@ -131,7 +135,7 @@
         &copy; 2025 Tutti i diritti riservati.
     </footer>
 
-    <script src="/js/modificaSegnalazioneScript.js"></script>
+    <script src="/js/editSegnalazioneScript.js"></script>
 </body>
 
 </html>

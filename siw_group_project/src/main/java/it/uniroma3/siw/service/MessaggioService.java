@@ -16,4 +16,16 @@ public class MessaggioService {
     public List<Messaggio> getMessaggiRicevuti(Utente destinatario) {
         return messaggioRepository.findByCodDestinatarioOrderByDataOraDesc(destinatario);
     }
+
+    public List<Messaggio> getUtenteOrd(Utente mittente){
+        return messaggioRepository.findByCodUtenteOrderByDataOraDesc(mittente);
+    }
+
+    public List<Messaggio> getMessaggiTraUtenti(Utente mittente, Utente destinatario){
+        return messaggioRepository.findByCodUtenteAndCodDestinatario(mittente, destinatario);
+    }
+
+    public void save(Messaggio messaggio) {
+        messaggioRepository.save(messaggio);
+    }
 }

@@ -2,21 +2,18 @@ package it.uniroma3.siw.controller;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.ui.Model;
 import it.uniroma3.siw.model.Messaggio;
 import it.uniroma3.siw.model.Segnalazione;
 import it.uniroma3.siw.model.Utente;
-import it.uniroma3.siw.repository.MessaggioRepository;
+import it.uniroma3.siw.service.MessaggioService;
 import it.uniroma3.siw.service.SegnalazioneService;
 import it.uniroma3.siw.service.UtenteService;
 
@@ -29,19 +26,18 @@ public class MessaggioController {
     private UtenteService utenteService;
 
     @Autowired
-    private MessaggioRepository messaggioRepository;
+    private MessaggioService messaggioService;
 
     @GetMapping("/messaggi/nuovo")
     public String nuovoMessaggio(@RequestParam Long segnalazioneId,
-            @RequestParam Long destinatarioId,
-            Model model, Principal principal) {
+                                 @RequestParam Long destinatarioId,
+                                 Model model, Principal principal) {
         Utente mittente = utenteService.getUtenteByEmail(principal.getName());
         Utente destinatario = utenteService.getUtenteById(destinatarioId);
         Optional<Segnalazione> optionalSegnalazione = segnalazioneService.getSegnalazioneById(segnalazioneId);
 
         if (optionalSegnalazione.isEmpty()) {
-            // Se la segnalazione non esiste, gestisci il caso (es. redirect o errore)
-            return "redirect:/errore"; // oppure mostra un messaggio nel model
+            return "redirect:/errore";
         }
 
         Segnalazione segnalazione = optionalSegnalazione.get();
@@ -57,32 +53,56 @@ public class MessaggioController {
 
     @PostMapping("/messaggi/invia")
     public String inviaMessaggio(@ModelAttribute("messaggio") Messaggio messaggio, Principal principal) {
-        // Recupera l'utente mittente dal Principal
         Utente mittente = utenteService.getUtenteByEmail(principal.getName());
         messaggio.setCodUtente(mittente);
-
-        // Imposta la data/ora corrente
         messaggio.setDataOra(LocalDateTime.now());
+        messaggioService.save(messaggio);
 
-        // Salva il messaggio
-        messaggioRepository.save(messaggio);
-
-        // Redirect alla pagina della segnalazione
-        return "redirect:/segnalazioni/" + messaggio.getCodSegnalazione().getId();
+        return "redirect:/chat/" + messaggio.getCodDestinatario().getId();
     }
 
-    @GetMapping("/messaggi/recap")
-    public String recapMessaggi(Model model, Principal principal) {
+    @GetMapping("/chat")
+    public String chatDefaultView(Model model, Principal principal) {
         Utente utenteLoggato = utenteService.getUtenteByEmail(principal.getName());
+        List<Utente> utentiConConversazioni = trovaUtentiConConversazioni(utenteLoggato);
 
-        List<Messaggio> messaggi = messaggioRepository.findByCodDestinatarioOrderByDataOraDesc(utenteLoggato);
-
-        if (messaggi == null) {
-            messaggi = new ArrayList<>();
-        }
-
-        model.addAttribute("messaggi", messaggi);
+        model.addAttribute("utentiConConversazioni", utentiConConversazioni);
         model.addAttribute("utenteLoggato", utenteLoggato);
         return "recapChat";
+    }
+
+    @GetMapping("/chat/{utenteId}")
+    public String chatConUtente(@PathVariable Long utenteId, Model model, Principal principal) {
+        Utente utenteLoggato = utenteService.getUtenteByEmail(principal.getName());
+        Utente utenteSelezionato = utenteService.getUtenteById(utenteId);
+
+        // Recupera messaggi tra i due utenti (in entrambi i sensi)
+        List<Messaggio> messaggi = messaggioService.getMessaggiTraUtenti(utenteLoggato, utenteSelezionato);
+        messaggi.addAll(messaggioService.getMessaggiTraUtenti(utenteSelezionato, utenteLoggato));
+        messaggi.sort(Comparator.comparing(Messaggio::getDataOra)); // Ordine cronologico
+
+        // Lista utenti con cui ha chattato
+        List<Utente> utentiConConversazioni = trovaUtentiConConversazioni(utenteLoggato);
+
+        model.addAttribute("messaggi", messaggi);
+        model.addAttribute("utenteAttivo", utenteSelezionato);
+        model.addAttribute("utentiConConversazioni", utentiConConversazioni);
+        model.addAttribute("utenteLoggato", utenteLoggato);
+
+        return "recapChat";
+    }
+
+    private List<Utente> trovaUtentiConConversazioni(Utente utente) {
+        List<Messaggio> ricevuti = messaggioService.getMessaggiRicevuti(utente);
+        List<Messaggio> inviati = messaggioService.getUtenteOrd(utente);
+
+        Set<Utente> utenti = new HashSet<>();
+        ricevuti.forEach(m -> utenti.add(m.getCodUtente()));
+        inviati.forEach(m -> utenti.add(m.getCodDestinatario()));
+
+        return utenti.stream()
+                .filter(u -> !u.getId().equals(utente.getId())) // esclude se stesso
+                .sorted(Comparator.comparing(Utente::getNomeUtente))
+                .collect(Collectors.toList());
     }
 }

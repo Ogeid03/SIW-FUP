@@ -9,4 +9,7 @@ import it.uniroma3.siw.model.Utente;
 @Repository
 public interface MessaggioRepository extends JpaRepository<Messaggio, Long> {
     List<Messaggio> findByCodDestinatarioOrderByDataOraDesc(Utente codDestinatario);
+    List<Messaggio> findByCodUtenteOrderByDataOraDesc(Utente mittente);
+    List<Messaggio> findByCodUtenteAndCodDestinatario(Utente mittente, Utente destinatario);
+
 }

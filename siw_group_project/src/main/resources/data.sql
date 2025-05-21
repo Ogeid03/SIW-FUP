@@ -37,3 +37,18 @@ INSERT INTO avvistamento (id, data_ora, specie, razza, descrizione_fisica, foto,
     'Sembra in buona salute ma diffidente',
     'Segnalato su app e lasciato un po’ di cibo'
 );
+
+INSERT INTO Denuncia (id, data_ora, specie, razza, descrizione_fisica, foto, informazioni_extra, luogo, latitudine, longitudine, cod_status, cod_utente) VALUES (
+    1003,
+    '2025-05-19T08:45:00',
+    'Cane',
+    'Labrador',
+    'Labrador chocolate con occhi verdi',
+    'https://www.quattrozampeinfamiglia.it/wp-content/uploads/2024/10/cani-da-riporto.jpg',
+    'Senza collare, si aggirava nei pressi di un parcheggio',
+    'Via del Corso 123, Roma',
+    41.9000,
+    12.4800,
+    'ATTIVO',
+    1
+);
