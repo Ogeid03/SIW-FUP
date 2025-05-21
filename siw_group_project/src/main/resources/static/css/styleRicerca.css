@@ -8,7 +8,6 @@ body {
   justify-content: flex-start;
   ;
   min-height: 100vh;
-  cursor: url('/img/cursor.cur'), auto;
 }
 
 /* Header */
@@ -43,16 +42,6 @@ header {
   position: relative;
 }
 
-.menu li:hover,
-.menu .submenu li:hover,
-.menu a:hover,
-.step label:hover,
-.step input:hover,
-.step textarea:hover,
-.buttons button:hover {
-  cursor: url('/img/cursor.cur'), auto;
-}
-
 .menu a {
   color: white;
   text-decoration: none;
@@ -64,7 +53,6 @@ header {
 .menu a:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
-  cursor: url('/img/cursor.cur'), auto;
 }
 
 .submenu {
@@ -97,15 +85,6 @@ header {
   display: block;
 }
 
-/* Hover effetti sul sottomenu */
-.menu li:hover {
-  cursor: url('/img/cursor.cur'), pointer;
-}
-
-.menu .submenu li:hover {
-  cursor: url('/img/cursor.cur'), pointer;
-}
-
 /* Footer */
 footer {
   margin-top: auto;
@@ -116,10 +95,6 @@ footer {
   color: white;
 }
 
-button,
-button:hover {
-  cursor: url('/img/cursor.cur'), auto !important;
-}
 
 
 /* Main Content */
@@ -132,13 +107,17 @@ main {
 
 .scheda {
   display: flex;
-  border: 1px solid #ccc;
+  border: 2px solid #0d6efd;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 15px;
   align-items: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+}
+
+#schedaDenuncia{
+  border: 2px solid orange;
 }
 
 .scheda img {
@@ -158,4 +137,12 @@ main {
   justify-content: start;
   gap: 10px;
   margin-bottom: 20px;
+}
+.d-none {
+  display: none !important;
+}
+
+.link-scheda {
+  text-decoration: none;
+  color: inherit;
 }

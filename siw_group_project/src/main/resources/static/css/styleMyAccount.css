@@ -12,7 +12,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    cursor: url('/img/cursor.cur'), auto;
     overflow: auto; 
 }
 
@@ -59,7 +58,6 @@ header {
 .menu a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    cursor: url('/img/cursor.cur'), auto;
 }
 
 /* Dropdown menu */
@@ -93,16 +91,6 @@ header {
     display: block;
 }
 
-/* Hover effetti sul sottomenu */
-.menu li:hover,
-.menu .submenu li:hover,
-button:hover,
-.faq .question:hover,
-.cta-btn:hover,
-.button-container:hover,
-.longLogo{
-    cursor: url('/img/cursor.cur'), auto;
-}
 
 /* Main Content */
 main {

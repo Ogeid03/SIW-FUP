@@ -11,7 +11,6 @@ body {
   background-color: #f4f6f9;
   color: #333;
   line-height: 1.6;
-  cursor: url('/img/cursor.cur'), auto;
 }
 
 /* Header */
@@ -46,16 +45,6 @@ header {
   position: relative;
 }
 
-.menu li:hover,
-.menu .submenu li:hover,
-.menu a:hover,
-.step label:hover,
-.step input:hover,
-.step textarea:hover,
-.buttons button:hover {
-  cursor: url('/img/cursor.cur'), auto;
-}
-
 .menu a {
   color: white;
   text-decoration: none;
@@ -67,7 +56,6 @@ header {
 .menu a:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
-  cursor: url('/img/cursor.cur'), auto;
 }
 
 .submenu {
@@ -98,15 +86,6 @@ header {
 
 .menu li:hover .submenu {
   display: block;
-}
-
-/* Hover effetti sul sottomenu */
-.menu li:hover {
-  cursor: url('/img/cursor.cur'), pointer;
-}
-
-.menu .submenu li:hover {
-  cursor: url('/img/cursor.cur'), pointer;
 }
 
 /* Main Content */

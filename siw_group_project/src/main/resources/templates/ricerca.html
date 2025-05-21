@@ -20,7 +20,6 @@
                     <ul class="submenu">
                         <li sec:authorize="isAuthenticated()"><a href="/account">Account</a></li>
                         <li><a href="/segnala">Contattaci</a></li>
-                        <!-- Se non autenticato, mostra un link per il login -->
                         <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
                     </ul>
                 </li>
@@ -41,12 +40,11 @@
             <button class="btn btn-secondary ms-2" onclick="resetFiltro()">Reset</button><br>
         </div>
 
-        <!-- Lista Segnalazioni (inizialmente nascosta) -->
-        <div id="segnalazioni" style="display:none;">
+        <!-- Lista Segnalazioni -->
+        <div id="segnalazioni" class="contenitore-schede d-none">
             <h3>Avvistamenti</h3>
-            <!-- Ciclo per ciascun avvistamento -->
             <div th:each="avv : ${avvistamenti}">
-                <a th:href="@{/segnalazioni/{id}(id=${avv.id})}" style="text-decoration:none; color:inherit;">
+                <a th:href="@{/segnalazioni/{id}(id=${avv.id})}" class="link-scheda">
                     <div class="scheda">
                         <img th:src="${avv.foto}" alt="Foto Avvistamento">
                         <div>
@@ -59,13 +57,12 @@
             </div>
         </div>
 
-        <!-- Lista Denunce (inizialmente nascosta) -->
-        <div id="denunce" style="display:none;">
+        <!-- Lista Denunce -->
+        <div id="denunce" class="contenitore-schede d-none">
             <h3>Denunce</h3>
-            <!-- Ciclo per ciascuna denuncia -->
             <div th:each="den : ${denunce}">
-                <a th:href="@{/segnalazioni/{id}(id=${den.id})}" style="text-decoration:none; color:inherit;">
-                    <div class="scheda">
+                <a th:href="@{/segnalazioni/{id}(id=${den.id})}" class="link-scheda">
+                    <div class="scheda" id="schedaDenuncia">
                         <img th:src="${den.foto}" alt="Foto Denuncia">
                         <div>
                             <p><strong>Razza:</strong> <span th:text="${den.razza}"></span></p>
@@ -86,13 +83,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function mostra(sezione) {
-            document.getElementById("segnalazioni").style.display = (sezione === 'segnalazioni') ? 'block' : 'none';
-            document.getElementById("denunce").style.display = (sezione === 'denunce') ? 'block' : 'none';
+            document.getElementById("segnalazioni").classList.add("d-none");
+            document.getElementById("denunce").classList.add("d-none");
+            document.getElementById(sezione).classList.remove("d-none");
 
             const intro = document.getElementById("intro");
             if (intro) intro.style.display = "none";
 
-            filtraSchede(); // aggiorna il filtro se attivo
+            filtraSchede();
         }
 
         function filtraSchede() {
@@ -101,7 +99,7 @@
 
             sezioni.forEach(sezioneId => {
                 const sezione = document.getElementById(sezioneId);
-                if (sezione.style.display === "none") return;
+                if (sezione.classList.contains("d-none")) return;
 
                 const schede = sezione.getElementsByClassName("scheda");
                 for (let scheda of schede) {
