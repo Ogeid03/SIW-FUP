@@ -45,7 +45,7 @@
             </form>
         </div>
         </div>
-        <div class="card-wrapper">
+        <div class="card-wrapper" th:classappend="${tipo == 'denuncia'} ? ' denuncia'">
             <h1
                 th:text="${tipo == 'denuncia' ? 'Denuncia - 000' + segnalazione.id : 'Avvistamento - 000' + segnalazione.id}">
             </h1>
