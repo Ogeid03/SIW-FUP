@@ -2,7 +2,10 @@ package it.uniroma3.siw.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import it.uniroma3.siw.model.Messaggio;
@@ -32,15 +35,16 @@ public class MessaggioService {
     }
 
     public List<Messaggio> getConversazioneCompleta(Utente u1, Utente u2) {
-        List<Messaggio> m1 = messaggioRepository.findByCodUtenteAndCodDestinatarioOrderByDataOraAsc(u1, u2);
-        List<Messaggio> m2 = messaggioRepository.findByCodUtenteAndCodDestinatarioOrderByDataOraAsc(u2, u1);
-        List<Messaggio> tutti = new ArrayList<>();
-        tutti.addAll(m1);
-        tutti.addAll(m2);
-        tutti.sort(Comparator.comparing(Messaggio::getDataOra));
-        return tutti;
+    List<Messaggio> m1 = messaggioRepository.findByCodUtenteAndCodDestinatarioOrderByDataOraAsc(u1, u2);
+    List<Messaggio> m2 = messaggioRepository.findByCodUtenteAndCodDestinatarioOrderByDataOraAsc(u2, u1);
+    Set<Messaggio> setMessaggi = new HashSet<>();
+    setMessaggi.addAll(m1);
+    setMessaggi.addAll(m2);
+    List<Messaggio> tutti = new ArrayList<>(setMessaggi);
+    tutti.sort(Comparator.comparing(Messaggio::getDataOra));
+    return tutti;
+}
 
-    }
 
     public List<Messaggio> getTuttiMessaggiUtente(Utente utente) {
         List<Messaggio> inviati = messaggioRepository.findByCodUtente(utente);

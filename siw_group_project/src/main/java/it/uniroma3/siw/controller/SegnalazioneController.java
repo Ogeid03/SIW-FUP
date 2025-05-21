@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Denuncia;
+import it.uniroma3.siw.model.Messaggio;
 import it.uniroma3.siw.service.SegnalazioneService;
 
 @Controller
@@ -34,17 +35,21 @@ public class SegnalazioneController {
 
             if (avvistamento.getLatitudine() != null && avvistamento.getLongitudine() != null) {
                 List<Denuncia> rilevanti = segnalazioneService.getDenunceVicinePerSpecieERazza(
-                    avvistamento.getSpecie(),
-                    avvistamento.getRazza(),
-                    avvistamento.getLatitudine(),
-                    avvistamento.getLongitudine(),
-                    5.0 // raggio in km
+                        avvistamento.getSpecie(),
+                        avvistamento.getRazza(),
+                        avvistamento.getLatitudine(),
+                        avvistamento.getLongitudine(),
+                        5.0 // raggio in km
                 );
                 model.addAttribute("rilevanti", rilevanti);
             } else {
                 model.addAttribute("rilevanti", List.of());
             }
-            
+
+            Messaggio messaggio = new Messaggio();
+            messaggio.setCodDestinatario(avvistamento.getCodUtente()); // opzionale
+            messaggio.setCodSegnalazione(avvistamento);
+            model.addAttribute("messaggio", messaggio);
 
             return "segnalazione";
         }
@@ -57,17 +62,20 @@ public class SegnalazioneController {
 
             if (denuncia.getLatitudine() != null && denuncia.getLongitudine() != null) {
                 List<Avvistamento> simili = segnalazioneService.getAvvistamentiViciniPerSpecieERazza(
-                    denuncia.getSpecie(),
-                    denuncia.getRazza(),
-                    denuncia.getLatitudine(),
-                    denuncia.getLongitudine(),
-                    5.0  // raggio in km
+                        denuncia.getSpecie(),
+                        denuncia.getRazza(),
+                        denuncia.getLatitudine(),
+                        denuncia.getLongitudine(),
+                        5.0 // raggio in km
                 );
                 model.addAttribute("simili", simili);
             } else {
                 model.addAttribute("simili", List.of());
             }
-
+            Messaggio messaggio = new Messaggio();
+            messaggio.setCodDestinatario(denuncia.getCodUtente()); // opzionale
+            messaggio.setCodSegnalazione(denuncia);
+            model.addAttribute("messaggio", messaggio);
             return "segnalazione";
         }
 

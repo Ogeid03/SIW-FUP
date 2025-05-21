@@ -32,18 +32,18 @@
     </header>
     <main>
         <div>
-        <button onclick="window.history.back()" class="btn btn-warning mb-3">
-            <i class="fa-solid fa-arrow-left"></i> Torna indietro
-        </button>
-        <div th:if="${#authorization.expression('isAuthenticated()')}">
-            <form th:action="@{/messaggi/nuovo}" method="get">
-                <input type="hidden" name="segnalazioneId" th:value="${segnalazione.id}" />
-                <input type="hidden" name="destinatarioId" th:value="${segnalazione.codUtente.id}" />
-                <button type="submit" class="btn btn-primary mt-3">
-                    <i class="fa-solid fa-envelope"></i> Scrivi all'autore
-                </button>
-            </form>
-        </div>
+            <button onclick="window.history.back()" class="btn btn-warning mb-3">
+                <i class="fa-solid fa-arrow-left"></i> Torna indietro
+            </button>
+            <div th:if="${#authorization.expression('isAuthenticated()')}">
+                <form th:action="@{/messaggi/nuovo}" method="get">
+                    <input type="hidden" name="segnalazioneId" th:value="${segnalazione.id}" />
+                    <input type="hidden" name="destinatarioId" th:value="${segnalazione.codUtente.id}" />
+                    <button type="submit" class="btn btn-primary mt-3">
+                        <i class="fa-solid fa-envelope"></i> Scrivi all'autore
+                    </button>
+                </form>
+            </div>
         </div>
         <div class="card-wrapper" th:classappend="${tipo == 'denuncia'} ? ' denuncia'">
             <h1
@@ -87,6 +87,22 @@
                             th:text="${segnalazione.informazioniExtra}"></span></p>
                 </div>
             </div>
+        </div>
+        <div class="chat">
+            <h2>Invia un messaggio</h2>
+            <form th:action="@{/messaggi/invia}" method="post" th:object="${messaggio}" class="container mt-4">
+                <input type="hidden" th:field="*{codDestinatario.id}" />
+                <input type="hidden" th:field="*{codSegnalazione.id}" />
+                
+                <div class="mb-3">
+                    <label for="contenuto" class="form-label">Messaggio</label>
+                    <textarea th:field="*{contenuto}" id="contenuto" class="form-control" rows="4" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Invia</button>    
+                </div>
+            </form>
         </div>
 
         <div class="similar-sightings-section mt-5">

@@ -400,3 +400,14 @@ footer i {
     border-radius: 8px;
     text-align: center;
 }
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}

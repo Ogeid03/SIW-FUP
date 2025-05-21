@@ -41,14 +41,15 @@
             <label>Luogo:</label>
             <input type="text" th:field="*{luogo}" required />
 
-            <label>Descrizione Fisica:</label>
+            <label>Descrizione Fisica:</label> 
             <textarea th:field="*{descrizioneFisica}"></textarea>
 
             <label>Foto (URL):</label>
             <input type="text" th:field="*{foto}" placeholder="https://..." />
 
-            <label>Data e Ora:</label>
-            <input type="datetime-local" th:field="*{dataOra}" />
+            <input hidden type="datetime-local" name="dataOra" th:value="${#temporals.format(segnalazione.dataOra, 'yyyy-MM-dd''T''HH:mm')}" />
+            <label>Stato Segnalazione:</label>
+            <input type="text" th:field="*{codStatus}" />
 
             <!-- Campi solo per DENUNCIA -->
             <div th:if="${tipoSegnalazione == 'denuncia'}">

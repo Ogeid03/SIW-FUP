@@ -37,7 +37,7 @@ public class MessaggioController {
         Optional<Segnalazione> optionalSegnalazione = segnalazioneService.getSegnalazioneById(segnalazioneId);
 
         if (optionalSegnalazione.isEmpty()) {
-            return "redirect:/errore";
+            return "redirect:/error";
         }
 
         Segnalazione segnalazione = optionalSegnalazione.get();
@@ -56,27 +56,38 @@ public class MessaggioController {
         Utente mittente = utenteService.getUtenteByEmail(principal.getName());
         messaggio.setCodUtente(mittente);
         messaggio.setDataOra(LocalDateTime.now());
+
+        if (messaggio.getCodDestinatario() == null || messaggio.getCodDestinatario().getId() == null ||
+                messaggio.getCodSegnalazione() == null || messaggio.getCodSegnalazione().getId() == null) {
+            // gestione errore, es. redirect con messaggio di errore
+            return "redirect:/error";
+        }
+
+        Long destinatarioId = messaggio.getCodDestinatario().getId();
+        Long segnalazioneId = messaggio.getCodSegnalazione().getId();
+
+        messaggio.setCodDestinatario(utenteService.getUtenteById(destinatarioId));
+        messaggio.setCodSegnalazione(segnalazioneService.getSegnalazioneById(segnalazioneId).orElse(null));
+
         messaggioService.save(messaggio);
 
-        // Dopo l'invio, ricarica correttamente la conversazione con la lista aggiornata
-        return "redirect:/chat/" + messaggio.getCodDestinatario().getId();
+        return "redirect:/chat/" + destinatarioId;
     }
 
     @GetMapping("/chat")
-public String chatDefaultView(Model model, Principal principal) {
-    Utente utenteLoggato = utenteService.getUtenteByEmail(principal.getName());
-    List<Utente> utentiConConversazioni = trovaUtentiConConversazioni(utenteLoggato);
+    public String chatDefaultView(Model model, Principal principal) {
+        Utente utenteLoggato = utenteService.getUtenteByEmail(principal.getName());
+        List<Utente> utentiConConversazioni = trovaUtentiConConversazioni(utenteLoggato);
 
-    if (!utentiConConversazioni.isEmpty()) {
-        Utente utenteSelezionato = utentiConConversazioni.get(0);
-        return "redirect:/chat/" + utenteSelezionato.getId();
+        if (!utentiConConversazioni.isEmpty()) {
+            Utente utenteSelezionato = utentiConConversazioni.get(0);
+            return "redirect:/chat/" + utenteSelezionato.getId();
+        }
+
+        model.addAttribute("utentiConConversazioni", utentiConConversazioni);
+        model.addAttribute("utenteLoggato", utenteLoggato);
+        return "recapChat";
     }
-
-    model.addAttribute("utentiConConversazioni", utentiConConversazioni);
-    model.addAttribute("utenteLoggato", utenteLoggato);
-    return "recapChat";
-}
-
 
     @GetMapping("/chat/{utenteId}")
     public String chatConUtente(@PathVariable Long utenteId, Model model, Principal principal) {
@@ -86,10 +97,15 @@ public String chatDefaultView(Model model, Principal principal) {
         // Recupera messaggi tra i due utenti (in entrambi i sensi)
         List<Messaggio> messaggi = messaggioService.getConversazioneCompleta(utenteLoggato, utenteSelezionato);
 
+        // Invertiamo la lista per mostrare i messaggi dal più vecchio al più recente
+        // (in fondo)
+        List<Messaggio> messaggiInversi = new ArrayList<>(messaggi);
+        Collections.reverse(messaggiInversi);
+
         // Lista utenti con cui ha chattato
         List<Utente> utentiConConversazioni = trovaUtentiConConversazioni(utenteLoggato);
-
-        model.addAttribute("messaggi", messaggi);
+        model.addAttribute("messaggio", new Messaggio());
+        model.addAttribute("messaggi", messaggiInversi);
         model.addAttribute("utenteAttivo", utenteSelezionato);
         model.addAttribute("utentiConConversazioni", utentiConConversazioni);
         model.addAttribute("utenteLoggato", utenteLoggato);

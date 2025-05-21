@@ -103,8 +103,39 @@ public class UtenteController {
     }
 
     @PostMapping("/segnalazioni/modifica/{id}")
-    public String salvaModifica(@PathVariable Long id, @ModelAttribute Segnalazione segnalazione) {
-        segnalazioneService.aggiorna(id, segnalazione);
+    public String salvaModifica(@PathVariable Long id,
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String eta,
+            @RequestParam(required = false) Double premioOfferto,
+            @RequestParam(required = false) String statoSalute,
+            @RequestParam(required = false) String azioniIntraprese,
+            @ModelAttribute Segnalazione segnalazioneBase) {
+
+        Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
+        if (originale == null)
+            return "redirect:/error";
+
+        // Set campi comuni
+        originale.setSpecie(segnalazioneBase.getSpecie());
+        originale.setRazza(segnalazioneBase.getRazza());
+        originale.setLuogo(segnalazioneBase.getLuogo());
+        originale.setDescrizioneFisica(segnalazioneBase.getDescrizioneFisica());
+        originale.setFoto(segnalazioneBase.getFoto());
+        originale.setCodStatus(segnalazioneBase.getCodStatus());
+        originale.setDataOra(segnalazioneBase.getDataOra());
+
+        if (originale instanceof Denuncia) {
+            Denuncia denuncia = (Denuncia) originale;
+            denuncia.setNome(nome);
+            denuncia.setEta(eta);
+            denuncia.setPremioOfferto(premioOfferto);
+        } else if (originale instanceof Avvistamento) {
+            Avvistamento avv = (Avvistamento) originale;
+            avv.setStatoSalute(statoSalute);
+            avv.setAzioniIntraprese(azioniIntraprese);
+        }
+
+        segnalazioneService.save(originale); // <-- aggiungi un metodo save() al service se serve
         return "redirect:/account";
     }
 

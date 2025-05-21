@@ -96,4 +96,8 @@ public class SegnalazioneService {
         }
     }
 
+    public void save(Segnalazione segnalazione) {
+        segnalazioneRepository.save(segnalazione);
+    }
+
 }

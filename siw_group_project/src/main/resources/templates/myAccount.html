@@ -21,9 +21,7 @@
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
                         <li><a href="/segnala">Contattaci</a></li>
-                        <li sec:authorize="!isAuthenticated()">
-                            <a href="/login">Accedi</a>
-                        </li>
+                        <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
                     </ul>
                 </li>
             </ul>
@@ -33,76 +31,78 @@
     <main class="main-container">
         <section class="user-info" th:if="${utente != null}">
             <h2><i class="fa-solid fa-user"></i> Dati Utente</h2>
-            <p><i class="fa-solid fa-user-circle"></i> <strong> Nome utente:</strong> <span
-                    th:text="${utente.nomeUtente}"></span></p>
-            <p><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> <span th:text="${utente.email}"></span></p>
-            <p><i class="fa-solid fa-phone"></i> <strong>Telefono:</strong> <span th:text="${utente.telefono}"></span>
-            </p>
+            <p><strong><i class="fa-solid fa-user-circle"></i> Nome utente:</strong> <span th:text="${utente.nomeUtente}"></span></p>
+            <p><strong><i class="fa-solid fa-envelope"></i> Email:</strong> <span th:text="${utente.email}"></span></p>
+            <p><strong><i class="fa-solid fa-phone"></i> Telefono:</strong> <span th:text="${utente.telefono}"></span></p>
         </section>
 
-        <!-- Linea blu di separazione -->
         <hr class="separator">
 
         <div class="content-wrapper">
+            <!-- DENUNCE -->
             <section class="left-section">
                 <h2><i class="fa-solid fa-file-circle-exclamation"></i> Denunce di smarrimento</h2>
                 <div class="card-grid" th:if="${denunce != null and !denunce.isEmpty()}">
-                    <div th:each="den : ${denunce}" class="card">
-                        <!-- Bottoni in alto a destra -->
+                    <div class="card-wrapper" th:each="den : ${denunce}">
                         <div class="card-actions-top">
                             <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn edit-btn" title="Modifica">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
-                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
-                                <input type="hidden" name="_method" value="delete" />
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                                <input type="hidden" name="_method" value="delete"/>
                                 <button type="submit" class="btn delete-btn" title="Elimina">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
                         </div>
 
-                        <div class="status-badge" th:text="${den.codStatus}"></div>
-                        <img th:src="@{${den.foto}}" alt="Foto" class="card-image">
-                        <div class="card-content">
-                            <strong><i class="fa-regular fa-calendar"></i> <span
-                                    th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
-                            <strong><i class="fa-solid fa-dog"></i> <span th:text="${den.nome}">Nome animale</span></strong><br>
-                            <span><i class="fa-solid fa-paw"></i> <span th:text="${den.razza}">Razza</span></span><br>
-                            <span><i class="fa-solid fa-map-marker-alt"></i> <span th:text="${den.luogo}">Luogo</span></span>
-                        </div>
+                        <a th:href="@{'/segnalazioni/' + ${den.id}}" class="card-link">
+                            <div class="card">
+                                <div class="status-badge" th:text="${den.codStatus}"></div>
+                                <img th:src="@{${den.foto}}" alt="Foto" class="card-image">
+                                <div class="card-content">
+                                    <strong><i class="fa-regular fa-calendar"></i> <span th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
+                                    <strong><i class="fa-solid fa-dog"></i> <span th:text="${den.nome}">Nome animale</span></strong><br>
+                                    <span><i class="fa-solid fa-paw"></i> <span th:text="${den.razza}">Razza</span></span><br>
+                                    <span><i class="fa-solid fa-map-marker-alt"></i> <span th:text="${den.luogo}">Luogo</span></span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <p th:if="${denunce == null or denunce.isEmpty()}">Nessuna denuncia trovata.</p>
             </section>
 
+            <!-- AVVISTAMENTI -->
             <section class="right-section">
                 <h2><i class="fa-solid fa-binoculars"></i> Avvistamenti effettuati</h2>
                 <div class="card-grid" th:if="${avvistamenti != null and !avvistamenti.isEmpty()}">
-                    <div th:each="avv : ${avvistamenti}" class="card">
-                        <!-- Bottoni in alto a destra -->
+                    <div class="card-wrapper" th:each="avv : ${avvistamenti}">
                         <div class="card-actions-top">
                             <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn edit-btn" title="Modifica">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
-                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
-                                <input type="hidden" name="_method" value="delete" />
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                                <input type="hidden" name="_method" value="delete"/>
                                 <button type="submit" class="btn delete-btn" title="Elimina">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
                         </div>
 
-                        <div class="status-badge" th:text="${avv.codStatus}"></div>
-                        <img th:src="@{${avv.foto}}" alt="Foto" class="card-image">
-                        <div class="card-content">
-                            <strong><i class="fa-regular fa-calendar"></i> <span
-                                    th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
-                            <span><i class="fa-solid fa-paw"></i> <span th:text="${avv.razza}">Razza</span></span><br>
-                            <span><i class="fa-solid fa-location-dot"></i> <span
-                                    th:text="${avv.luogo}">Luogo</span></span>
-                        </div>
+                        <a th:href="@{'/segnalazioni/' + ${avv.id}}" class="card-link">
+                            <div class="card">
+                                <div class="status-badge" th:text="${avv.codStatus}"></div>
+                                <img th:src="@{${avv.foto}}" alt="Foto" class="card-image">
+                                <div class="card-content">
+                                    <strong><i class="fa-regular fa-calendar"></i> <span th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
+                                    <span><i class="fa-solid fa-paw"></i> <span th:text="${avv.razza}">Razza</span></span><br>
+                                    <span><i class="fa-solid fa-location-dot"></i> <span th:text="${avv.luogo}">Luogo</span></span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <p th:if="${avvistamenti == null or avvistamenti.isEmpty()}">Nessun avvistamento trovato.</p>
@@ -110,6 +110,7 @@
         </div>
     </main>
 
+    <!-- MODAL -->
     <div id="confirmModal" class="modal hidden">
         <div class="modal-content">
             <p>Sei sicuro di voler eliminare questa segnalazione?</p>
@@ -122,9 +123,7 @@
     </div>
 
     <!-- Footer -->
-    <footer>
-        &copy; 2025 Tutti i diritti riservati.
-    </footer>
+    <footer>&copy; 2025 Tutti i diritti riservati.</footer>
 
     <script src="/js/editSegnalazioneScript.js"></script>
 </body>

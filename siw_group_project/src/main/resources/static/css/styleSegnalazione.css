@@ -1,117 +1,3 @@
-/* Stile specifico */
-h1 {
-    color: #333;
-    text-align: center;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)); /* ombra */
-    border: 2px solid black; /* contorno nero */
-    border-radius: 0%;
-    width: 50px;
-    height: 50px;
-    
-    opacity: 0.9;
-    transition: transform 0.2s;
-}
-
-.carousel-item {
-    transition: none; /* Disabilita tutte le transizioni */
-    transform: none; /* Rimuove l'effetto di zoom */
-}
-
-/* Imposta un comportamento di transizione normale */
-.carousel-inner {
-    overflow: hidden; /* Nasconde le immagini in eccesso, se c'è */
-}
-
-/* Impedisci l'animazione di zoom */
-.carousel-item img {
-    transform: none !important; /* Elimina l'effetto di zoom sulle immagini */
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-image: none;
-    mask-size: cover;
-    -webkit-mask-size: cover;
-    background-color: #004bb0; /* blu scuro */
-    width: 20px;
-    height: 20px;
-}
-
-
-.container {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-    justify-content: center;
-    align-items: flex-start;
-    max-width: 1000px;
-    border-radius: 10px;
-    border: 2px solid black;
-    background-color: white;
-    padding: 2rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-.photo-box, .summary-box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* centra il contenuto nella colonna */
-    text-align: center;
-}
-
-.photo-box {
-    padding-right: 2rem;
-    border-right: 2px solid black; /* linea divisoria blu */
-}
-
-.summary-box {
-    padding-left: 2rem;
-}
-
-.photo-box img {
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.summary-box p {
-    margin: 0.5rem 0;
-    font-size: 1rem;
-}
-
-.summary-box strong {
-    color: #444;
-}
-
-.carousel-inner {
-    display: flex;
-    /*overflow: hidden;*/
-}
-
-.carousel-item {
-    flex: 0 0 33.3333%; /* Mostra 3 elementi alla volta */
-    transition: transform 0.5s ease;
-}
-
-.carousel-control-prev, .carousel-control-next {
-    z-index: 10;
-}
-
-.carousel-item img {
-    width: 100%;
-    object-fit: cover;
-    max-height: 400px;
-}
-
-.carousel-item p {
-    text-align: center;
-}
-
 /* Reset globale */
 * {
     margin: 0;
@@ -122,12 +8,11 @@ h1 {
 /* Stile generale */
 body {
     font-family: Arial, sans-serif;
-    height: 100vh; /* Evita scroll verticale */
+    height: 100vh;
     display: flex;
     margin: 2rem;
     flex-direction: column;
     justify-content: space-between;
-    /*overflow: hidden; /* Impedisce scroll se non necessario */
     align-items: center;
 }
 
@@ -153,7 +38,7 @@ header {
 .menu {
     list-style: none;
     display: flex;
-    gap: 20px; 
+    gap: 20px;
     margin: 0;
     padding: 0;
     padding-right: 110px;
@@ -180,8 +65,8 @@ header {
 .submenu {
     display: none;
     position: absolute;
-    top: 100%; 
-    left: 0; 
+    top: 100%;
+    left: 0;
     background: white;
     list-style: none;
     padding: 0;
@@ -212,8 +97,104 @@ main {
     text-align: center;
     padding: 20px;
     flex-grow: 1;
-    overflow-y: auto; /* Permette lo scroll solo al contenuto principale */
+    overflow-y: auto;
     max-width: 2000px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+/* Container layout */
+.container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1000px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.photo-box,
+.summary-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.photo-box {
+    padding-right: 2rem;
+    border-right: 2px solid black;
+}
+
+.photo-box img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.summary-box {
+    padding-left: 2rem;
+}
+
+.summary-box p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.summary-box strong {
+    color: #444;
+}
+
+/* Carosello */
+.carousel-inner {
+    overflow: hidden;
+}
+
+.carousel-item {
+    flex: 0 0 33.3333%;
+    transition: none;
+}
+
+.carousel-item img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 400px;
+    transform: none !important;
+}
+
+.carousel-item p {
+    text-align: center;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    border: 2px solid black;
+    border-radius: 0%;
+    width: 50px;
+    height: 50px;
+    opacity: 0.9;
+    transition: transform 0.2s;
+    z-index: 10;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-image: none;
+    mask-size: cover;
+    -webkit-mask-size: cover;
+    background-color: #004bb0;
+    width: 20px;
+    height: 20px;
 }
 
 /* Bottoni aggiornati */
@@ -254,19 +235,18 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
+/* Card segnalazione */
 .card-wrapper {
     max-width: 80%;
     margin: 30px auto;
     padding: 20px;
     border-radius: 10px;
-    background-color: #0d6efd; /* Blu di default */
+    background-color: #0d6efd;
     border: 2px solid black;
     box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
-    color: white;
+    color: rgb(0, 0, 0);
     transition: all 0.3s ease;
 }
-
 
 .card-wrapper.denuncia {
     background-color: orange;
@@ -274,6 +254,90 @@ main {
     box-shadow: 0 4px 8px rgba(255, 165, 0, 0.3);
 }
 
+/* Chat Section */
+.chat {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.chat h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.chat form {
+    display: block;
+    width: 100%;
+}
+
+.chat textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.chat button {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: #0d6efd;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: auto;
+}
+
+.chat button:hover {
+    background-color: #004bb0;
+}
+
+/* Chat messaggi */
+.chat-box {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.sent {
+    text-align: right;
+    background-color: #dcf8c6;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.received {
+    text-align: left;
+    background-color: #f1f0f0;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.chat-user {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-user:hover {
+    background-color: #f5f5f5;
+}
 
 /* Footer */
 footer {
