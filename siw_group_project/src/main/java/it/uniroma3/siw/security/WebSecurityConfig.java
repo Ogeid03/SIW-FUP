@@ -17,15 +17,20 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/", "/login", "/register", "/img/**", "/css/**", "/js/**", "/segnalazioni/{id:[0-9]+}",
-                            "/ricerca", "/error", "/about", "/favicon.ico")
+                        .requestMatchers("/", "/login", "/register", "/img/**", "/css/**", "/js/**",
+                                "/segnalazioni/{id:[0-9]+}",
+                                "/ricerca", "/error", "/about", "/favicon.ico")
                         .permitAll() // Consenti l'accesso a login e register senza autenticazione
                         .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginPage("/login") // Imposta la pagina di login
                         .permitAll())
-                .logout(logout -> logout
-                        .permitAll()); // Consenti il logout senza autenticazione
+                .logout(logout -> logout.invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .clearAuthentication(true)
+                        .permitAll());
+
+        ; // Consenti il logout senza autenticazione
 
         return http.build();
     }
