@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 
@@ -61,13 +60,8 @@
                                 <p><strong>Via:</strong> <span th:text="${avv.luogo}"></span></p>
                             </div>
                             <!-- Admin controls -->
-                            <div sec:authorize="hasRole('ADMIN')" class="admin-controls">
-                                <p>ADMIN LOGGATO - Pulsanti dovrebbero essere visibili</p>
-                            </div>
-                            <div sec:authorize="!hasRole('ADMIN')">
-                                <p>NON ADMIN - Pulsanti NON visibili</p>
-                            </div>
-                            <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn btn-sm btn-warning"
+                            <div sec:authorize="hasAuthority('ADMIN')" class="admin-controls">
+                                <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn btn-sm btn-warning"
                                 title="Modifica">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
@@ -78,6 +72,7 @@
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
+                            </div>
                         </div>
                 </div>
                 </a>
@@ -98,7 +93,7 @@
                             <p><strong>Via:</strong> <span th:text="${den.luogo}"></span></p>
                         </div>
                         <!-- Admin controls -->
-                        <div sec:authorize="hasRole('ADMIN')" class="admin-controls">
+                        <div sec:authorize="hasAuthority('ADMIN')" class="admin-controls">
                             <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn btn-sm btn-warning"
                                 title="Modifica">
                                 <i class="fa-solid fa-pen-to-square"></i>

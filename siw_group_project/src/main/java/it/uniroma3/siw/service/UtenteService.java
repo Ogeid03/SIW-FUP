@@ -63,11 +63,11 @@ public class UtenteService implements UserDetailsService {
         if (utente == null) {
             throw new UsernameNotFoundException("Utente non trovato con email: " + email);
         }
-
+        System.out.println("Ruolo utente: " + utente.getRuolo());
         return new User(
                 utente.getEmail(),
                 utente.getPassword(),
-                List.of(new SimpleGrantedAuthority("ROLE_" + utente.getRuolo().name())));
+                List.of(new SimpleGrantedAuthority(utente.getRuolo().name())));
 
     }
 }
