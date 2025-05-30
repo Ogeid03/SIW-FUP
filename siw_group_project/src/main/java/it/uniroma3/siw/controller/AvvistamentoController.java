@@ -21,7 +21,7 @@ import it.uniroma3.siw.model.Stato;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.AvvistamentoService;
 import it.uniroma3.siw.service.UtenteService;
-import java.util.UUID;
+//import java.util.UUID;
 
 @Controller
 public class AvvistamentoController {
@@ -68,7 +68,7 @@ public String conferma(@ModelAttribute Avvistamento avvistamento,
         }
     }
 
-    // continua normale
+    
     model.addAttribute("segnalazione", avvistamento);
     var simili = avvistamentoService.trovaDenunceSimili(avvistamento);
     model.addAttribute("simili", simili);

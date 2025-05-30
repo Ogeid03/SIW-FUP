@@ -94,9 +94,9 @@
         <label for="info">Informazioni Extra:</label>
         <textarea id="info" name="info" placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
 
-        <label for="foto">Foto (URL):</label>
-        <input type="url" id="foto" name="foto" maxlength="255" placeholder="https://..." required
-          oninput="anteprimaImmagine(this.value)" th:field="*{foto}">
+        <label for="foto">Carica una foto:</label>
+        <input type="file" id="file" name="file" accept="image/*" required
+          oninput="anteprimaImmagine(this.value)">
         <div id="preview" class="image-preview"></div>
       </div>
 

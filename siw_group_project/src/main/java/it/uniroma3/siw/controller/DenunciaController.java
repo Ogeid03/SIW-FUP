@@ -1,12 +1,18 @@
 package it.uniroma3.siw.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 
 import it.uniroma3.siw.model.Denuncia;
@@ -36,9 +42,30 @@ public class DenunciaController {
     public String conferma(@ModelAttribute Denuncia denuncia, 
                                 @RequestParam("latitudine") Double lat,
                                 @RequestParam("longitudine") Double lon, 
+                                @RequestParam("file") MultipartFile file,
                                 Model model) {
         denuncia.setLatitudine(lat);
         denuncia.setLongitudine(lon);
+
+        if (!file.isEmpty()) {
+        try {
+            String uploadDir = "uploads/";
+            Files.createDirectories(Paths.get(uploadDir)); // crea la cartella se non esiste
+
+            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            Path path = Paths.get(uploadDir + filename);
+            Files.write(path, file.getBytes());
+
+            // Qui assegni il path relativo, non il MultipartFile
+            denuncia.setFoto("/uploads/" + filename);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("errore", "Errore durante il caricamento dell’immagine.");
+            return "denunciaForm"; // torna alla form se fallisce
+        }
+    }
+
         model.addAttribute("denuncia", denuncia);
         var simili = denunciaService.trovaAvvistamentiSimili(denuncia);
         model.addAttribute("simili", simili);
