@@ -19,8 +19,9 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/", "/login", "/register", "/img/**", "/css/**", "/js/**",
                                 "/segnalazioni/{id:[0-9]+}",
-                                "/ricerca", "/error", "/about", "/favicon.ico")
+                                "/ricerca", "/error", "/about", "/favicon.ico","/uploads/**")
                         .permitAll() // Consenti l'accesso a login e register senza autenticazione
+                        .requestMatchers("/segnalazioni/modifica/**", "/segnalazioni/elimina/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginPage("/login") // Imposta la pagina di login

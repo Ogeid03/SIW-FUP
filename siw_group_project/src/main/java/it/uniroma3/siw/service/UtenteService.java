@@ -47,7 +47,7 @@ public class UtenteService implements UserDetailsService {
     public Utente getUtenteById(Long id) {
         return utenteRepository.findById(id).orElse(null);
     }
-    
+
     public Utente getUtenteAutenticato() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated())
@@ -67,6 +67,7 @@ public class UtenteService implements UserDetailsService {
         return new User(
                 utente.getEmail(),
                 utente.getPassword(),
-                List.of(new SimpleGrantedAuthority(utente.getRuolo().name())));
+                List.of(new SimpleGrantedAuthority("ROLE_" + utente.getRuolo().name())));
+
     }
 }

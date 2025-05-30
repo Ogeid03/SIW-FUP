@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
 <head>
     <meta charset="UTF-8">
     <title>Visualizza Segnalazioni e Denunce</title>
@@ -7,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -26,38 +30,61 @@
             </ul>
         </nav>
     </header>
+    <main>
+        <div class="container mt-5">
+            <div id="intro" class="alert alert-info">
+                Seleziona "Segnalazioni" o "Denunce" per visualizzare i dati.
+            </div>
 
-    <div class="container mt-5">
-        <div id="intro" class="alert alert-info">
-            Seleziona "Segnalazioni" o "Denunce" per visualizzare i dati.
-        </div>
+            <!-- Pulsanti per la selezione -->
+            <div class="pulsanti-switch">
+                <button class="btn btn-primary" onclick="mostra('segnalazioni')">Segnalazioni</button>
+                <button class="btn btn-danger" onclick="mostra('denunce')">Denunce</button>
+                <input type="text" id="searchInput" class="form-control w-50 ms-3"
+                    placeholder="Cerca per razza, via o data..." onkeyup="filtraSchede()">
+                <button class="btn btn-secondary ms-2" onclick="resetFiltro()">Reset</button><br>
+            </div>
 
-        <!-- Pulsanti per la selezione -->
-        <div class="pulsanti-switch">
-            <button class="btn btn-primary" onclick="mostra('segnalazioni')">Segnalazioni</button>
-            <button class="btn btn-danger" onclick="mostra('denunce')">Denunce</button>
-            <input type="text" id="searchInput" class="form-control w-50 ms-3" placeholder="Cerca per razza, via o data..." onkeyup="filtraSchede()">
-            <button class="btn btn-secondary ms-2" onclick="resetFiltro()">Reset</button><br>
-        </div>
+            <!-- ... (tutto uguale fino a dentro il <body>) ... -->
 
-        <!-- Lista Segnalazioni -->
-        <div id="segnalazioni" class="contenitore-schede d-none">
-            <h3>Avvistamenti</h3>
-            <div th:each="avv : ${avvistamenti}">
-                <a th:href="@{/segnalazioni/{id}(id=${avv.id})}" class="link-scheda">
-                    <div class="scheda">
-                        <img th:src="${avv.foto}" alt="Foto Avvistamento">
-                        <div>
-                            <p><strong>Razza:</strong> <span th:text="${avv.razza}"></span></p>
-                            <p><strong>Data:</strong> <span th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}">Data</span></p>
-                            <p><strong>Via:</strong> <span th:text="${avv.luogo}"></span></p>
+            <!-- Segnalazioni -->
+            <div id="segnalazioni" class="contenitore-schede d-none">
+                <h3>Avvistamenti</h3>
+                <div th:each="avv : ${avvistamenti}">
+                    <a th:href="@{/segnalazioni/{id}(id=${avv.id})}" class="link-scheda">
+                        <div class="scheda">
+                            <img th:src="${avv.foto}" alt="Foto Avvistamento">
+                            <div>
+                                <p><strong>Razza:</strong> <span th:text="${avv.razza}"></span></p>
+                                <p><strong>Data:</strong> <span
+                                        th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}"></span></p>
+                                <p><strong>Via:</strong> <span th:text="${avv.luogo}"></span></p>
+                            </div>
+                            <!-- Admin controls -->
+                            <div sec:authorize="hasRole('ADMIN')" class="admin-controls">
+                                <p>ADMIN LOGGATO - Pulsanti dovrebbero essere visibili</p>
+                            </div>
+                            <div sec:authorize="!hasRole('ADMIN')">
+                                <p>NON ADMIN - Pulsanti NON visibili</p>
+                            </div>
+                            <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn btn-sm btn-warning"
+                                title="Modifica">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
+                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="btn btn-sm btn-danger" title="Elimina">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
                         </div>
-                    </div>
+                </div>
                 </a>
             </div>
         </div>
 
-        <!-- Lista Denunce -->
+        <!-- Denunce -->
         <div id="denunce" class="contenitore-schede d-none">
             <h3>Denunce</h3>
             <div th:each="den : ${denunce}">
@@ -66,14 +93,29 @@
                         <img th:src="${den.foto}" alt="Foto Denuncia">
                         <div>
                             <p><strong>Razza:</strong> <span th:text="${den.razza}"></span></p>
-                            <p><strong>Data:</strong> <span th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}">Data</span></p>
+                            <p><strong>Data:</strong> <span
+                                    th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}"></span></p>
                             <p><strong>Via:</strong> <span th:text="${den.luogo}"></span></p>
+                        </div>
+                        <!-- Admin controls -->
+                        <div sec:authorize="hasRole('ADMIN')" class="admin-controls">
+                            <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn btn-sm btn-warning"
+                                title="Modifica">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
+                                onsubmit="return confirm('Sei sicuro di voler eliminare questa denuncia?');">
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="btn btn-sm btn-danger" title="Elimina">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -115,4 +157,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -95,14 +95,13 @@ footer {
   color: white;
 }
 
-
-
 /* Main Content */
 main {
   text-align: left;
   margin-top: 20px;
   padding: 0 20px;
   max-width: 2000px;
+  flex: 1;
 }
 
 .scheda {
@@ -116,7 +115,7 @@ main {
   transition: box-shadow 0.3s ease;
 }
 
-#schedaDenuncia{
+#schedaDenuncia {
   border: 2px solid orange;
 }
 
@@ -138,6 +137,7 @@ main {
   gap: 10px;
   margin-bottom: 20px;
 }
+
 .d-none {
   display: none !important;
 }
@@ -145,4 +145,70 @@ main {
 .link-scheda {
   text-decoration: none;
   color: inherit;
+}
+
+.admin-controls {
+  margin-left: auto;
+  display: flex;
+  gap: 5px;
+}
+
+
+/* --- Nuova parte per i bottoni Modifica / Elimina in alto a destra --- */
+
+.card-actions-top {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #346df0;
+  font-size: 1.1em;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #346df0;
+  color: white;
+  outline: none;
+}
+
+.edit-btn i,
+.delete-btn i {
+  pointer-events: none;
+  font-size: 1.2em;
+}
+
+.card-actions-top form {
+  margin: 0;
+}
+
+.delete-btn {
+  color: #d9534f;
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+  background-color: #d9534f;
+  color: white;
+}
+
+.edit-btn {
+  color: #f0ad4e;
+}
+
+.edit-btn:hover,
+.edit-btn:focus {
+  background-color: #f0ad4e;
+  color: white;
 }
