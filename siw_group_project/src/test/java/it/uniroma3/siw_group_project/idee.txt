@@ -47,6 +47,8 @@ fixes
 🛑 - inserire informazioni nel carosello oltre la foto
 🛑 - correggere i caroselli nei recap come quelli su segnalazioni
 ⬜ - rendere più carino about us
+⬜ - levare il js dai codici
+⬜ - rendere modifica conforme ai form
 
 proposte
 ✅ -  solo due bottoni, ricerca messo in menu 

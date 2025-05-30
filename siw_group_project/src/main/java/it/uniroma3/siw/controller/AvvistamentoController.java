@@ -5,16 +5,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Stato;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.AvvistamentoService;
 import it.uniroma3.siw.service.UtenteService;
+import java.util.UUID;
 
 @Controller
 public class AvvistamentoController {
@@ -34,17 +41,39 @@ public class AvvistamentoController {
     }
 
     @PostMapping("/conferma-avvistamento")
-    public String conferma(@ModelAttribute Avvistamento avvistamento, 
-                                @RequestParam("latitudine") Double lat,
-                                @RequestParam("longitudine") Double lon, 
-                                Model model) {
-        avvistamento.setLatitudine(lat);
-        avvistamento.setLongitudine(lon);
-        model.addAttribute("segnalazione", avvistamento);
-        var simili = avvistamentoService.trovaDenunceSimili(avvistamento);
-        model.addAttribute("simili", simili);
-        return "recap-avvistamento";
+public String conferma(@ModelAttribute Avvistamento avvistamento,
+                      @RequestParam("latitudine") Double lat,
+                      @RequestParam("longitudine") Double lon,
+                      @RequestParam("file") MultipartFile file,
+                      Model model) {
+    avvistamento.setLatitudine(lat);
+    avvistamento.setLongitudine(lon);
+
+    if (!file.isEmpty()) {
+        try {
+            String uploadDir = "uploads/";
+            Files.createDirectories(Paths.get(uploadDir)); // crea la cartella se non esiste
+
+            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            Path path = Paths.get(uploadDir + filename);
+            Files.write(path, file.getBytes());
+
+            // Qui assegni il path relativo, non il MultipartFile
+            avvistamento.setFoto("/uploads/" + filename);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("errore", "Errore durante il caricamento dell’immagine.");
+            return "segnalazioneForm"; // torna alla form se fallisce
+        }
     }
+
+    // continua normale
+    model.addAttribute("segnalazione", avvistamento);
+    var simili = avvistamentoService.trovaDenunceSimili(avvistamento);
+    model.addAttribute("simili", simili);
+    return "recap-avvistamento";
+}
 
     @PostMapping("/salva-avvistamento")
     public String salvaAvvistamento(@ModelAttribute Avvistamento avvistamento) {

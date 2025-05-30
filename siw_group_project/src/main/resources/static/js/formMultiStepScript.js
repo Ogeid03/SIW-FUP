@@ -32,29 +32,34 @@ prevBtn.addEventListener('click', () => changeStep(-1));
 showStep(currentStep);
 
 // Funzione per l'anteprima dell'immagine
-function anteprimaImmagine(url) {
+function anteprimaImmagine(input) {
+  const file = document.getElementById("file").files[0];
   const preview = document.getElementById("preview");
-  if (url && (url.startsWith("http://") || url.startsWith("https://"))) {
-    preview.innerHTML = `<img src="${url}" alt="Anteprima" style="max-width:300px; margin-top:10px;">`;
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      preview.innerHTML = `<img src="${e.target.result}" alt="Anteprima" style="max-width:300px; margin-top:10px;">`;
+    };
+    reader.readAsDataURL(file);
   } else {
     preview.innerHTML = "<p>Nessuna anteprima</p>";
   }
 }
 
-// Controllo per il submit del form
-document.getElementById("multiStepForm").addEventListener("submit", function (e) {
-  const fotoInput = document.getElementById("foto");
-  const url = fotoInput.value.trim();
+// // Controllo per il submit del form
+// document.getElementById("multiStepForm").addEventListener("submit", function (e) {
+//   const fotoInput = document.getElementById("foto");
+//   const url = fotoInput.value.trim();
 
-  // Regex base per URL HTTP/HTTPS
-  const urlRegex = /^https?:\/\/[^\s$.?#].[^\s]*$/;
+//   // Regex base per URL HTTP/HTTPS
+//   const urlRegex = /^https?:\/\/[^\s$.?#].[^\s]*$/;
 
-  if (url && !urlRegex.test(url)) {
-    alert("Inserisci un URL valido per la foto (deve iniziare con http:// o https://)");
-    fotoInput.focus();
-    e.preventDefault();
-  }
-});
+//   if (url && !urlRegex.test(url)) {
+//     alert("Inserisci un URL valido per la foto (deve iniziare con http:// o https://)");
+//     fotoInput.focus();
+//     e.preventDefault();
+//   }
+// });
 
 // Inizializzazione mappa
 let map = L.map('map').setView([41.9028, 12.4964], 13);
