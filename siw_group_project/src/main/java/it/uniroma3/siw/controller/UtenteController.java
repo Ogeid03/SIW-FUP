@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import jakarta.servlet.http.HttpServletRequest;
-
 
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Denuncia;
@@ -75,10 +73,9 @@ public class UtenteController {
     }
 
     @PostMapping("/segnalazioni/elimina/{id}")
-    public String eliminaSegnalazione(@PathVariable Long id, HttpServletRequest request) {
+    public String eliminaSegnalazione(@PathVariable Long id) {
         segnalazioneService.eliminaById(id);
-        String referer = request.getHeader("referer");
-        return "redirect:" + (referer != null ? referer : "/error");
+        return "redirect:/account";
     }
 
     @GetMapping("/segnalazioni/modifica/{id}")
@@ -112,9 +109,8 @@ public class UtenteController {
             @RequestParam(required = false) Double premioOfferto,
             @RequestParam(required = false) String statoSalute,
             @RequestParam(required = false) String azioniIntraprese,
-            @ModelAttribute Segnalazione segnalazioneBase,
-            HttpServletRequest request) {
-        
+            @ModelAttribute Segnalazione segnalazioneBase) {
+
         Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
         if (originale == null)
             return "redirect:/error";
@@ -140,8 +136,7 @@ public class UtenteController {
         }
 
         segnalazioneService.save(originale); // <-- aggiungi un metodo save() al service se serve
-        String referer = request.getHeader("referer");
-        return "redirect:" + (referer != null ? referer : "/error");
+        return "redirect:/account";
     }
 
 }

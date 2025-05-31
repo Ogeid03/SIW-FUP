@@ -19,13 +19,13 @@
 ✅ - Gestione Account (Utente, Pagina Utente)
 ✅ - Nella parte iniziale di myAccount aggiungere i dati dell'utente su due colonne poi una linea blu e sotto l'elenco delle segnalazioni
 ✅ - Aggiugni lo status alle segnalazioni
-🛑 - Gestione Account Gestore
+✅ - Gestione Account Gestore
 ✅ - Modifica/Elimina Segnalazione
 🛑 - Modifica e recupera account
 ✅ - Gestione Messaggistica (pagina Visualizzazione)
 ✅ - Gestione Enum
 ⬜ ? Elimina file inutili (es. di "recap" uno solo non 2)
-🛑 - File al posto di url per le Foto
+✅ - File al posto di url per le Foto
 ⬜ - Carica Online
 
 
@@ -33,6 +33,9 @@
 fixes
 ✅ - il cursore fa schifo, aggiungi icona utente
 🛑 - Uniformare l'header
+🛑 - Indicare i campi obbligatori
+🛑 - No spazi bianchi homepage
+🛑 - Meno zoom gatto home
 ✅ - Fix foto in denunce
 ✅ - Fix denunce simili, mostra le denucne con avvistamenti e viceversa
 ✅ - Fix inserimento Luogo

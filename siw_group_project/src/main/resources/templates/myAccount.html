@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
 
 <head>
     <meta charset="UTF-8">
-    <title>Le Mie Segnalazioni</title>
+    <title>Le Mie Segnalazioni & Chat</title>
     <link rel="stylesheet" href="/css/styleMyAccount.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <!-- Header -->
     <header>
         <img src="/img/LongLogo.png" alt="Logo" class="longLogo">
         <nav>
@@ -28,104 +27,189 @@
         </nav>
     </header>
 
-    <main class="main-container">
-        <section class="user-info" th:if="${utente != null}">
-            <h2><i class="fa-solid fa-user"></i> Dati Utente</h2>
-            <p><strong><i class="fa-solid fa-user-circle"></i> Nome utente:</strong> <span th:text="${utente.nomeUtente}"></span></p>
-            <p><strong><i class="fa-solid fa-envelope"></i> Email:</strong> <span th:text="${utente.email}"></span></p>
-            <p><strong><i class="fa-solid fa-phone"></i> Telefono:</strong> <span th:text="${utente.telefono}"></span></p>
-        </section>
+    <div class="container-flex">
 
-        <hr class="separator">
+        <!-- Colonna sinistra (Le mie segnalazioni) -->
+        <div class="left-panel">
+            <section class="user-info" th:if="${utente != null}">
+                <h2><i class="fa-solid fa-user"></i> Dati Utente</h2>
+                <p><strong><i class="fa-solid fa-user-circle"></i> Nome utente:</strong> <span
+                        th:text="${utente.nomeUtente}"></span></p>
+                <p><strong><i class="fa-solid fa-envelope"></i> Email:</strong> <span th:text="${utente.email}"></span>
+                </p>
+                <p><strong><i class="fa-solid fa-phone"></i> Telefono:</strong> <span
+                        th:text="${utente.telefono}"></span></p>
+            </section>
 
-        <div class="content-wrapper">
-            <!-- DENUNCE -->
-            <section class="left-section">
-                <h2><i class="fa-solid fa-file-circle-exclamation"></i> Denunce di smarrimento</h2>
-                <div class="card-grid" th:if="${denunce != null and !denunce.isEmpty()}">
-                    <div class="card-wrapper" th:each="den : ${denunce}">
-                        <div class="card-actions-top">
-                            <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn edit-btn" title="Modifica">
-                                <i class="fa-solid fa-pen-to-square"></i>
+            <hr class="separator">
+
+            <div class="content-wrapper">
+                <!-- DENUNCE -->
+                <section class="left-section">
+                    <h2><i class="fa-solid fa-file-circle-exclamation"></i> Denunce di smarrimento</h2>
+                    <div class="card-grid" th:if="${denunce != null and !denunce.isEmpty()}">
+                        <div class="card-wrapper" th:each="den : ${denunce}">
+                            <div class="card-actions-top">
+                                <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn edit-btn"
+                                    title="Modifica">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
+                                    onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                                    <input type="hidden" name="_method" value="delete" />
+                                    <button type="submit" class="btn delete-btn" title="Elimina">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <a th:href="@{'/segnalazioni/' + ${den.id}}" class="card-link">
+                                <div class="card">
+                                    <div class="status-badge" th:text="${den.codStatus}"></div>
+                                    <img th:src="@{${den.foto}}" alt="Foto" class="card-image">
+                                    <div class="card-content">
+                                        <strong><i class="fa-regular fa-calendar"></i> <span
+                                                th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
+                                        <strong><i class="fa-solid fa-dog"></i> <span th:text="${den.nome}">Nome
+                                                animale</span></strong><br>
+                                        <span><i class="fa-solid fa-paw"></i> <span
+                                                th:text="${den.razza}">Razza</span></span><br>
+                                        <span><i class="fa-solid fa-map-marker-alt"></i> <span
+                                                th:text="${den.luogo}">Luogo</span></span>
+                                    </div>
+                                </div>
                             </a>
-                            <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
-                                  onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
-                                <input type="hidden" name="_method" value="delete"/>
-                                <button type="submit" class="btn delete-btn" title="Elimina">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
+                        </div>
+                    </div>
+                    <p th:if="${denunce == null or denunce.isEmpty()}">Nessuna denuncia trovata.</p>
+                </section>
+
+                <!-- AVVISTAMENTI -->
+                <section class="right-section">
+                    <h2><i class="fa-solid fa-binoculars"></i> Avvistamenti effettuati</h2>
+                    <div class="card-grid" th:if="${avvistamenti != null and !avvistamenti.isEmpty()}">
+                        <div class="card-wrapper" th:each="avv : ${avvistamenti}">
+                            <div class="card-actions-top">
+                                <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn edit-btn"
+                                    title="Modifica">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
+                                    onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                                    <input type="hidden" name="_method" value="delete" />
+                                    <button type="submit" class="btn delete-btn" title="Elimina">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <a th:href="@{'/segnalazioni/' + ${avv.id}}" class="card-link">
+                                <div class="card">
+                                    <div class="status-badge" th:text="${avv.codStatus}"></div>
+                                    <img th:src="@{${avv.foto}}" alt="Foto" class="card-image">
+                                    <div class="card-content">
+                                        <strong><i class="fa-regular fa-calendar"></i> <span
+                                                th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
+                                        <span><i class="fa-solid fa-paw"></i> <span
+                                                th:text="${avv.razza}">Razza</span></span><br>
+                                        <span><i class="fa-solid fa-location-dot"></i> <span
+                                                th:text="${avv.luogo}">Luogo</span></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <p th:if="${avvistamenti == null or avvistamenti.isEmpty()}">Nessun avvistamento trovato.</p>
+                </section>
+            </div>
+
+            <!-- MODAL -->
+            <div id="confirmModal" class="modal hidden">
+                <div class="modal-content">
+                    <p>Sei sicuro di voler eliminare questa segnalazione?</p>
+                    <form id="deleteForm" method="post" th:action="@{'/segnalazioni/elimina/'}">
+                        <input type="hidden" name="id" id="deleteId">
+                        <button type="submit" class="btn confirm-delete">Conferma</button>
+                        <button type="button" class="btn cancel-delete" onclick="closeModal()">Annulla</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonna destra (Chat) -->
+        <div class="right-panel" th:attr="data-utente-attivo-id=${utenteAttivo != null} ? ${utenteAttivo.id} : 0"
+            th:data-nome-utente-loggato="${utenteLoggato != null} ? ${#strings.escapeJavaScript(utenteLoggato.nomeUtente)} : 'default'">
+
+            <main class="container mt-0 p-0">
+                <div class="row g-3">
+                    <!-- Colonna utenti -->
+                    <div class="col-4">
+                        <h5>Chat recenti</h5>
+                        <div th:each="utente : ${utentiConConversazioni}" class="chat-user"
+                            th:onclick="'window.location.href=\'/chat/' + ${utente.id} + '\';'">
+                            <strong th:text="${utente.nomeUtente}">Utente</strong>
+                        </div>
+                    </div>
+
+                    <!-- Colonna messaggi -->
+                    <div class="col-8">
+                        <h5 th:if="${utenteAttivo != null}" th:text="'Chat con ' + ${utenteAttivo.nomeUtente}">Chat
+                            selezionata
+                        </h5>
+                        <h5 th:if="${utenteAttivo == null}">Seleziona una conversazione</h5>
+
+                        <div class="chat-box">
+                            <div th:if="${#lists.isEmpty(messaggi)}">
+                                <p>Non ci sono ancora messaggi con questo utente.</p>
+                            </div>
+                            <div th:each="messaggio : ${messaggi}" class="message"
+                                th:classappend="${messaggio.codUtente?.id} == ${utenteLoggato.id} ? 'sent' : 'received'">
+                                <p>
+                                    <strong th:if="${messaggio.codUtente != null}"
+                                        th:text="${messaggio.codUtente.nomeUtente + ':'}">Utente sconosciuto:</strong>
+                                </p>
+                                <p th:text="${messaggio.contenuto}">Contenuto del messaggio</p>
+                                <span class="timestamp"
+                                    th:text="${#temporals.format(messaggio.dataOra, 'dd/MM/yyyy HH:mm')}">Data</span>
+                            </div>
+                        </div>
+
+                        <div
+                            th:if="${not #lists.isEmpty(messaggi)} and ${messaggi[0].codDestinatario} != null and ${messaggi[0].codSegnalazione} != null">
+                            <form id="formMessaggio" th:action="@{/messaggi/invia}" method="post"
+                                th:object="${messaggio}">
+                                <input type="hidden" name="codDestinatario.id" th:value="${utenteAttivo.id}" />
+                                <input type="hidden" name="codSegnalazione.id"
+                                    th:value="${messaggi[0]?.codSegnalazione?.id}" />
+                                <textarea th:field="*{contenuto}" required
+                                    placeholder="Scrivi un messaggio..."></textarea>
+                                <button type="submit">Invia</button>
                             </form>
                         </div>
 
-                        <a th:href="@{'/segnalazioni/' + ${den.id}}" class="card-link">
-                            <div class="card">
-                                <div class="status-badge" th:text="${den.codStatus}"></div>
-                                <img th:src="@{${den.foto}}" alt="Foto" class="card-image">
-                                <div class="card-content">
-                                    <strong><i class="fa-regular fa-calendar"></i> <span th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
-                                    <strong><i class="fa-solid fa-dog"></i> <span th:text="${den.nome}">Nome animale</span></strong><br>
-                                    <span><i class="fa-solid fa-paw"></i> <span th:text="${den.razza}">Razza</span></span><br>
-                                    <span><i class="fa-solid fa-map-marker-alt"></i> <span th:text="${den.luogo}">Luogo</span></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <p th:if="${denunce == null or denunce.isEmpty()}">Nessuna denuncia trovata.</p>
-            </section>
-
-            <!-- AVVISTAMENTI -->
-            <section class="right-section">
-                <h2><i class="fa-solid fa-binoculars"></i> Avvistamenti effettuati</h2>
-                <div class="card-grid" th:if="${avvistamenti != null and !avvistamenti.isEmpty()}">
-                    <div class="card-wrapper" th:each="avv : ${avvistamenti}">
-                        <div class="card-actions-top">
-                            <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn edit-btn" title="Modifica">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
-                                  onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
-                                <input type="hidden" name="_method" value="delete"/>
-                                <button type="submit" class="btn delete-btn" title="Elimina">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
+                        <!-- Pulsante Rispondi solo se i dati sono validi -->
+                        <div th:if="${not #lists.isEmpty(messaggi)} 
+                            and ${messaggi[0].codSegnalazione != null} 
+                            and ${messaggi[0].codDestinatario != null}">
+                            <a th:href="@{/messaggi/nuovo(
+                            segnalazioneId=${messaggi[0].codSegnalazione.id},
+                            destinatarioId=${messaggi[0].codDestinatario.id})}"
+                                class="btn btn-primary mt-3">Rispondi</a>
                         </div>
-
-                        <a th:href="@{'/segnalazioni/' + ${avv.id}}" class="card-link">
-                            <div class="card">
-                                <div class="status-badge" th:text="${avv.codStatus}"></div>
-                                <img th:src="@{${avv.foto}}" alt="Foto" class="card-image">
-                                <div class="card-content">
-                                    <strong><i class="fa-regular fa-calendar"></i> <span th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
-                                    <span><i class="fa-solid fa-paw"></i> <span th:text="${avv.razza}">Razza</span></span><br>
-                                    <span><i class="fa-solid fa-location-dot"></i> <span th:text="${avv.luogo}">Luogo</span></span>
-                                </div>
-                            </div>
-                        </a>
                     </div>
                 </div>
-                <p th:if="${avvistamenti == null or avvistamenti.isEmpty()}">Nessun avvistamento trovato.</p>
-            </section>
+            </main>
         </div>
-    </main>
 
-    <!-- MODAL -->
-    <div id="confirmModal" class="modal hidden">
-        <div class="modal-content">
-            <p>Sei sicuro di voler eliminare questa segnalazione?</p>
-            <form id="deleteForm" method="post" th:action="@{'/segnalazioni/elimina/'}">
-                <input type="hidden" name="id" id="deleteId">
-                <button type="submit" class="btn confirm-delete">Conferma</button>
-                <button type="button" class="btn cancel-delete" onclick="closeModal()">Annulla</button>
-            </form>
-        </div>
     </div>
 
-    <!-- Footer -->
-    <footer>&copy; 2025 Tutti i diritti riservati.</footer>
-
+    <footer class="mt-4 text-center">
+        © 2025 - Tutti i diritti riservati
+    </footer>
+    <!-- <script src="/js/chatScript.js"></script> -->
     <script src="/js/editSegnalazioneScript.js"></script>
+    
+
 </body>
 
 </html>

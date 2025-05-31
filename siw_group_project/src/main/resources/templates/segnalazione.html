@@ -39,9 +39,6 @@
                 <form th:action="@{/messaggi/nuovo}" method="get">
                     <input type="hidden" name="segnalazioneId" th:value="${segnalazione.id}" />
                     <input type="hidden" name="destinatarioId" th:value="${segnalazione.codUtente.id}" />
-                    <button type="submit" class="btn btn-primary mt-3">
-                        <i class="fa-solid fa-envelope"></i> Scrivi all'autore
-                    </button>
                 </form>
             </div>
         </div>

@@ -25,6 +25,10 @@ header {
   flex-wrap: wrap;
 }
 
+header li a {
+  text-decoration: underline !important;
+}
+
 .longLogo {
   height: 4rem;
   width: auto;

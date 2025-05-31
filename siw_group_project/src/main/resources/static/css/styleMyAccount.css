@@ -11,7 +11,7 @@ body {
     height: 100vh; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; 
     overflow: auto; 
 }
 
@@ -26,6 +26,11 @@ header {
     color: white;
     flex-wrap: wrap;
 }
+
+header li a {
+  text-decoration: underline !important;
+}
+
 
 .logo,
 .longLogo {
@@ -91,16 +96,52 @@ header {
     display: block;
 }
 
-
-
 /* Main Content */
-main {
+main,
+main.container {
     flex: 1;
     text-align: center;
-    padding: 20px;
+    padding: 20px 2rem;
     flex-grow: 1;
-    overflow-y: auto; /* Permette lo scroll solo al contenuto principale */
-    max-width: 2000px;
+    overflow-y: auto;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+}
+
+.container-flex {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 82px);
+    /* header height + border */
+    overflow: hidden;
+}
+
+.left-panel {
+    width: 75%;
+    overflow-y: auto;
+    border-right: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 1rem 2rem;
+}
+
+.right-panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+
+
+/* Colonne layout */
+.col-md-4,
+.col-md-8 {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Bottoni aggiornati */
@@ -149,6 +190,7 @@ footer {
     background: #0056b3;
     color: white;
     flex-shrink: 0;
+    font-size: 0.9rem;
 }
 
 /* EXTRA */
@@ -166,12 +208,12 @@ footer {
 
 .gif-fixed {
     position: fixed;
-    bottom: -20px;       /* distanza dal basso */
-    right: -20px;        /* distanza da destra */
-    width: 20%;       /* dimensione della GIF */     
+    bottom: -20px;
+    right: -20px;
+    width: 20%;
     height: auto;
-    z-index: 1000;     
-    pointer-events: none; 
+    z-index: 1000;
+    pointer-events: none;
 }
 
 /* myAccount */
@@ -201,11 +243,11 @@ footer {
 }
 
 hr.separator {
-    border: 0;                
+    border: 0;
     height: 2px;
     width: 75%;
-    background-color: #346df0; 
-    margin: 40px auto;           
+    background-color: #346df0;
+    margin: 40px auto;
 }
 
 .status-badge {
@@ -257,7 +299,6 @@ hr.separator {
     flex: 1;
 }
 
-/* Nuova classe per i bottoni in alto a destra */
 .card-actions-top {
     position: absolute;
     top: 30px;
@@ -267,7 +308,17 @@ hr.separator {
     z-index: 10;
 }
 
-/* Stile bottone generico */
+.card-actions-top .delete-btn {
+    font-size: 0.85rem;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.card-actions-top .delete-btn i {
+    font-size: 0.9em;
+}
+
+
 .btn {
     background-color: transparent;
     border: none;
@@ -279,7 +330,6 @@ hr.separator {
     transition: background-color 0.2s ease;
 }
 
-/* Hover e focus */
 .btn:hover,
 .btn:focus {
     background-color: #eee;
@@ -289,36 +339,33 @@ hr.separator {
 
 .edit-btn i,
 .delete-btn i {
-    pointer-events: none; /* evitare conflitti click sull'icona */
+    pointer-events: none;
 }
 
-/* Per il form delete, evitare larghezza eccessiva */
 .card-actions-top form {
     margin: 0;
 }
 
-/* Container principale */
 .content-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* due colonne uguali */
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-
 @media (max-width: 768px) {
     .content-wrapper {
-        grid-template-columns: 1fr; /* una sola colonna */
+        grid-template-columns: 1fr;
     }
 }
 
-.left-section, .right-section {
+.left-section,
+.right-section {
     margin-bottom: 40px;
     width: 100%;
 }
-
 
 h2 i {
     margin-right: 10px;
@@ -337,6 +384,8 @@ h2 i {
 footer i {
     margin-right: 8px;
 }
+
+/* Messaggi / Chat */
 
 .messages-section {
     margin-top: 3rem;
@@ -383,7 +432,7 @@ footer i {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -410,4 +459,133 @@ footer i {
 .card-wrapper {
     position: relative;
     margin-bottom: 20px;
+}
+
+/* Chat specifici da styleChat.css */
+
+h5 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #1e3a8a;
+}
+
+/* Chat User List */
+.chat-user {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.chat-user:hover {
+    background-color: #f0f4ff;
+}
+
+/* Chat Box */
+.chat-box {
+    max-height: 500px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #f9fafb;
+    border: 1px solid #ddd;
+}
+
+.message {
+    max-width: 70%;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    line-height: 1.5;
+    position: relative;
+}
+
+.sent {
+    align-self: flex-end;
+    background-color: #dbeafe;
+    color: #1e3a8a;
+}
+
+.received {
+    align-self: flex-start;
+    background-color: #e5e7eb;
+}
+
+.timestamp {
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    color: #6b7280;
+}
+
+/* Reply Button */
+.btn-primary {
+    margin-top: 1rem;
+    background-color: #2563eb;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    main,
+    main.container {
+        flex-direction: column;
+        padding: 1rem 1rem 2rem 1rem;
+    }
+
+    .col-md-4,
+    .col-md-8 {
+        width: 100%;
+    }
+}
+
+/* Form Chat */
+form {
+    margin-top: 1.5rem;
+    position: relative;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    resize: none;
+    outline: none;
+}
+
+form button[type="submit"] {
+    background: #2563eb;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    margin-top: 0.75rem;
+    float: right;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background: #1d4ed8;
 }
