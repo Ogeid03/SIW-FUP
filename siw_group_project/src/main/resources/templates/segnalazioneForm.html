@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
   <meta charset="UTF-8">
   <title>Form a Step</title>
@@ -10,8 +9,19 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-</head>
+  <style>
+    .required-message {
+      color: red;
+      display: none;
+      margin-top: 5px;
+      font-size: 0.9em;
+    }
 
+    .invalid + .required-message {
+      display: block;
+    }
+  </style>
+</head>
 <body>
   <header>
     <a href="/"><img src="/img/LongLogo.png" alt="Logo" class="longLogo"></a>
@@ -33,10 +43,13 @@
 
   <main>
     <form id="multiStepForm" th:action="@{/conferma-avvistamento}" th:object="${segnalazione}" method="post" enctype="multipart/form-data">
+
       <!-- Step 1 -->
       <div class="step active">
-        <label for="luogo">Luogo Smarrimento:</label>
-        <input type="text" id="luogo" name="luogo" placeholder="Inserisci un luogo" />
+        <label for="luogo" class="required">Luogo Smarrimento:</label>
+        <input type="text" id="luogo" name="luogo" placeholder="Inserisci un luogo" required />
+        <p class="required-message">Questo campo è obbligatorio.</p>
+
         <div id="customDropdown" class="custom-dropdown"></div>
         <p id="suggestionMessage" class="suggestion-message"></p>
 
@@ -47,47 +60,47 @@
 
       <!-- Step 2 -->
       <div class="step">
-        <label for="specie">Specie:</label>
-        <select name="specie" id="specie" class="form-select" th:field="*{specie}" required>
+        <label for="specie" class="required">Specie:</label>
+        <select name="specie" id="specie" required>
           <option value="">Seleziona...</option>
           <option value="Cane">Cane</option>
           <option value="Gatto">Gatto</option>
           <option value="Pappagallo">Pappagallo</option>
           <option value="Roditore">Roditore</option>
           <option value="Rettile">Rettile</option>
-        </select><br>
+        </select>
+        <p class="required-message">Questo campo è obbligatorio.</p>
 
         <label for="razza">Razza:</label>
-        <select id="razza" name="razza" th:field="*{razza}">
+        <select id="razza" name="razza">
           <option value="">-- Seleziona una razza --</option>
-        </select><br>
+        </select>
       </div>
 
       <!-- Step 3 -->
       <div class="step">
         <label for="descrizione">Descrizione Fisica:</label>
-        <input type="text" id="descrizione" name="descrizione" maxlength="255" th:field="*{descrizioneFisica}"><br>
+        <input type="text" id="descrizione" name="descrizione" maxlength="255">
 
         <label for="salute">Stato Salute Apparente:</label>
-        <input type="text" id="salute" name="salute" maxlength="255" th:field="*{statoSalute}"><br>
+        <input type="text" id="salute" name="salute" maxlength="255">
 
         <label for="azione">Azioni Intraprese:</label>
-        <input type="text" id="azione" name="azione" maxlength="255" th:field="*{azioniIntraprese}"><br>
+        <input type="text" id="azione" name="azione" maxlength="255">
       </div>
 
       <!-- Step 4 -->
       <div class="step">
         <label for="info">Informazioni Extra:</label>
-        <textarea id="info" name="info" placeholder="max 255 caratteri" maxlength="255"
-          th:field="*{informazioniExtra}"></textarea><br>
+        <textarea id="info" name="info" maxlength="255" placeholder="max 255 caratteri"></textarea>
 
-        <label for="foto">Carica una foto:</label>
-        <input type="file" id="file" name="file" accept="image/*" required
-          oninput="anteprimaImmagine(this.value)">
+        <label for="file" class="required">Carica una foto:</label>
+        <input type="file" id="file" name="file" accept="image/*" required>
+        <p class="required-message">È necessaria almeno una foto.</p>
+
         <div id="preview" class="image-preview"></div>
       </div>
 
-      <!-- Bottoni -->
       <div class="buttons">
         <button type="button" id="prevBtn">Indietro</button>
         <button type="button" id="nextBtn">Avanti</button>
@@ -118,8 +131,7 @@
         });
       }
     });
-  </script>
+    </script>
   <script src="/js/formMultiStepScript.js"></script>
 </body>
-
 </html>
