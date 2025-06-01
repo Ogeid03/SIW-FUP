@@ -2,10 +2,10 @@
 <html lang="it">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Form a Step</title>
-  <link rel="stylesheet" href="/css/styleMultiform.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <title>Form a Step - Denuncia</title>
+  <link rel="stylesheet" href="/css/styleMultiform.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -14,7 +14,7 @@
 
 <body>
   <header>
-    <a href="/"><img src="/img/LongLogo.png" alt="Logo" class="longLogo"></a>
+    <a href="/"><img src="/img/LongLogo.png" alt="Logo" class="longLogo" /></a>
     <nav>
       <ul class="menu">
         <li><a href="/">Home</a></li>
@@ -24,7 +24,6 @@
           <ul class="submenu">
             <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
             <li><a href="/segnala">Contattaci</a></li>
-            <!-- Se non autenticato, mostra un link per il login -->
             <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
           </ul>
         </li>
@@ -33,30 +32,29 @@
   </header>
 
   <main>
-    <form id="multiStepForm" th:action="@{/conferma-denuncia}" th:object="${denuncia}" method="post">
+    <form id="multiStepForm" th:action="@{/conferma-denuncia}" th:object="${denuncia}" method="post" enctype="multipart/form-data">
+
       <!-- Step 1 -->
       <div class="step active">
-        <label for="luogo">Luogo Smarrimento:</label>
-        <input type="text" id="luogo" name="luogo" placeholder="Inserisci un luogo" />
+        <label for="luogo" class="required">Luogo Smarrimento:</label>
+        <input type="text" id="luogo" name="luogo" placeholder="Inserisci un luogo" required />
+        <p class="required-message">Questo campo è obbligatorio.</p>
+
         <div id="customDropdown" class="custom-dropdown"></div>
         <p id="suggestionMessage" class="suggestion-message"></p>
 
-
-        <!-- Latitudine e Longitudine nascosti -->
-        <input type="hidden" id="lat" name="latitudine">
-        <input type="hidden" id="lon" name="longitudine">
-
-        <!-- Mappa -->
+        <input type="hidden" id="lat" name="latitudine" />
+        <input type="hidden" id="lon" name="longitudine" />
         <div id="map"></div>
-
       </div>
 
       <!-- Step 2 -->
       <div class="step">
-        <label for="nome">Nome Animale Smarrito:</label>
-        <input type="text" id="nome" name="nome" th:field="*{nome}" required><br>
+        <label for="nome" class="required">Nome Animale Smarrito:</label>
+        <input type="text" id="nome" name="nome" th:field="*{nome}" required />
+        <p class="required-message">Questo campo è obbligatorio.</p>
 
-        <label for="specie">Specie:</label>
+        <label for="specie" class="required">Specie:</label>
         <select name="specie" id="specie" class="form-select" th:field="*{specie}" required>
           <option value="">Seleziona...</option>
           <option value="Cane">Cane</option>
@@ -64,43 +62,45 @@
           <option value="Pappagallo">Pappagallo</option>
           <option value="Roditore">Roditore</option>
           <option value="Rettile">Rettile</option>
-        </select><br>
+        </select>
+        <p class="required-message">Questo campo è obbligatorio.</p>
 
         <label for="razza">Razza:</label>
         <select id="razza" name="razza" th:field="*{razza}">
           <option value="">-- Seleziona una razza --</option>
-        </select><br>
+        </select>
       </div>
 
       <!-- Step 3 -->
       <div class="step">
         <label for="descrizione">Descrizione Fisica:</label>
-        <input type="text" id="descrizione" name="descrizione" th:field="*{descrizioneFisica}"><br>
+        <input type="text" id="descrizione" name="descrizioneFisica" th:field="*{descrizioneFisica}" />
 
-        <label for="eta">Età:</label>
+        <label for="eta" class="required">Età:</label>
         <select name="eta" id="eta" class="form-select" required>
           <option value="">Seleziona...</option>
           <option value="Cucciolo">Cucciolo</option>
           <option value="Adulto">Adulto</option>
           <option value="Anziano">Anziano</option>
         </select>
+        <p class="required-message">Questo campo è obbligatorio.</p>
 
         <label for="premioOfferto">Premio offerto:</label>
-        <input type="number" id="premioOfferto" name="premioOfferto" step="0.01" th:field="*{premioOfferto}"><br>
+        <input type="number" id="premioOfferto" name="premioOfferto" step="0.01" th:field="*{premioOfferto}" />
       </div>
 
       <!-- Step 4 -->
       <div class="step">
         <label for="info">Informazioni Extra:</label>
-        <textarea id="info" name="info" placeholder="max 255 caratteri" th:field="*{informazioniExtra}"></textarea><br>
+        <textarea id="info" name="info" maxlength="255" placeholder="max 255 caratteri"></textarea>
 
-        <label for="foto">Carica una foto:</label>
-        <input type="file" id="file" name="file" accept="image/*" required
-          oninput="anteprimaImmagine(this.value)">
+        <label for="file" class="required">Carica una foto:</label>
+        <input type="file" id="file" name="file" accept="image/*" required />
+        <p class="required-message">È necessaria almeno una foto.</p>
+
         <div id="preview" class="image-preview"></div>
       </div>
 
-      <!-- Bottoni -->
       <div class="buttons">
         <button type="button" id="prevBtn">Indietro</button>
         <button type="button" id="nextBtn">Avanti</button>

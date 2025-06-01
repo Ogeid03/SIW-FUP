@@ -279,3 +279,7 @@ form {
 .form-error-message.active {
   display: block;
 }
+
+input.invalid, select.invalid, textarea.invalid {
+  border: 2px solid red;
+}
