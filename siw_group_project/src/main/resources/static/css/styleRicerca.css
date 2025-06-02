@@ -153,6 +153,10 @@ main {
   z-index: 1;
 }
 
+.scheda .stretched-link {
+  z-index: 1; /* più basso dei pulsanti */
+}
+
 .link-scheda {
   text-decoration: none;
   color: inherit;
@@ -162,6 +166,7 @@ main {
   margin-left: auto;
   display: flex;
   gap: 5px;
+  z-index: 2;   
 }
 
 
