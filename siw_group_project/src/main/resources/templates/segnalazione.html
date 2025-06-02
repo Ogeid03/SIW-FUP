@@ -86,20 +86,18 @@
         </div>
         <div class="chat">
             <h2>Invia un messaggio</h2>
-            <form th:action="@{/messaggi/invia}" method="post" th:object="${messaggio}" class="container mt-4">
+            <form th:action="@{/messaggi/invia}" method="post" th:object="${messaggio}" class="chat-form">
                 <input type="hidden" th:field="*{codDestinatario.id}" />
                 <input type="hidden" th:field="*{codSegnalazione.id}" />
 
-                <div class="mb-3">
-                    <label for="contenuto" class="form-label">Messaggio</label>
-                    <textarea th:field="*{contenuto}" id="contenuto" class="form-control" rows="4" required></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Invia</button>
+                <div class="input-group">
+                    <textarea th:field="*{contenuto}" id="contenuto" placeholder="Scrivi qui il tuo messaggio..."
+                        required></textarea>
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </form>
         </div>
+
 
         <div class="similar-sightings-section mt-5">
 
