@@ -188,18 +188,8 @@
                                     th:value="${messaggi[0]?.codSegnalazione?.id}" />
                                 <textarea th:field="*{contenuto}" required
                                     placeholder="Scrivi un messaggio..."></textarea>
-                                <button type="submit">Invia</button>
+                                <button type="submit">✈️</button>
                             </form>
-                        </div>
-
-                        <!-- Pulsante Rispondi solo se i dati sono validi -->
-                        <div th:if="${not #lists.isEmpty(messaggi)} 
-                            and ${messaggi[0].codSegnalazione != null} 
-                            and ${messaggi[0].codDestinatario != null}">
-                            <a th:href="@{/messaggi/nuovo(
-                            segnalazioneId=${messaggi[0].codSegnalazione.id},
-                            destinatarioId=${messaggi[0].codDestinatario.id})}"
-                                class="btn btn-primary mt-3">Rispondi</a>
                         </div>
                     </div>
                 </div>
