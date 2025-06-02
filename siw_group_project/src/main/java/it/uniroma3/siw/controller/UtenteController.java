@@ -71,6 +71,8 @@ public class UtenteController {
         model.addAttribute("avvistamenti", avvistamenti);
         model.addAttribute("messaggiRicevuti", messaggiRicevuti);
 
+        messaggioService.preparaModelloChatPerUtente(utente, model);
+
         return "myAccount";
     }
 

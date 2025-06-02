@@ -28,7 +28,7 @@ public class MessaggioController {
     @Autowired
     private MessaggioService messaggioService;
 
-    @GetMapping("/messaggi/nuovo")
+    /*@GetMapping("/messaggi/nuovo")
     public String nuovoMessaggio(@RequestParam Long segnalazioneId,
             @RequestParam Long destinatarioId,
             Model model, Principal principal) {
@@ -49,7 +49,7 @@ public class MessaggioController {
 
         model.addAttribute("messaggio", m);
         return "chat";
-    }
+    }*/
 
     @PostMapping("/messaggi/invia")
     public String inviaMessaggio(@ModelAttribute("messaggio") Messaggio messaggio, Principal principal) {
@@ -71,7 +71,7 @@ public class MessaggioController {
 
         messaggioService.save(messaggio);
 
-        return "redirect:/chat/" + destinatarioId;
+        return "redirect:/account"; //chat/" + destinatarioId;
     }
 
     @GetMapping("/chat")
@@ -81,12 +81,12 @@ public class MessaggioController {
 
         if (!utentiConConversazioni.isEmpty()) {
             Utente utenteSelezionato = utentiConConversazioni.get(0);
-            return "redirect:/chat/" + utenteSelezionato.getId();
+            return "redirect:/account/" + utenteSelezionato.getId();
         }
 
         model.addAttribute("utentiConConversazioni", utentiConConversazioni);
         model.addAttribute("utenteLoggato", utenteLoggato);
-        return "recapChat";
+        return "myAccount";
     }
 
     @GetMapping("/chat/{utenteId}")
@@ -110,7 +110,7 @@ public class MessaggioController {
         model.addAttribute("utentiConConversazioni", utentiConConversazioni);
         model.addAttribute("utenteLoggato", utenteLoggato);
 
-        return "recapChat";
+        return "myAccount";
     }
 
     private List<Utente> trovaUtentiConConversazioni(Utente utente) {
