@@ -37,7 +37,8 @@
         <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> Riepilogo Avvistamento</h2>
 
         <div class="summary-box">
-            <p><strong><i class="fa-solid fa-location"></i> Luogo:</strong> <span th:text="${segnalazione.luogo}"></span></p>
+            <p><strong><i class="fa-solid fa-location"></i> Luogo:</strong> <span
+                    th:text="${segnalazione.luogo}"></span></p>
             <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span th:text="${segnalazione.specie}"></span>
             </p>
             <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span th:text="${segnalazione.razza}"></span></p>
@@ -49,8 +50,9 @@
                     th:text="${segnalazione.azioniIntraprese}"></span></p>
             <p><strong><i class="fa-solid fa-circle-info"></i> Informazioni Extra:</strong> <span
                     th:text="${segnalazione.informazioniExtra}"></span></p>
-            <p><strong><i class="fa-solid fa-camera"></i> Foto (URL):</strong><br><img th:src="${segnalazione.foto}" alt="Foto avvistamento" class="segnalazione-img">
-</p>
+            <p><strong><i class="fa-solid fa-camera"></i> Foto (URL):</strong><br><img th:src="${segnalazione.foto}"
+                    alt="Foto avvistamento" class="segnalazione-img">
+            </p>
 
         </div>
 
@@ -78,46 +80,38 @@
 
         <div class="mt-5">
             <h2 class="text-center mb-4">Denunce Rilevanti</h2>
-            <div th:if="${not #lists.isEmpty(simili)}">
-                <div id="carouselDenunce" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                    <div class="carousel-inner">
-
-                        <div th:each="den, stat : ${simili}"
-                            th:class="'carousel-item' + (${stat.index} == 0 ? ' active' : '')">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <div class="card mb-3 mx-auto">
-                                            <a th:href="@{/segnalazioni/{id}(id=${den.id})}">
-                                                <img th:src="${den.foto}" class="card-img-top"
-                                                    th:alt="${den.descrizioneFisica}">
-                                            </a>
-                                            <div class="card-body">
-                                                <p class="card-text text-center" th:text="${den.descrizioneFisica}"></p>
-                                            </div>
-                                        </div>
-                                    </div>
+            <div class="container">
+                <div th:if="${#lists.isEmpty(rilevanti)}">
+                    <p class="text-center">Nessuna denuncia simile trovata.</p>
+                </div>
+                <div th:if="${not #lists.isEmpty(rilevanti)}">
+                    <div id="relevantCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div th:each="den, iterStat : ${rilevanti}"
+                                th:class="'carousel-item' + (${iterStat.index} == 0 ? ' active' : '')">
+                                <div class="d-flex justify-content-center">
+                                    <a th:href="@{/segnalazioni/{id}(id=${den.id})}">
+                                        <img th:src="${den.foto}" class="d-block rounded"
+                                            th:alt="${den.descrizioneFisica}">
+                                    </a>
                                 </div>
+                                <p class="text-center mt-2" th:text="${den.descrizioneFisica}"></p>
                             </div>
                         </div>
-
+                        <button class="carousel-control-prev" type="button" data-bs-target="#relevantCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                            <span class="visually-hidden">Precedente</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#relevantCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                            <span class="visually-hidden">Successivo</span>
+                        </button>
                     </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselDenunce"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                        <span class="visually-hidden">Precedente</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselDenunce"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                        <span class="visually-hidden">Successivo</span>
-                    </button>
                 </div>
             </div>
-            <div th:if="${#lists.isEmpty(simili)}">
-                <p class="text-center">Nessuna denuncia simile trovato.</p>
-            </div>
+
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

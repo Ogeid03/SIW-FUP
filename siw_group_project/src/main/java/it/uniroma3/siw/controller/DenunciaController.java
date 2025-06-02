@@ -59,6 +59,8 @@ public class DenunciaController {
             // Qui assegni il path relativo, non il MultipartFile
             denuncia.setFoto("/uploads/" + filename);
 
+            
+
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("errore", "Errore durante il caricamento dell’immagine.");
@@ -66,8 +68,9 @@ public class DenunciaController {
         }
     }
 
-        model.addAttribute("denuncia", denuncia);
+        
         var simili = denunciaService.trovaAvvistamentiSimili(denuncia);
+        model.addAttribute("denuncia", denuncia);
         model.addAttribute("simili", simili);
         return "recap-denuncia";
     }

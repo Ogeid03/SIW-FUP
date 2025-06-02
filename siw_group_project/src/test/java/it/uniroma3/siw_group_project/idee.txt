@@ -1,8 +1,8 @@
 ⬜ -> ✅
 
-🛑 - Il colore dell'animale dovrebbe avere un suo attributo specifico ??? (Colore, Lunghezza pelo, Caratteristiche mantello, sesso, micrichip?)
+🛑🛑 - Aggiungi attributi (Colore, Lunghezza pelo, Caratteristiche mantello, sesso, micrichip?)
 ✅ - Nel form mettere più menù a tendina
-🛑 - Più razze (es. [xcane] [xlupo]) va cambiato in list(razza) ---> DIEGO (inutile)
+🛑 ? Più razze (es. [xcane] [xlupo]) va cambiato in list(razza) ---> DIEGO (inutile)
 ✅ - Gestione Luogo simile su base distanza
 ✅ - Bro scusa, vedevo e i form risultano un po' lunghetti, nulla in contrario in un form a step? 
         Magari cambiamo l'idea iniziale dell'homoage e facciamo 3 button che rimandano a pagine per i form,
@@ -21,21 +21,21 @@
 ✅ - Aggiugni lo status alle segnalazioni
 ✅ - Gestione Account Gestore
 ✅ - Modifica/Elimina Segnalazione
-🛑 - Modifica e recupera account
+⬜ ? Modifica e recupera account
 ✅ - Gestione Messaggistica (pagina Visualizzazione)
 ✅ - Gestione Enum
 ⬜ ? Elimina file inutili (es. di "recap" uno solo non 2)
 ✅ - File al posto di url per le Foto
-⬜ - Carica Online
+🛑🛑 - Carica Online
 
 
 
 fixes
 ✅ - il cursore fa schifo, aggiungi icona utente
-🛑 - Uniformare l'header
+✅ - Uniformare l'header
 ✅ - Indicare i campi obbligatori
 ✅ - No spazi bianchi homepage
-🛑 - Meno zoom gatto home
+🛑 ? Meno zoom gatto home
 ✅ - Fix foto in denunce
 ✅ - Fix denunce simili, mostra le denucne con avvistamenti e viceversa
 ✅ - Fix inserimento Luogo
@@ -47,11 +47,11 @@ fixes
          movimento background in relazione al mouse non più button ma il button è tutto il back ground e i button diventano scritte)
 ✅ - Nome "Pet" in denunciaForm
 ✅ - piuttosto che età numerico meglio eta a step (cucciolo, adulto, vecchio)
-🛑 - inserire informazioni nel carosello oltre la foto
-🛑 - correggere i caroselli nei recap come quelli su segnalazioni
-⬜ - rendere più carino about us
-⬜ - levare il js dai codici
-⬜ - rendere modifica conforme ai form
+🛑🛑 - inserire informazioni nel carosello oltre la foto
+🛑🛑 - correggere i caroselli nei recap come quelli su segnalazioni
+🛑🛑 - rendere più carino about us
+🛑🛑 - levare il js dai codici
+🛑🛑 - rendere modifica conforme ai form
 ✅ - non prende il touch su consulta segnalazioni e non sono uguali nello stile avvistamenti e denunce
 
 proposte
@@ -62,16 +62,16 @@ proposte
 ✅ -  accedi nel menu principale e al suo posto appare il nomeUtente al  (es. ciao Mario)
 ⬜ - footer dopo %
 ⬜ ? doggo assistente chatbot semplice
-🛑 - gli elenchi devono essere ordinati su base della data (sse attivi)
-🛑 - spostare messaggio su segnalazione e riepilogo messaggi su account a destra dei dati utente
-🛑 - in riepilogo fare 2 colonne e aggiungere in fondo la foto a largehzza piena
+🛑🛑 - gli elenchi devono essere ordinati su base della data (sse attivi)
+✅ - spostare messaggio su segnalazione e riepilogo messaggi su account a destra dei dati utente
+🛑 ? in riepilogo fare 2 colonne e aggiungere in fondo la foto a largehzza piena
 ⬜ ? notifica con pallino rosso su account post segnalazione
 ⬜ - cambia bottoni in segnalazione, giallo minimal (senza button solo scritta con link) e blu nel riquadro arancio (riquaro riempito di arancio)
 ⬜ - riempere meglio nei form (sfrutta la suddivisione arancione blu per avvistamenti e denunce)
 ⬜ ? fare login prima di salvare la segnalazione
-🛑 - messaggi popup resoconto azioni
+🛑 ? messaggi popup resoconto azioni
 ⬜ ? Mettere la ricerca su homepage, stile "subito"      ------------------------
-🛑 - sul filtro ritornare messaggio di errore                  CAMBIAMENTI
+🛑🛑 - sul filtro ritornare messaggio di errore                  CAMBIAMENTI
 ⬜ - Il filter va rivisto (più tipo subito)                      RICERCA
 ⬜ - poco intuitivo design ricerca                       ------------------------
 🛑 - aggiungi FAQ a menu a tendina e pure about (??) e cambia design FAQ (guarda ds)

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.ui.Model;
 import it.uniroma3.siw.model.Messaggio;
-import it.uniroma3.siw.model.Segnalazione;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.MessaggioService;
 import it.uniroma3.siw.service.SegnalazioneService;

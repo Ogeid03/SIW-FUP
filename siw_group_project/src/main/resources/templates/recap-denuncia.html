@@ -38,15 +38,20 @@
         <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> Riepilogo Dati Denuncia</h2>
 
         <div class="summary-box">
-            <p><strong><i class="fa-solid fa-location"></i> Luogo:</strong> <span th:text="${denuncia.luogo}"></span></p>
+            <p><strong><i class="fa-solid fa-location"></i> Luogo:</strong> <span th:text="${denuncia.luogo}"></span>
+            </p>
             <p><strong><i class="fa-solid fa-user"></i> Nome:</strong> <span th:text="${denuncia.nome}"></span></p>
             <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span th:text="${denuncia.specie}"></span></p>
             <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span th:text="${denuncia.razza}"></span></p>
-            <p><strong><i class="fa-solid fa-align-left"></i> Descrizione:</strong> <span th:text="${denuncia.descrizioneFisica}"></span></p>
-            <p><strong><i class="fa-solid fa-hourglass-half"></i> Età:</strong> <span th:text="${denuncia.eta}"></span></p>
-            <p><strong><i class="fa-solid fa-coins"></i> Premio offerto:</strong> <span th:text="${denuncia.premioOfferto}"></span></p>
-            <p><strong><i class="fa-solid fa-circle-info"></i> Informazioni extra:</strong> <span th:text="${denuncia.informazioniExtra}"></span></p>
-            <p><strong><i class="fa-solid fa-camera"></i> Foto (URL):</strong><br>
+            <p><strong><i class="fa-solid fa-align-left"></i> Descrizione:</strong> <span
+                    th:text="${denuncia.descrizioneFisica}"></span></p>
+            <p><strong><i class="fa-solid fa-hourglass-half"></i> Età:</strong> <span th:text="${denuncia.eta}"></span>
+            </p>
+            <p><strong><i class="fa-solid fa-coins"></i> Premio offerto:</strong> <span
+                    th:text="${denuncia.premioOfferto}"></span></p>
+            <p><strong><i class="fa-solid fa-circle-info"></i> Informazioni extra:</strong> <span
+                    th:text="${denuncia.informazioniExtra}"></span></p>
+            <p><strong><i class="fa-solid fa-camera"></i> Foto:</strong><br>
                 <img th:src="${denuncia.foto}" alt="Foto denuncia" class="segnalazione-img">
             </p>
         </div>
@@ -76,42 +81,41 @@
         </form>
 
         <div class="mt-5">
-            <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
-            <div th:if="${not #lists.isEmpty(simili)}">
-                <div id="carouselAvvistamenti" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                    <div class="carousel-inner">
-                        <div th:each="avv, stat : ${simili}"
-                             th:class="'carousel-item' + (${stat.index} == 0 ? ' active' : '')">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <div class="card mb-3 mx-auto">
-                                            <a th:href="@{/segnalazioni/{id}(id=${avv.id})}">
-                                                <img th:src="${avv.foto}" class="card-img-top" th:alt="${avv.descrizioneFisica}">
-                                            </a>
-                                            <div class="card-body">
-                                                <p class="card-text text-center" th:text="${avv.descrizioneFisica}"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
+    <div class="container">
+        <div th:if="${#lists.isEmpty(simili)}">
+            <p class="text-center">Nessun avvistamento simile trovato.</p>
+        </div>
+        <div th:if="${not #lists.isEmpty(simili)}">
+            <div id="similarCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div th:each="avv, iterStat : ${simili}" th:classappend="${iterStat.index == 0} ? 'active' : ''"
+                        class="carousel-item">
+                        <div class="d-flex justify-content-center">
+                            <a th:href="@{/segnalazioni/{id}(id=${avv.id})}">
+                                <img th:src="@{${avv.foto}}" class="d-block rounded"
+                                    th:alt="${avv.descrizioneFisica}" style="max-height: 300px;">
+                            </a>
                         </div>
+                        <p class="text-center mt-2" th:text="${avv.descrizioneFisica}"></p>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselAvvistamenti" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                        <span class="visually-hidden">Precedente</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselAvvistamenti" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                        <span class="visually-hidden">Successivo</span>
-                    </button>
                 </div>
-            </div>
-            <div th:if="${#lists.isEmpty(simili)}">
-                <p class="text-center">Nessun avvistamento simile trovato.</p>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#similarCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Precedente</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#similarCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Successivo</span>
+                </button>
             </div>
         </div>
+    </div>
+</div>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
