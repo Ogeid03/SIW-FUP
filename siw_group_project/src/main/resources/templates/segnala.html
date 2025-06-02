@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Segnala un contenuto</title>
     <link rel="stylesheet" href="/css/styleMultiform.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
     <header>
@@ -17,38 +19,43 @@
                 <li class="dropdown">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
-                        <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
+                        <li sec:authorize="isAuthenticated()"><a href="/account">Account</a></li>
+                        <li><a href="/about">About Us</a></li>
                         <li><a href="/segnala">Contattaci</a></li>
-                        <!-- Se non autenticato, mostra un link per il login -->
-                        <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
+                        <li sec:authorize="isAuthenticated()">
+                            <a href="#"
+                                onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+                        </li>
+
                     </ul>
                 </li>
             </ul>
         </nav>
     </header>
 
-<main>
-    <h1 class="section-title">📢 Segnala un contenuto</h1>
+    <main>
+        <h1 class="section-title">📢 Segnala un contenuto</h1>
 
-    <form action="/invia-segnalazione" method="post" class="summary-box">
-        <div class="step active">
-            <label for="email">La tua email</label>
-            <input type="email" id="email" name="email" required>
+        <form action="/invia-segnalazione" method="post" class="summary-box">
+            <div class="step active">
+                <label for="email">La tua email</label>
+                <input type="email" id="email" name="email" required>
 
-            <label for="motivo">Motivo della segnalazione</label>
-            <textarea id="motivo" name="motivo" rows="5" required></textarea>
-        </div>
+                <label for="motivo">Motivo della segnalazione</label>
+                <textarea id="motivo" name="motivo" rows="5" required></textarea>
+            </div>
 
-        <div class="buttons">
-            <button type="submit">Invia Segnalazione</button>
-        </div>
-    </form>
-</main>
+            <div class="buttons">
+                <button type="submit">Invia Segnalazione</button>
+            </div>
+        </form>
+    </main>
 
-<footer>
-    <p>Contatti: info@esempio.com | +39 0123 456789</p>
-    <p>Via dei Finti, 123 - 00100 Roma (RM)</p>
-</footer>
+    <footer>
+        <p>Contatti: info@esempio.com | +39 0123 456789</p>
+        <p>Via dei Finti, 123 - 00100 Roma (RM)</p>
+    </footer>
 
 </body>
+
 </html>

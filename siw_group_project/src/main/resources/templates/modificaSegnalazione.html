@@ -17,10 +17,14 @@
                 <li class="dropdown">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
-                        <li sec:authorize="isAuthenticated()"><a href="#">Account</a></li>
+                        <li sec:authorize="isAuthenticated()"><a href="/account">Account</a></li>
+                        <li><a href="/about">About Us</a></li>
                         <li><a href="/segnala">Contattaci</a></li>
-                        <!-- Se non autenticato, mostra un link per il login -->
-                        <li sec:authorize="!isAuthenticated()"><a href="/login">Accedi</a></li>
+                        <li sec:authorize="isAuthenticated()">
+                            <a href="#"
+                                onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+                        </li>
+
                     </ul>
                 </li>
             </ul>
@@ -41,13 +45,14 @@
             <label>Luogo:</label>
             <input type="text" th:field="*{luogo}" required />
 
-            <label>Descrizione Fisica:</label> 
+            <label>Descrizione Fisica:</label>
             <textarea th:field="*{descrizioneFisica}"></textarea>
 
             <label>Foto (URL):</label>
             <input type="text" th:field="*{foto}" placeholder="https://..." />
 
-            <input hidden type="datetime-local" name="dataOra" th:value="${#temporals.format(segnalazione.dataOra, 'yyyy-MM-dd''T''HH:mm')}" />
+            <input hidden type="datetime-local" name="dataOra"
+                th:value="${#temporals.format(segnalazione.dataOra, 'yyyy-MM-dd''T''HH:mm')}" />
             <label>Stato Segnalazione:</label>
             <input type="text" th:field="*{codStatus}" />
 
