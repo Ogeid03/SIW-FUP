@@ -35,82 +35,81 @@
                 Seleziona "Segnalazioni" o "Denunce" per visualizzare i dati.
             </div>
 
-            <!-- Pulsanti per la selezione -->
-            <div class="pulsanti-switch">
+            <!-- Pulsanti -->
+            <div class="pulsanti-switch mb-3 d-flex align-items-center flex-wrap gap-2">
                 <button class="btn btn-primary" onclick="mostra('segnalazioni')">Segnalazioni</button>
                 <button class="btn btn-danger" onclick="mostra('denunce')">Denunce</button>
-                <input type="text" id="searchInput" class="form-control w-50 ms-3"
+                <input type="text" id="searchInput" class="form-control w-50"
                     placeholder="Cerca per razza, via o data..." onkeyup="filtraSchede()">
-                <button class="btn btn-secondary ms-2" onclick="resetFiltro()">Reset</button><br>
+                <button class="btn btn-secondary" onclick="resetFiltro()">Reset</button>
             </div>
 
-            <!-- ... (tutto uguale fino a dentro il <body>) ... -->
-
-            <!-- Segnalazioni -->
+            <!-- SEGNALAZIONI -->
             <div id="segnalazioni" class="contenitore-schede d-none">
                 <h3>Avvistamenti</h3>
-                <div th:each="avv : ${avvistamenti}">
-                    <a th:href="@{/segnalazioni/{id}(id=${avv.id})}" class="link-scheda">
-                        <div class="scheda">
-                            <img th:src="${avv.foto}" alt="Foto Avvistamento">
-                            <div>
-                                <p><strong>Razza:</strong> <span th:text="${avv.razza}"></span></p>
-                                <p><strong>Data:</strong> <span
-                                        th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}"></span></p>
-                                <p><strong>Via:</strong> <span th:text="${avv.luogo}"></span></p>
-                            </div>
-                            <!-- Admin controls -->
-                            <div sec:authorize="hasAuthority('ADMIN')" class="admin-controls">
-                                <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn btn-sm btn-warning"
-                                title="Modifica">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
-                                onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
-                                <input type="hidden" name="_method" value="delete" />
-                                <button type="submit" class="btn btn-sm btn-danger" title="Elimina">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
-                            </div>
-                        </div>
-                </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Denunce -->
-        <div id="denunce" class="contenitore-schede d-none">
-            <h3>Denunce</h3>
-            <div th:each="den : ${denunce}">
-                <a th:href="@{/segnalazioni/{id}(id=${den.id})}" class="link-scheda">
-                    <div class="scheda" id="schedaDenuncia">
-                        <img th:src="${den.foto}" alt="Foto Denuncia">
-                        <div>
-                            <p><strong>Razza:</strong> <span th:text="${den.razza}"></span></p>
-                            <p><strong>Data:</strong> <span
-                                    th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}"></span></p>
-                            <p><strong>Via:</strong> <span th:text="${den.luogo}"></span></p>
-                        </div>
-                        <!-- Admin controls -->
-                        <div sec:authorize="hasAuthority('ADMIN')" class="admin-controls">
-                            <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn btn-sm btn-warning"
-                                title="Modifica">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
-                                onsubmit="return confirm('Sei sicuro di voler eliminare questa denuncia?');">
-                                <input type="hidden" name="_method" value="delete" />
-                                <button type="submit" class="btn btn-sm btn-danger" title="Elimina">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
-                        </div>
+                <div th:each="avv : ${avvistamenti}" class="scheda position-relative">
+                    <img th:src="${avv.foto}" alt="Foto Avvistamento">
+                    <div>
+                        <p><strong>Razza:</strong> <span th:text="${avv.razza}"></span></p>
+                        <p><strong>Data:</strong> <span
+                                th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}"></span></p>
+                        <p><strong>Via:</strong> <span th:text="${avv.luogo}"></span></p>
                     </div>
-                </a>
+
+                    <!-- link cliccabile sull'intera scheda -->
+                    <a th:href="@{/segnalazioni/{id}(id=${avv.id})}" class="stretched-link"></a>
+
+                    <!-- Admin controls -->
+                    <div sec:authorize="hasAuthority('ADMIN')" class="admin-controls">
+                        <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn btn-sm btn-warning"
+                            title="Modifica">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
+                            onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="btn btn-sm btn-danger" title="Elimina">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DENUNCE -->
+            <div id="denunce" class="contenitore-schede d-none">
+                <h3>Denunce</h3>
+                <div th:each="den : ${denunce}" class="scheda position-relative">
+                    <img th:src="${den.foto}" alt="Foto Denuncia">
+                    <div>
+                        <p><strong>Razza:</strong> <span th:text="${den.razza}"></span></p>
+                        <p><strong>Data:</strong> <span
+                                th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}"></span></p>
+                        <p><strong>Via:</strong> <span th:text="${den.luogo}"></span></p>
+                    </div>
+
+                    <!-- link cliccabile sull'intera scheda -->
+                    <a th:href="@{/segnalazioni/{id}(id=${den.id})}" class="stretched-link"></a>
+
+                    <!-- Admin controls -->
+                    <div sec:authorize="hasAuthority('ADMIN')" class="admin-controls">
+                        <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn btn-sm btn-warning"
+                            title="Modifica">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
+                            onsubmit="return confirm('Sei sicuro di voler eliminare questa denuncia?');">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="btn btn-sm btn-danger" title="Elimina">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+
 
     <!-- Footer -->
     <footer>

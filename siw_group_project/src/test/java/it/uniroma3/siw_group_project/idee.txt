@@ -52,7 +52,7 @@ fixes
 ⬜ - rendere più carino about us
 ⬜ - levare il js dai codici
 ⬜ - rendere modifica conforme ai form
-🛑 - non prende il touch su consulta segnalazioni e non sono uguali nello stile avvistamenti e denunce
+✅ - non prende il touch su consulta segnalazioni e non sono uguali nello stile avvistamenti e denunce
 
 proposte
 ✅ -  solo due bottoni, ricerca messo in menu 
