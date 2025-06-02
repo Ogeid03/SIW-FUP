@@ -3,7 +3,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-width: 100%;
 }
+
+html, body {
+  overflow-x: hidden;
+}
+
 
 /* Stile generale */
 body {
@@ -25,6 +31,7 @@ header {
     background-color: #346df0;
     color: white;
     flex-wrap: wrap;
+    margin-bottom: 0;
 }
 
 header li a {
@@ -100,7 +107,7 @@ header li a {
 main {
     flex: 1;
     text-align: center;
-    padding: 20px;
+    padding: 0;
     flex-grow: 1;
     overflow-y: auto; /* Permette lo scroll solo al contenuto principale */
     max-width: 2000px;
@@ -208,6 +215,7 @@ footer {
 
 /* EXTRA */
 .hero {
+    margin-top: 0;
     background: url('/img/bannerHPprova.jpg') center/cover no-repeat;
     height: 60%;
     color: white;
@@ -222,6 +230,14 @@ footer {
 .hero-text{
     font-size: 2em;
     margin-bottom: 0.5em;
+}
+
+.hero,
+.segnalazione-invito {
+    width: 100vw;
+    margin: 0;
+    padding: 100px 5vw;
+    box-sizing: border-box;
 }
 
 .cta-btn {

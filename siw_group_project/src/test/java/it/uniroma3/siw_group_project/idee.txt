@@ -33,7 +33,7 @@
 fixes
 ✅ - il cursore fa schifo, aggiungi icona utente
 🛑 - Uniformare l'header
-🛑 - Indicare i campi obbligatori
+✅ - Indicare i campi obbligatori
 🛑 - No spazi bianchi homepage
 🛑 - Meno zoom gatto home
 ✅ - Fix foto in denunce
