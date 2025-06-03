@@ -1,6 +1,6 @@
 ⬜ -> ✅
 
-🛑🛑 - Aggiungi attributi (Colore, Lunghezza pelo, Caratteristiche mantello, sesso) --- ma non sono già in descrizioneFisica? la mettiamo come placeHolder
+✅ - Aggiungi attributi (Colore, Lunghezza pelo, Caratteristiche mantello, sesso) --- ma non sono già in descrizioneFisica? la mettiamo come placeHolder
 ✅ - Nel form mettere più menù a tendina
 🛑 ? Più razze (es. [xcane] [xlupo]) va cambiato in list(razza) ---> DIEGO (inutile)
 ✅ - Gestione Luogo simile su base distanza
@@ -49,12 +49,13 @@ fixes
 ✅ - piuttosto che età numerico meglio eta a step (cucciolo, adulto, vecchio)
 ✅ - inserire informazioni nel carosello oltre la foto
 🛑🛑 - correggere i caroselli nei recap come quelli su segnalazioni
-🛑🛑 - rendere più carino about us
+✅ - rendere più carino about us
 ✅ - levare il js dai codici
-🛑🛑 - rendere modifica conforme ai form
+✅ - rendere modifica conforme ai form
 ✅ - non prende il touch su consulta segnalazioni e non sono uguali nello stile avvistamenti e denunce
-🛑🛑 - doppia password in registrazione
+✅ - doppia password in registrazione
 ⬜ - più foto per segnalazione
+🛑🛑 - fix modifica
 
 proposte
 ✅ -  solo due bottoni, ricerca messo in menu 

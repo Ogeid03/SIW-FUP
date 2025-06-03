@@ -36,8 +36,8 @@
     </header>
 
     <main>
-        <form th:action="@{'/segnalazioni/modifica/' + ${segnalazione.id}}" th:object="${segnalazione}" method="post"
-            enctype="multipart/form-data">
+        <form th:action="@{${tipoSegnalazione == 'denuncia'} ? '/segnalazioni/modifica/denuncia/' + ${segnalazione.id} : '/segnalazioni/modifica/avvistamento/' + ${segnalazione.id}}"
+            th:object="${segnalazione}" method="post" enctype="multipart/form-data">
             <h2 class="section-title">Modifica Segnalazione</h2>
             <div class="step active">
 

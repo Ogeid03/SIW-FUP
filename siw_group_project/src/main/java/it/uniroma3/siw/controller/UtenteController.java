@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpServletRequest;
 
-
 import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Denuncia;
 import it.uniroma3.siw.model.Messaggio;
@@ -38,7 +37,7 @@ public class UtenteController {
 
     @GetMapping("/login")
     public String showLoginPage() {
-        return "login"; // Pagina di login
+        return "login";
     }
 
     @GetMapping("/register")
@@ -103,47 +102,71 @@ public class UtenteController {
             model.addAttribute("tipoSegnalazione", tipoSegnalazione);
             return "modificaSegnalazione";
         } else {
-            return "redirect:/error"; // oppure puoi mostrare un messaggio di errore
-        }
-    }
-
-    @PostMapping("/segnalazioni/modifica/{id}")
-    public String salvaModifica(@PathVariable Long id,
-            @RequestParam(required = false) String nome,
-            @RequestParam(required = false) String eta,
-            @RequestParam(required = false) Double premioOfferto,
-            @RequestParam(required = false) String statoSalute,
-            @RequestParam(required = false) String azioniIntraprese,
-            @ModelAttribute Segnalazione segnalazioneBase,
-            HttpServletRequest request) {
-        
-        Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
-        if (originale == null)
             return "redirect:/error";
-
-        // Set campi comuni
-        originale.setSpecie(segnalazioneBase.getSpecie());
-        originale.setRazza(segnalazioneBase.getRazza());
-        originale.setLuogo(segnalazioneBase.getLuogo());
-        originale.setDescrizioneFisica(segnalazioneBase.getDescrizioneFisica());
-        originale.setFoto(segnalazioneBase.getFoto());
-        originale.setCodStatus(segnalazioneBase.getCodStatus());
-        originale.setDataOra(segnalazioneBase.getDataOra());
-
-        if (originale instanceof Denuncia) {
-            Denuncia denuncia = (Denuncia) originale;
-            denuncia.setNome(nome);
-            denuncia.setEta(eta);
-            denuncia.setPremioOfferto(premioOfferto);
-        } else if (originale instanceof Avvistamento) {
-            Avvistamento avv = (Avvistamento) originale;
-            avv.setStatoSalute(statoSalute);
-            avv.setAzioniIntraprese(azioniIntraprese);
         }
-
-        segnalazioneService.save(originale); // <-- aggiungi un metodo save() al service se serve
-        String referer = request.getHeader("referer");
-        return "redirect:" + (referer != null ? referer : "/error");
     }
+
+    @PostMapping("/segnalazioni/modifica/denuncia/{id}")
+public String salvaModificaDenuncia(@PathVariable Long id,
+        @RequestParam(required = false) String nome,
+        @RequestParam(required = false) String eta,
+        @RequestParam(required = false) Double premioOfferto,
+        @ModelAttribute Segnalazione segnalazioneBase,
+        HttpServletRequest request) {
+
+    Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
+    if (originale == null || !(originale instanceof Denuncia))
+        return "redirect:/error";
+
+    // Set campi comuni
+    setCampiComuni(originale, segnalazioneBase);
+
+    Denuncia denuncia = (Denuncia) originale;
+    denuncia.setNome(nome);
+    denuncia.setEta(eta);
+    denuncia.setPremioOfferto(premioOfferto);
+
+    segnalazioneService.save(originale);
+
+    String referer = request.getHeader("referer");
+    return "redirect:" + (referer != null ? referer : "/error");
+}
+
+@PostMapping("/segnalazioni/modifica/avvistamento/{id}")
+public String salvaModificaAvvistamento(@PathVariable Long id,
+        @RequestParam(required = false) String statoSalute,
+        @RequestParam(required = false) String azioniIntraprese,
+        @ModelAttribute Segnalazione segnalazioneBase,
+        HttpServletRequest request) {
+
+    Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
+    if (originale == null || !(originale instanceof Avvistamento))
+        return "redirect:/error";
+
+    // Set campi comuni
+    setCampiComuni(originale, segnalazioneBase);
+
+    Avvistamento avvistamento = (Avvistamento) originale;
+    avvistamento.setStatoSalute(statoSalute);
+    avvistamento.setAzioniIntraprese(azioniIntraprese);
+
+    segnalazioneService.save(originale);
+
+    String referer = request.getHeader("referer");
+    return "redirect:" + (referer != null ? referer : "/error");
+}
+
+// Metodo helper per campi comuni
+private void setCampiComuni(Segnalazione originale, Segnalazione segnalazioneBase) {
+    originale.setSpecie(segnalazioneBase.getSpecie());
+    originale.setRazza(segnalazioneBase.getRazza());
+    originale.setLuogo(segnalazioneBase.getLuogo());
+    originale.setCodSesso(segnalazioneBase.getCodSesso());
+    originale.setDescrizioneFisica(segnalazioneBase.getDescrizioneFisica());
+    originale.setFoto(segnalazioneBase.getFoto());
+    originale.setCodStatus(segnalazioneBase.getCodStatus());
+    originale.setDataOra(segnalazioneBase.getDataOra());
+}
+
 
 }
