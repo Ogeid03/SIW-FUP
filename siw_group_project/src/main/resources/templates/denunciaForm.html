@@ -78,6 +78,23 @@
 
       <!-- Step 3 -->
       <div class="step">
+        <label>Sesso (opzionale):</label><br>
+        <div class="radio-group">
+          <label for="maschio">
+            <input type="radio" id="maschio" name="codSesso" value="MASCHIO">
+            Maschio
+          </label>
+
+          <label for="femmina">
+            <input type="radio" id="femmina" name="codSesso" value="FEMMINA">
+            Femmina
+          </label>
+
+          <label for="ignoto">
+            <input type="radio" id="ignoto" name="codSesso" value="IGNOTO">
+            Ignoto
+          </label>
+        </div>
         <label for="descrizione">Descrizione Fisica:</label>
         <input type="text" id="descrizione" name="descrizioneFisica" th:field="*{descrizioneFisica}" />
 

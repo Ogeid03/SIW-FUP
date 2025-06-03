@@ -42,6 +42,7 @@
             <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span th:text="${segnalazione.specie}"></span>
             </p>
             <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span th:text="${segnalazione.razza}"></span></p>
+            <p><strong><i class="fa-solid fa-venus-mars"></i> Sesso:</strong> <span th:text="${segnalazione.codSesso}"></span></p>
             <p><strong><i class="fa-solid fa-align-left"></i> Descrizione Fisica:</strong> <span
                     th:text="${segnalazione.descrizioneFisica}"></span></p>
             <p><strong><i class="fa-solid fa-heartbeat"></i> Stato di Salute Apparente:</strong> <span
@@ -64,6 +65,7 @@
             <input type="hidden" th:field="*{longitudine}" />
             <input type="hidden" name="specie" th:value="*{specie}" />
             <input type="hidden" name="razza" th:value="*{razza}" />
+            <input type="hidden" name="codSesso" th:value="*{codSesso}" />
             <input type="hidden" name="descrizioneFisica" th:value="*{descrizioneFisica}" />
             <input type="hidden" name="statoSalute" th:value="*{statoSalute}" />
             <input type="hidden" name="azioniIntraprese" th:value="*{azioniIntraprese}" />

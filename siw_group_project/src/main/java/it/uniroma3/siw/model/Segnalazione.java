@@ -28,6 +28,8 @@ public abstract class Segnalazione {
 
     @Enumerated(EnumType.STRING)
     private Stato codStatus;
+    @Enumerated(EnumType.STRING)
+    private Sesso codSesso;
     
     @ManyToOne
     @JoinColumn(name = "codUtente")
