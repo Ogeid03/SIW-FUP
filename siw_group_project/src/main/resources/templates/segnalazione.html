@@ -36,7 +36,7 @@
     </header>
     <main>
         <div>
-            <button onclick="window.history.back()" class="btn-back mb-3">
+            <button onclick="window.history.back()" class="btn btn-warning mb-3">
                 <i class="fa-solid fa-arrow-left"></i> Torna indietro
             </button>
 
@@ -116,10 +116,10 @@
                                     <div class="d-flex justify-content-center">
                                         <a th:href="@{/segnalazioni/{id}(id=${den.id})}">
                                             <img th:src="${den.foto}" class="d-block rounded"
-                                                th:alt="${den.descrizioneFisica}">
+                                                th:alt="${den.specie} + ', ' + ${den.razza} + ', ' + ${den.luogo}">
                                         </a>
                                     </div>
-                                    <p class="text-center mt-2" th:text="${den.descrizioneFisica}"></p>
+                                    <p class="text-center mt-2" th:text="${den.specie} + ', ' + ${den.razza} + ', ' + ${den.luogo}"></p>
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#relevantCarousel"
@@ -152,10 +152,10 @@
                                     <div class="d-flex justify-content-center">
                                         <a th:href="@{/segnalazioni/{id}(id=${avv.id})}">
                                             <img th:src="${avv.foto}" class="d-block rounded"
-                                                th:alt="${avv.descrizioneFisica}">
+                                                th:alt="${avv.specie} + ', ' + ${avv.razza} + ', ' + ${avv.luogo}">
                                         </a>
                                     </div>
-                                    <p class="text-center mt-2" th:text="${avv.descrizioneFisica}"></p>
+                                    <p class="text-center mt-2" th:text="${avv.specie} + ', ' + ${avv.razza} + ', ' + ${avv.luogo}"></p>
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#similarCarousel"
