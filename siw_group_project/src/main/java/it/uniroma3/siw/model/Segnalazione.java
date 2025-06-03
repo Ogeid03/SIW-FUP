@@ -6,10 +6,11 @@ import java.util.Objects;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
+
 @Data
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Segnalazione {
+public abstract class Segnalazione {
     @Id
     @SequenceGenerator(name = "segnalazione_seq", sequenceName = "segnalazione_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "segnalazione_seq")

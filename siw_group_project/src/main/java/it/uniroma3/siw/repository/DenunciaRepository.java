@@ -14,6 +14,8 @@ public interface DenunciaRepository extends JpaRepository<Denuncia, Long> {
 
     List<Denuncia> findByRazzaAndIdNot(String razza, Long id);
 
+    List<Denuncia> findAllByOrderByDataOraDesc();
+
     List<Denuncia> findByRazza(String razza);
 
     List<Denuncia> findByCodUtente(Utente utente);

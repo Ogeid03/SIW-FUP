@@ -80,39 +80,37 @@
             </div>
         </form>
 
-        <div class="mt-5">
+       <div class="container mt-5">
     <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
-    <div class="container">
-        <div th:if="${#lists.isEmpty(simili)}">
-            <p class="text-center">Nessun avvistamento simile trovato.</p>
-        </div>
-        <div th:if="${not #lists.isEmpty(simili)}">
-            <div id="similarCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div th:each="avv, iterStat : ${simili}" th:classappend="${iterStat.index == 0} ? 'active' : ''"
-                        class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                            <a th:href="@{/segnalazioni/{id}(id=${avv.id})}">
-                                <img th:src="@{${avv.foto}}" class="d-block rounded"
-                                    th:alt="${avv.descrizioneFisica}" style="max-height: 300px;">
-                            </a>
-                        </div>
-                        <p class="text-center mt-2" th:text="${avv.descrizioneFisica}"></p>
+    <div th:if="${#lists.isEmpty(simili)}">
+        <p class="text-center">Nessun avvistamento simile trovato.</p>
+    </div>
+    <div th:if="${not #lists.isEmpty(simili)}">
+        <div id="similarCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div th:each="avv, iterStat : ${simili}" 
+                     th:class="'carousel-item ' + (${iterStat.index == 0} ? 'active' : '')">
+                    <div class="d-flex justify-content-center">
+                        <a th:href="@{/segnalazioni/{id}(id=${avv.id})}">
+                            <img th:src="${avv.foto}" class="d-block rounded" 
+                                 th:alt="${avv.descrizioneFisica}" style="max-height: 300px;">
+                        </a>
                     </div>
+                    <p class="text-center mt-2" th:text="${avv.descrizioneFisica}"></p>
                 </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#similarCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                    <span class="visually-hidden">Precedente</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#similarCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                    <span class="visually-hidden">Successivo</span>
-                </button>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#similarCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Precedente</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#similarCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Successivo</span>
+            </button>
         </div>
+    </div>
+</div>
+
     </div>
 </div>
 

@@ -25,11 +25,11 @@ public class RicercaService {
     }
 
     public List<Avvistamento> getTuttiGliAvvistamenti() {
-        return segnalazioneRepository.findAll();
+        return segnalazioneRepository.findAllByOrderByDataOraDesc();
     }
 
     public List<Denuncia> getTutteLeDenunce() {
-        return denunciaRepository.findAll();
+        return denunciaRepository.findAllByOrderByDataOraDesc();
     }
 
     public List<Avvistamento> getAvvByUtente(Utente utente) {
