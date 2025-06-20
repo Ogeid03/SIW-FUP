@@ -7,7 +7,6 @@
 🛑🛑 - fix modifica
 🛑 ? in riepilogo fare 2 colonne e aggiungere in fondo la foto a largehzza piena
 🛑 ? messaggi popup resoconto azioni
-🛑🛑 - sul filtro ritornare messaggio di errore -> nessun risultato 
 🛑 - aggiungi FAQ a menu a tendina e pure about (??) e cambia design FAQ (guarda ds)
 
 BUG TROVATI:

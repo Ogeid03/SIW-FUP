@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
     <meta charset="UTF-8">
@@ -43,7 +44,8 @@
             <p><strong><i class="fa-solid fa-user"></i> Nome:</strong> <span th:text="${denuncia.nome}"></span></p>
             <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span th:text="${denuncia.specie}"></span></p>
             <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span th:text="${denuncia.razza}"></span></p>
-            <p><strong><i class="fa-solid fa-venus-mars"></i> Sesso:</strong> <span th:text="${denuncia.codSesso}"></span></p>
+            <p><strong><i class="fa-solid fa-venus-mars"></i> Sesso:</strong> <span
+                    th:text="${denuncia.codSesso}"></span></p>
             <p><strong><i class="fa-solid fa-align-left"></i> Descrizione:</strong> <span
                     th:text="${denuncia.descrizioneFisica}"></span></p>
             <p><strong><i class="fa-solid fa-hourglass-half"></i> Età:</strong> <span th:text="${denuncia.eta}"></span>
@@ -82,39 +84,48 @@
             </div>
         </form>
 
-       <div class="container mt-5">
-    <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
-    <div th:if="${#lists.isEmpty(simili)}">
-        <p class="text-center">Nessun avvistamento simile trovato.</p>
-    </div>
-    <div th:if="${not #lists.isEmpty(simili)}">
-        <div id="similarCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div th:each="avv, iterStat : ${simili}" 
-                     th:class="'carousel-item ' + (${iterStat.index == 0} ? 'active' : '')">
-                    <div class="d-flex justify-content-center">
-                        <a th:href="@{/segnalazioni/{id}(id=${avv.id})}">
-                            <img th:src="${avv.foto}" class="d-block rounded" 
-                                 th:alt="${avv.descrizioneFisica}" style="max-height: 300px;">
-                        </a>
+        <div class="similar-sightings-section mt-5">
+            <!-- Carosello per AVVISTAMENTI SIMILI -->
+            <div th:if="${not #lists.isEmpty(simili)}">
+                <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
+                <div class="container">
+                    <div id="similarCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div th:each="avv, iterStat : ${simili}"
+                                th:class="'carousel-item' + (${iterStat.index} == 0 ? ' active' : '')">
+                                <div class="d-flex justify-content-center">
+                                    <a th:href="@{/segnalazioni/{id}(id=${avv.id})}">
+                                        <img th:src="${avv.foto}" class="d-block rounded"
+                                            th:alt="${avv.specie} + ', ' + ${avv.razza} + ', ' + ${avv.luogo}">
+                                    </a>
+                                </div>
+                                <p class="text-center mt-2"
+                                    th:text="${avv.specie} + ', ' + ${avv.razza} + ', ' + ${avv.luogo}"></p>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#similarCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                            <span class="visually-hidden">Precedente</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#similarCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                            <span class="visually-hidden">Successivo</span>
+                        </button>
                     </div>
-                    <p class="text-center mt-2" th:text="${avv.descrizioneFisica}"></p>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#similarCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="visually-hidden">Precedente</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#similarCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                <span class="visually-hidden">Successivo</span>
-            </button>
+            <div th:if="${#lists.isEmpty(simili)}">
+                <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
+                <p class="text-center">Nessun avvistamento simile trovato.</p>
+            </div>
         </div>
-    </div>
-</div>
 
-    </div>
-</div>
+
+
+        </div>
+        </div>
 
     </main>
 

@@ -183,8 +183,8 @@
                             th:if="${not #lists.isEmpty(messaggi)} and ${messaggi[0].codDestinatario} != null and ${messaggi[0].codSegnalazione} != null">
                             <form id="formMessaggio" th:action="@{/messaggi/invia}" method="post"
                                 th:object="${messaggio}">
-                                <input type="hidden" name="codDestinatario.id" th:value="${utenteAttivo.id}" />
-                                <input type="hidden" name="codSegnalazione.id"
+                                <input type="hidden" name="codDestinatarioId" th:value="${utenteAttivo.id}" />
+                                <input type="hidden" name="codSegnalazioneId"
                                     th:value="${messaggi[0]?.codSegnalazione?.id}" />
                                 <textarea th:field="*{contenuto}" required
                                     placeholder="Scrivi un messaggio..."></textarea>
