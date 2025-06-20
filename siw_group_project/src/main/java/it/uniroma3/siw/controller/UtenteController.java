@@ -136,9 +136,15 @@ public class UtenteController {
         setCampiComuni(originale, segnalazioneBase);
 
         Denuncia denuncia = (Denuncia) originale;
-        denuncia.setNome(segnalazioneBase.getNome());
-        denuncia.setEta(segnalazioneBase.getEta());
-        denuncia.setPremioOfferto(segnalazioneBase.getPremioOfferto());
+        if (segnalazioneBase.getNome() != null && !segnalazioneBase.getNome().isEmpty()) {
+            denuncia.setNome(segnalazioneBase.getNome());
+        }
+        if (segnalazioneBase.getEta() != null && !segnalazioneBase.getEta().isEmpty()) {
+            denuncia.setEta(segnalazioneBase.getEta());
+        }
+        if (segnalazioneBase.getPremioOfferto() != null) {
+            denuncia.setPremioOfferto(segnalazioneBase.getPremioOfferto());
+        }
 
         segnalazioneService.save(originale);
 
@@ -172,8 +178,12 @@ public class UtenteController {
         setCampiComuni(originale, segnalazioneBase);
 
         Avvistamento avvistamento = (Avvistamento) originale;
-        avvistamento.setStatoSalute(segnalazioneBase.getStatoSalute());
-        avvistamento.setAzioniIntraprese(segnalazioneBase.getAzioniIntraprese());
+        if (segnalazioneBase.getStatoSalute() != null && !segnalazioneBase.getStatoSalute().isEmpty()) {
+            avvistamento.setStatoSalute(segnalazioneBase.getStatoSalute());
+        }
+        if (segnalazioneBase.getAzioniIntraprese() != null && !segnalazioneBase.getAzioniIntraprese().isEmpty()) {
+            avvistamento.setAzioniIntraprese(segnalazioneBase.getAzioniIntraprese());
+        }
 
         segnalazioneService.save(originale);
 

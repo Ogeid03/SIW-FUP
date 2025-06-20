@@ -75,10 +75,10 @@
                                     <div class="card-content">
                                         <strong><i class="fa-regular fa-calendar"></i> <span
                                                 th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
-                                        <strong><i class="fa-solid fa-dog"></i> <span th:text="${den.nome}">Nome
-                                                animale</span></strong><br>
-                                        <span><i class="fa-solid fa-paw"></i> <span
-                                                th:text="${den.razza}">Razza</span></span><br>
+                                        <span><i class="fa-solid fa-dna"></i> <span th:text="${den.specie}">Specie</span>
+                                        </span><br>
+                                        <span><i class="fa-solid fa-paw"></i> <span th:text="${den.razza}">Razza</span>
+                                            </span><br>
                                         <span><i class="fa-solid fa-map-marker-alt"></i> <span
                                                 th:text="${den.luogo}">Luogo</span></span>
                                     </div>
@@ -115,8 +115,10 @@
                                     <div class="card-content">
                                         <strong><i class="fa-regular fa-calendar"></i> <span
                                                 th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}">Data</span></strong><br>
-                                        <span><i class="fa-solid fa-paw"></i> <span
-                                                th:text="${avv.razza}">Razza</span></span><br>
+                                        <span><i class="fa-solid fa-dna"></i> <span th:text="${avv.specie}">Specie</span>
+                                        </span><br>
+                                        <span><i class="fa-solid fa-paw"></i> <span th:text="${avv.razza}">Razza</span>
+                                            </span><br>
                                         <span><i class="fa-solid fa-location-dot"></i> <span
                                                 th:text="${avv.luogo}">Luogo</span></span>
                                     </div>
