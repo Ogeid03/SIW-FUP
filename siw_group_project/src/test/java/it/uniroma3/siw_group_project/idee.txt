@@ -1,41 +1,63 @@
 ⬜ -> ✅
 
+🛑 ? Più razze (es. [xcane] [xlupo]) va cambiato in list(razza) ---> DIEGO (inutile)
+🛑🛑 - Carica Online
+🛑 ? Meno zoom gatto home
+🛑🛑 - correggere i caroselli nei recap come quelli su segnalazioni
+🛑🛑 - fix modifica
+🛑 ? in riepilogo fare 2 colonne e aggiungere in fondo la foto a largehzza piena
+🛑 ? messaggi popup resoconto azioni
+🛑🛑 - sul filtro ritornare messaggio di errore 
+🛑 - aggiungi FAQ a menu a tendina e pure about (??) e cambia design FAQ (guarda ds)
+
+⬜ - No copie di avvistamenti (equals luogo e razza) -- magari si aggiorna la data ???  ----> DIEGO (non ha senso)
+⬜ ? Disegni animali estetica sito ----> DIEGO (evitabile)
+⬜ ? Modifica e recupera account
+⬜ ? Elimina file inutili (es. di "recap" uno solo non 2)
+⬜ ? css homepage (tra cui logo e botton homepage più grande,
+         movimento background in relazione al mouse non più button ma il button è tutto il back ground e i button diventano scritte)
+⬜ - più foto per segnalazione
+⬜ - footer dopo %
+⬜ ? doggo assistente chatbot semplice
+⬜ ? notifica con pallino rosso su account post segnalazione
+⬜ - cambia bottoni in segnalazione, giallo minimal (senza button solo scritta con link) e blu nel riquadro arancio (riquaro riempito di arancio)
+⬜ - riempere meglio nei form (sfrutta la suddivisione arancione blu per avvistamenti e denunce)
+⬜ ? fare login prima di salvare la segnalazione
+
+⬜ ? Mettere la ricerca su homepage, stile "subito"      ------------------------
+                                                               CAMBIAMENTI
+⬜ - Il filter va rivisto (più tipo subito)                      RICERCA
+⬜ - poco intuitivo design ricerca                       ------------------------
+⬜ ? resoconto percentuale successo (reale su % finiti e non )
+⬜ ? Mappa con tutte le segnalazioni
+⬜ ? Notifiche su mail
+⬜ - Disclamer su informazioni date
+
 ✅ - Aggiungi attributi (Colore, Lunghezza pelo, Caratteristiche mantello, sesso) --- ma non sono già in descrizioneFisica? la mettiamo come placeHolder
 ✅ - Nel form mettere più menù a tendina
-🛑 ? Più razze (es. [xcane] [xlupo]) va cambiato in list(razza) ---> DIEGO (inutile)
 ✅ - Gestione Luogo simile su base distanza
 ✅ - Bro scusa, vedevo e i form risultano un po' lunghetti, nulla in contrario in un form a step? 
         Magari cambiamo l'idea iniziale dell'homoage e facciamo 3 button che rimandano a pagine per i form,
         che poi sono a step con massimo 3 domande
 ✅ - Altra cosa js va messo esterno dall'html, sennò non si capisce nulla
-⬜ - No copie di avvistamenti (equals luogo e razza) -- magari si aggiorna la data ???  ----> DIEGO (non ha senso)
 ✅ - Aggiungi "Denuncia Smarrimento" o "Avvistamento" dopo segnalazione - 000X in SEGNALAZIONE
 ✅ - Sistema Visualizzazioni dati in Ricerca e nei caroselli
 ✅ - Estetica pagina Error
 ✅ - Pagina dettaglio segnalazione
 ✅ - Carosello segnalazioni simili
 ✅ - Crea Pagine per Menu riempitive (es. About, Contatti, Segnalazioni)
-⬜ ? Disegni animali estetica sito ----> DIEGO (evitabile)
 ✅ - Gestione Account (Utente, Pagina Utente)
 ✅ - Nella parte iniziale di myAccount aggiungere i dati dell'utente su due colonne poi una linea blu e sotto l'elenco delle segnalazioni
 ✅ - Aggiugni lo status alle segnalazioni
 ✅ - Gestione Account Gestore
 ✅ - Modifica/Elimina Segnalazione
-⬜ ? Modifica e recupera account
 ✅ - Gestione Messaggistica (pagina Visualizzazione)
 ✅ - Gestione Enum
-⬜ ? Elimina file inutili (es. di "recap" uno solo non 2)
 ✅ - File al posto di url per le Foto
-🛑🛑 - Carica Online
-
-
-
-fixes
 ✅ - il cursore fa schifo, aggiungi icona utente
 ✅ - Uniformare l'header
 ✅ - Indicare i campi obbligatori
 ✅ - No spazi bianchi homepage
-🛑 ? Meno zoom gatto home
 ✅ - Fix foto in denunce
 ✅ - Fix denunce simili, mostra le denucne con avvistamenti e viceversa
 ✅ - Fix inserimento Luogo
@@ -43,45 +65,21 @@ fixes
 ✅ - Visualizzazione dati sulle segnalazioni
 ✅ - Visualizzazione non a colonna sul myAccount
 ✅ - Scritta decentrata in homepage/ dividere equo
-⬜ ? css homepage (tra cui logo e botton homepage più grande,
-         movimento background in relazione al mouse non più button ma il button è tutto il back ground e i button diventano scritte)
 ✅ - Nome "Pet" in denunciaForm
 ✅ - piuttosto che età numerico meglio eta a step (cucciolo, adulto, vecchio)
 ✅ - inserire informazioni nel carosello oltre la foto
-🛑🛑 - correggere i caroselli nei recap come quelli su segnalazioni
 ✅ - rendere più carino about us
 ✅ - levare il js dai codici
 ✅ - rendere modifica conforme ai form
 ✅ - non prende il touch su consulta segnalazioni e non sono uguali nello stile avvistamenti e denunce
 ✅ - doppia password in registrazione
-⬜ - più foto per segnalazione
-🛑🛑 - fix modifica
-
-proposte
 ✅ -  solo due bottoni, ricerca messo in menu 
 ✅ -  carosello animali simili prima di confermare la segnalazione (automatico e con 3 alla volta)
 ✅ -  cambia nome "Ricerca" con "Consulta Segnalazioni"
 ✅ -  cambia segnalazioni simili con denunce rilevanti
 ✅ -  accedi nel menu principale e al suo posto appare il nomeUtente al  (es. ciao Mario)
-⬜ - footer dopo %
-⬜ ? doggo assistente chatbot semplice
 ✅ - gli elenchi devono essere ordinati su base della data (sse attivi)
 ✅ - spostare messaggio su segnalazione e riepilogo messaggi su account a destra dei dati utente
-🛑 ? in riepilogo fare 2 colonne e aggiungere in fondo la foto a largehzza piena
-⬜ ? notifica con pallino rosso su account post segnalazione
-⬜ - cambia bottoni in segnalazione, giallo minimal (senza button solo scritta con link) e blu nel riquadro arancio (riquaro riempito di arancio)
-⬜ - riempere meglio nei form (sfrutta la suddivisione arancione blu per avvistamenti e denunce)
-⬜ ? fare login prima di salvare la segnalazione
-🛑 ? messaggi popup resoconto azioni
-⬜ ? Mettere la ricerca su homepage, stile "subito"      ------------------------
-🛑🛑 - sul filtro ritornare messaggio di errore                  CAMBIAMENTI
-⬜ - Il filter va rivisto (più tipo subito)                      RICERCA
-⬜ - poco intuitivo design ricerca                       ------------------------
-🛑 - aggiungi FAQ a menu a tendina e pure about (??) e cambia design FAQ (guarda ds)
-⬜ ? resoconto percentuale successo (reale su % finiti e non )
-⬜ ? Mappa con tutte le segnalazioni
-⬜ ? Notifiche su mail
-⬜ - Disclamer su informazioni date
 
 REFERENCES: 
   --> https://www.canismarritietrovati.it/

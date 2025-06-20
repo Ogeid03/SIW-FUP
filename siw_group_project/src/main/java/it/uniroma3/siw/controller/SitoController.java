@@ -25,7 +25,7 @@ public class SitoController {
     }
 
     public SitoController() {
-        System.out.println("✅ MovieController caricato!");
+        System.out.println("✅ FURPController caricato!");
     }
 
     @GetMapping("/")
@@ -49,4 +49,8 @@ public class SitoController {
         return "error"; 
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "test"; 
+    }
 }
