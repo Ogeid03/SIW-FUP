@@ -97,12 +97,12 @@
 
         <div class="similar-sightings-section mt-5">
             <!-- Carosello per AVVISTAMENTI SIMILI -->
-            <div th:if="${not #lists.isEmpty(simili)}">
+            <div th:if="${not #lists.isEmpty(avvistamentiSimili)}">
                 <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
                 <div class="container">
                     <div id="similarCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div th:each="avv, iterStat : ${simili}"
+                            <div th:each="avv, iterStat : ${avvistamentiSimili}"
                                 th:class="'carousel-item' + (${iterStat.index} == 0 ? ' active' : '')">
                                 <div class="d-flex justify-content-center">
                                     <a th:href="@{/segnalazioni/{id}(id=${avv.id})}">
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <div th:if="${#lists.isEmpty(simili)}">
+            <div th:if="${#lists.isEmpty(avvistamentiSimili)}">
                 <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
                 <p class="text-center">Nessun avvistamento simile trovato.</p>
             </div>

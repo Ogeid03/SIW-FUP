@@ -7,8 +7,10 @@
 🛑 ? messaggi popup resoconto azioni
 🛑 - aggiungi FAQ a menu a tendina e pure about (??) e cambia design FAQ (guarda ds)
 
+
 BUG TROVATI:
         - style
+        - si può scrivere da solo
 
 ⬜ - No copie di avvistamenti (equals luogo e razza) -- magari si aggiorna la data ???  ----> DIEGO (non ha senso)
 ⬜ ? Disegni animali estetica sito ----> DIEGO (evitabile)

@@ -71,7 +71,7 @@ public class DenunciaController {
         
         var simili = denunciaService.trovaAvvistamentiSimili(denuncia);
         model.addAttribute("denuncia", denuncia);
-        model.addAttribute("simili", simili);
+        model.addAttribute("avvistamentiSimili", simili);
         return "recap-denuncia";
     }
 

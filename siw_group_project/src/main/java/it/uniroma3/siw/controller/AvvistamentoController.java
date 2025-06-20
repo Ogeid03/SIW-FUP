@@ -71,7 +71,7 @@ public String conferma(@ModelAttribute Avvistamento avvistamento,
     
     model.addAttribute("segnalazione", avvistamento);
     var simili = avvistamentoService.trovaDenunceSimili(avvistamento);
-    model.addAttribute("simili", simili);
+    model.addAttribute("denunceRilevanti", simili);
     return "recap-avvistamento";
 }
 
