@@ -90,8 +90,9 @@
         <div class="chat">
             <h2>Invia un messaggio</h2>
             <form th:action="@{/messaggi/invia}" method="post" th:object="${messaggio}" class="chat-form">
-                <input type="hidden" th:field="*{codDestinatario.id}" />
-                <input type="hidden" th:field="*{codSegnalazione.id}" />
+                <input type="hidden" name="codDestinatarioId" th:value="${destinatarioId}" />
+                <input type="hidden" name="codSegnalazioneId" th:value="${segnalazione.id}" />
+
 
                 <div class="input-group">
                     <textarea th:field="*{contenuto}" id="contenuto" placeholder="Scrivi qui il tuo messaggio..."
@@ -122,7 +123,8 @@
                                                 th:alt="${den.specie} + ', ' + ${den.razza} + ', ' + ${den.luogo}">
                                         </a>
                                     </div>
-                                    <p class="text-center mt-2" th:text="${den.specie} + ', ' + ${den.razza} + ', ' + ${den.luogo}"></p>
+                                    <p class="text-center mt-2"
+                                        th:text="${den.specie} + ', ' + ${den.razza} + ', ' + ${den.luogo}"></p>
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#relevantCarousel"
@@ -158,7 +160,8 @@
                                                 th:alt="${avv.specie} + ', ' + ${avv.razza} + ', ' + ${avv.luogo}">
                                         </a>
                                     </div>
-                                    <p class="text-center mt-2" th:text="${avv.specie} + ', ' + ${avv.razza} + ', ' + ${avv.luogo}"></p>
+                                    <p class="text-center mt-2"
+                                        th:text="${avv.specie} + ', ' + ${avv.razza} + ', ' + ${avv.luogo}"></p>
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#similarCarousel"

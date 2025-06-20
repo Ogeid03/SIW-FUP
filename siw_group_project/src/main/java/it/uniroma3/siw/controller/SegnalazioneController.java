@@ -45,9 +45,12 @@ public class SegnalazioneController {
             }
 
             Messaggio messaggio = new Messaggio();
-            messaggio.setCodDestinatario(avvistamento.getCodUtente()); // opzionale
+            messaggio.setCodDestinatario(avvistamento.getCodUtente());
             messaggio.setCodSegnalazione(avvistamento);
             model.addAttribute("messaggio", messaggio);
+
+            // Qui aggiungi l'id destinatario separato
+            model.addAttribute("destinatarioId", avvistamento.getCodUtente().getId());
 
             return "segnalazione";
         }
@@ -71,14 +74,17 @@ public class SegnalazioneController {
                 model.addAttribute("simili", List.of());
             }
             Messaggio messaggio = new Messaggio();
-            messaggio.setCodDestinatario(denuncia.getCodUtente()); // opzionale
+            messaggio.setCodDestinatario(denuncia.getCodUtente());
             messaggio.setCodSegnalazione(denuncia);
             model.addAttribute("messaggio", messaggio);
+
+            // Qui aggiungi l'id destinatario separato
+            model.addAttribute("destinatarioId", denuncia.getCodUtente().getId());
+
             return "segnalazione";
         }
 
         return "not-found";
     }
 
-    
 }

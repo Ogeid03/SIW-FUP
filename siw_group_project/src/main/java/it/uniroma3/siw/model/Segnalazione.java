@@ -35,6 +35,9 @@ public abstract class Segnalazione {
     @JoinColumn(name = "codUtente")
     private Utente codUtente;
 
+    public Segnalazione() {
+        
+    }
     // Getter e Setter
     public Long getId() {
         return id;

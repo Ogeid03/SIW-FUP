@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.ui.Model;
 import it.uniroma3.siw.model.Messaggio;
+import it.uniroma3.siw.model.Segnalazione;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.service.MessaggioService;
 import it.uniroma3.siw.service.SegnalazioneService;
@@ -27,50 +28,54 @@ public class MessaggioController {
     @Autowired
     private MessaggioService messaggioService;
 
-    /*@GetMapping("/messaggi/nuovo")
-    public String nuovoMessaggio(@RequestParam Long segnalazioneId,
-            @RequestParam Long destinatarioId,
-            Model model, Principal principal) {
-        Utente mittente = utenteService.getUtenteByEmail(principal.getName());
-        Utente destinatario = utenteService.getUtenteById(destinatarioId);
-        Optional<Segnalazione> optionalSegnalazione = segnalazioneService.getSegnalazioneById(segnalazioneId);
-
-        if (optionalSegnalazione.isEmpty()) {
-            return "redirect:/error";
-        }
-
-        Segnalazione segnalazione = optionalSegnalazione.get();
-
-        Messaggio m = new Messaggio();
-        m.setCodUtente(mittente);
-        m.setCodDestinatario(destinatario);
-        m.setCodSegnalazione(segnalazione);
-
-        model.addAttribute("messaggio", m);
-        return "chat";
-    }*/
+    /*
+     * @GetMapping("/messaggi/nuovo")
+     * public String nuovoMessaggio(@RequestParam Long segnalazioneId,
+     * 
+     * @RequestParam Long destinatarioId,
+     * Model model, Principal principal) {
+     * Utente mittente = utenteService.getUtenteByEmail(principal.getName());
+     * Utente destinatario = utenteService.getUtenteById(destinatarioId);
+     * Optional<Segnalazione> optionalSegnalazione =
+     * segnalazioneService.getSegnalazioneById(segnalazioneId);
+     * 
+     * if (optionalSegnalazione.isEmpty()) {
+     * return "redirect:/error";
+     * }
+     * 
+     * Segnalazione segnalazione = optionalSegnalazione.get();
+     * 
+     * Messaggio m = new Messaggio();
+     * m.setCodUtente(mittente);
+     * m.setCodDestinatario(destinatario);
+     * m.setCodSegnalazione(segnalazione);
+     * 
+     * model.addAttribute("messaggio", m);
+     * return "chat";
+     * }
+     */
 
     @PostMapping("/messaggi/invia")
-    public String inviaMessaggio(@ModelAttribute("messaggio") Messaggio messaggio, Principal principal) {
+    public String inviaMessaggio(@ModelAttribute("messaggio") Messaggio messaggio,
+            @RequestParam Long codDestinatarioId,
+            @RequestParam Long codSegnalazioneId,
+            Principal principal) {
         Utente mittente = utenteService.getUtenteByEmail(principal.getName());
         messaggio.setCodUtente(mittente);
         messaggio.setDataOra(LocalDateTime.now());
 
-        if (messaggio.getCodDestinatario() == null || messaggio.getCodDestinatario().getId() == null ||
-                messaggio.getCodSegnalazione() == null || messaggio.getCodSegnalazione().getId() == null) {
-            // gestione errore, es. redirect con messaggio di errore
+        Utente destinatario = utenteService.getUtenteById(codDestinatarioId);
+        Optional<Segnalazione> optionalSegnalazione = segnalazioneService.getSegnalazioneById(codSegnalazioneId);
+
+        if (destinatario == null || optionalSegnalazione.isEmpty()) {
             return "redirect:/error";
         }
 
-        Long destinatarioId = messaggio.getCodDestinatario().getId();
-        Long segnalazioneId = messaggio.getCodSegnalazione().getId();
-
-        messaggio.setCodDestinatario(utenteService.getUtenteById(destinatarioId));
-        messaggio.setCodSegnalazione(segnalazioneService.getSegnalazioneById(segnalazioneId).orElse(null));
+        messaggio.setCodDestinatario(destinatario);
+        messaggio.setCodSegnalazione(optionalSegnalazione.get());
 
         messaggioService.save(messaggio);
-
-        return "redirect:/account"; //chat/" + destinatarioId;
+        return "redirect:/account";
     }
 
     @GetMapping("/chat")

@@ -10,6 +10,9 @@
 🛑🛑 - sul filtro ritornare messaggio di errore 
 🛑 - aggiungi FAQ a menu a tendina e pure about (??) e cambia design FAQ (guarda ds)
 
+BUG TROVATI:
+        -
+
 ⬜ - No copie di avvistamenti (equals luogo e razza) -- magari si aggiorna la data ???  ----> DIEGO (non ha senso)
 ⬜ ? Disegni animali estetica sito ----> DIEGO (evitabile)
 ⬜ ? Modifica e recupera account
