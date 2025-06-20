@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 import it.uniroma3.siw.model.Avvistamento;
@@ -107,66 +109,79 @@ public class UtenteController {
     }
 
     @PostMapping("/segnalazioni/modifica/denuncia/{id}")
-public String salvaModificaDenuncia(@PathVariable Long id,
-        @RequestParam(required = false) String nome,
-        @RequestParam(required = false) String eta,
-        @RequestParam(required = false) Double premioOfferto,
-        @ModelAttribute Segnalazione segnalazioneBase,
-        HttpServletRequest request) {
+    public String salvaModificaDenuncia(@PathVariable Long id,
+            @ModelAttribute Denuncia segnalazioneBase,
+            @RequestParam("file") MultipartFile file,
+            HttpServletRequest request) {
 
-    Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
-    if (originale == null || !(originale instanceof Denuncia))
-        return "redirect:/error";
+        Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
+        if (originale == null || !(originale instanceof Denuncia))
+            return "redirect:/error";
 
-    // Set campi comuni
-    setCampiComuni(originale, segnalazioneBase);
+        // Se il file è stato caricato ed è valido
+        if (file != null && !file.isEmpty()) {
+            try {
+                originale.setFoto(java.util.Base64.getEncoder().encodeToString(file.getBytes())); // salva la foto come
+                                                                                                  // stringa Base64
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "redirect:/error";
+            }
+        }
 
-    Denuncia denuncia = (Denuncia) originale;
-    denuncia.setNome(nome);
-    denuncia.setEta(eta);
-    denuncia.setPremioOfferto(premioOfferto);
+        setCampiComuni(originale, segnalazioneBase);
 
-    segnalazioneService.save(originale);
+        Denuncia denuncia = (Denuncia) originale;
+        denuncia.setNome(segnalazioneBase.getNome());
+        denuncia.setEta(segnalazioneBase.getEta());
+        denuncia.setPremioOfferto(segnalazioneBase.getPremioOfferto());
 
-    String referer = request.getHeader("referer");
-    return "redirect:" + (referer != null ? referer : "/error");
-}
+        segnalazioneService.save(originale);
 
-@PostMapping("/segnalazioni/modifica/avvistamento/{id}")
-public String salvaModificaAvvistamento(@PathVariable Long id,
-        @RequestParam(required = false) String statoSalute,
-        @RequestParam(required = false) String azioniIntraprese,
-        @ModelAttribute Segnalazione segnalazioneBase,
-        HttpServletRequest request) {
+        return "redirect:/account";
+    }
 
-    Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
-    if (originale == null || !(originale instanceof Avvistamento))
-        return "redirect:/error";
+    @PostMapping("/segnalazioni/modifica/avvistamento/{id}")
+    public String salvaModificaAvvistamento(@PathVariable Long id,
+            @RequestParam("file") MultipartFile file,
+            @ModelAttribute Avvistamento segnalazioneBase,
+            HttpServletRequest request) {
 
-    // Set campi comuni
-    setCampiComuni(originale, segnalazioneBase);
+        Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
+        if (originale == null || !(originale instanceof Avvistamento))
+            return "redirect:/error";
+        // Se il file è stato caricato ed è valido
+        if (file != null && !file.isEmpty()) {
+            try {
+                originale.setFoto(java.util.Base64.getEncoder().encodeToString(file.getBytes())); // salva la foto come
+                                                                                                  // stringa Base64
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "redirect:/error";
+            }
+        }
 
-    Avvistamento avvistamento = (Avvistamento) originale;
-    avvistamento.setStatoSalute(statoSalute);
-    avvistamento.setAzioniIntraprese(azioniIntraprese);
+        setCampiComuni(originale, segnalazioneBase);
 
-    segnalazioneService.save(originale);
+        Avvistamento avvistamento = (Avvistamento) originale;
+        avvistamento.setStatoSalute(segnalazioneBase.getStatoSalute());
+        avvistamento.setAzioniIntraprese(segnalazioneBase.getAzioniIntraprese());
 
-    String referer = request.getHeader("referer");
-    return "redirect:" + (referer != null ? referer : "/error");
-}
+        segnalazioneService.save(originale);
 
-// Metodo helper per campi comuni
-private void setCampiComuni(Segnalazione originale, Segnalazione segnalazioneBase) {
-    originale.setSpecie(segnalazioneBase.getSpecie());
-    originale.setRazza(segnalazioneBase.getRazza());
-    originale.setLuogo(segnalazioneBase.getLuogo());
-    originale.setCodSesso(segnalazioneBase.getCodSesso());
-    originale.setDescrizioneFisica(segnalazioneBase.getDescrizioneFisica());
-    originale.setFoto(segnalazioneBase.getFoto());
-    originale.setCodStatus(segnalazioneBase.getCodStatus());
-    originale.setDataOra(segnalazioneBase.getDataOra());
-}
+        return "redirect:/account";
+    }
 
+    // Metodo helper per campi comuni
+    private void setCampiComuni(Segnalazione originale, Segnalazione segnalazioneBase) {
+        originale.setSpecie(segnalazioneBase.getSpecie());
+        originale.setRazza(segnalazioneBase.getRazza());
+        originale.setLuogo(segnalazioneBase.getLuogo());
+        originale.setCodSesso(segnalazioneBase.getCodSesso());
+        originale.setDescrizioneFisica(segnalazioneBase.getDescrizioneFisica());
+        originale.setFoto(segnalazioneBase.getFoto());
+        originale.setCodStatus(segnalazioneBase.getCodStatus());
+        originale.setDataOra(segnalazioneBase.getDataOra());
+    }
 
 }
