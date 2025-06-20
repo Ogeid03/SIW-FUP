@@ -3,17 +3,12 @@
 🛑 ? Più razze (es. [xcane] [xlupo]) va cambiato in list(razza) ---> DIEGO (inutile)
 🛑🛑 - Carica Online
 🛑 ? Meno zoom gatto home
-🛑🛑 - correggere i caroselli nei recap come quelli su segnalazioni -> sistema i recap (riferimento segnalazione)
-🛑🛑 - fix modifica
 🛑 ? in riepilogo fare 2 colonne e aggiungere in fondo la foto a largehzza piena
 🛑 ? messaggi popup resoconto azioni
 🛑 - aggiungi FAQ a menu a tendina e pure about (??) e cambia design FAQ (guarda ds)
 
 BUG TROVATI:
-        - bug messaggi
-        - bug foto modifica
         - style
-        -
 
 ⬜ - No copie di avvistamenti (equals luogo e razza) -- magari si aggiorna la data ???  ----> DIEGO (non ha senso)
 ⬜ ? Disegni animali estetica sito ----> DIEGO (evitabile)

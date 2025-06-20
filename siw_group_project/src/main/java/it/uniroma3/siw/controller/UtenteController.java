@@ -121,8 +121,12 @@ public class UtenteController {
         // Se il file è stato caricato ed è valido
         if (file != null && !file.isEmpty()) {
             try {
-                originale.setFoto(java.util.Base64.getEncoder().encodeToString(file.getBytes())); // salva la foto come
-                                                                                                  // stringa Base64
+                String uploadDir = "uploads/";
+                java.nio.file.Files.createDirectories(java.nio.file.Paths.get(uploadDir));
+                String filename = java.util.UUID.randomUUID() + "_" + file.getOriginalFilename();
+                java.nio.file.Path path = java.nio.file.Paths.get(uploadDir + filename);
+                java.nio.file.Files.write(path, file.getBytes());
+                originale.setFoto("/uploads/" + filename);
             } catch (Exception e) {
                 e.printStackTrace();
                 return "redirect:/error";
@@ -153,8 +157,12 @@ public class UtenteController {
         // Se il file è stato caricato ed è valido
         if (file != null && !file.isEmpty()) {
             try {
-                originale.setFoto(java.util.Base64.getEncoder().encodeToString(file.getBytes())); // salva la foto come
-                                                                                                  // stringa Base64
+                String uploadDir = "uploads/";
+                java.nio.file.Files.createDirectories(java.nio.file.Paths.get(uploadDir));
+                String filename = java.util.UUID.randomUUID() + "_" + file.getOriginalFilename();
+                java.nio.file.Path path = java.nio.file.Paths.get(uploadDir + filename);
+                java.nio.file.Files.write(path, file.getBytes());
+                originale.setFoto("/uploads/" + filename);
             } catch (Exception e) {
                 e.printStackTrace();
                 return "redirect:/error";
@@ -179,7 +187,10 @@ public class UtenteController {
         originale.setLuogo(segnalazioneBase.getLuogo());
         originale.setCodSesso(segnalazioneBase.getCodSesso());
         originale.setDescrizioneFisica(segnalazioneBase.getDescrizioneFisica());
-        originale.setFoto(segnalazioneBase.getFoto());
+        // Aggiorna la foto solo se segnalazioneBase.getFoto() non è null e non vuota
+        if (segnalazioneBase.getFoto() != null && !segnalazioneBase.getFoto().isEmpty()) {
+            originale.setFoto(segnalazioneBase.getFoto());
+        }
         originale.setCodStatus(segnalazioneBase.getCodStatus());
         originale.setDataOra(segnalazioneBase.getDataOra());
     }

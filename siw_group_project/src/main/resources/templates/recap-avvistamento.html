@@ -36,27 +36,35 @@
 
     <main>
         <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> Riepilogo Avvistamento</h2>
-
-        <div class="summary-box">
-            <p><strong><i class="fa-solid fa-location"></i> Luogo:</strong> <span
-                    th:text="${segnalazione.luogo}"></span></p>
-            <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span th:text="${segnalazione.specie}"></span>
-            </p>
-            <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span th:text="${segnalazione.razza}"></span></p>
-            <p><strong><i class="fa-solid fa-venus-mars"></i> Sesso:</strong> <span
-                    th:text="${segnalazione.codSesso}"></span></p>
-            <p><strong><i class="fa-solid fa-align-left"></i> Descrizione Fisica:</strong> <span
-                    th:text="${segnalazione.descrizioneFisica}"></span></p>
-            <p><strong><i class="fa-solid fa-heartbeat"></i> Stato di Salute Apparente:</strong> <span
-                    th:text="${segnalazione.statoSalute}"></span></p>
-            <p><strong><i class="fa-solid fa-hand-holding-medical"></i> Azioni Intraprese:</strong> <span
-                    th:text="${segnalazione.azioniIntraprese}"></span></p>
-            <p><strong><i class="fa-solid fa-circle-info"></i> Informazioni Extra:</strong> <span
-                    th:text="${segnalazione.informazioniExtra}"></span></p>
-            <p><strong><i class="fa-solid fa-camera"></i> Foto:</strong><br><img th:src="${segnalazione.foto}"
-                    alt="Foto avvistamento" class="segnalazione-img">
-            </p>
-
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong><i class="fa-solid fa-location"></i> Luogo:</strong> <span th:text="${segnalazione.luogo}"></span>
+                    </p>
+                    <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span th:text="${segnalazione.specie}"></span>
+                    </p>
+                    <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span th:text="${segnalazione.razza}"></span>
+                    </p>
+                    <p><strong><i class="fa-solid fa-venus-mars"></i> Sesso:</strong> <span
+                            th:text="${segnalazione.codSesso}"></span></p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong><i class="fa-solid fa-align-left"></i> Descrizione Fisica:</strong> <span
+                            th:text="${segnalazione.descrizioneFisica}"></span></p>
+                    <p><strong><i class="fa-solid fa-heartbeat"></i> Stato di Salute Apparente:</strong> <span
+                            th:text="${segnalazione.statoSalute}"></span></p>
+                    <p><strong><i class="fa-solid fa-hand-holding-medical"></i> Azioni Intraprese:</strong> <span
+                            th:text="${segnalazione.azioniIntraprese}"></span></p>
+                    <p><strong><i class="fa-solid fa-circle-info"></i> Informazioni Extra:</strong> <span
+                            th:text="${segnalazione.informazioniExtra}"></span></p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <img th:src="${segnalazione.foto}" alt="Foto avvistamento" class="img-fluid"
+                        style="max-width:100%;height:auto;">
+                </div>
+            </div>
         </div>
 
         <!-- Form con bottoni -->
