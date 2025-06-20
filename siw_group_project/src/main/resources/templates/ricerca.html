@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-
 <head>
     <meta charset="UTF-8">
     <title>Visualizza Segnalazioni e Denunce</title>
+
+    <!-- CSS esterni -->
     <link rel="stylesheet" href="/css/styleRicerca.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,15 +26,15 @@
                         <li><a href="/about">About Us</a></li>
                         <li><a href="/segnala">Contattaci</a></li>
                         <li sec:authorize="isAuthenticated()">
-                            <a href="#"
-                                onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+                            <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
                         </li>
-
                     </ul>
                 </li>
             </ul>
         </nav>
     </header>
+
+    <!-- Main -->
     <main>
         <div class="container mt-5">
             <div id="intro" class="alert alert-info">
@@ -44,8 +45,7 @@
             <div class="pulsanti-switch mb-3 d-flex align-items-center flex-wrap gap-2">
                 <button class="btn btn-primary" onclick="mostra('segnalazioni')">Segnalazioni</button>
                 <button class="btn btn-danger" onclick="mostra('denunce')">Denunce</button>
-                <input type="text" id="searchInput" class="form-control w-50"
-                    placeholder="Cerca per razza, via o data..." onkeyup="filtraSchede()">
+                <input type="text" id="searchInput" class="form-control w-50" placeholder="Cerca per razza, via o data..." onkeyup="filtraSchede()">
                 <button class="btn btn-secondary" onclick="resetFiltro()">Reset</button>
             </div>
 
@@ -56,22 +56,17 @@
                     <img th:src="${avv.foto}" alt="Foto Avvistamento">
                     <div>
                         <p><strong>Razza:</strong> <span th:text="${avv.razza}"></span></p>
-                        <p><strong>Data:</strong> <span
-                                th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}"></span></p>
+                        <p><strong>Data:</strong> <span th:text="${#temporals.format(avv.dataOra, 'dd/MM/yyyy')}"></span></p>
                         <p><strong>Via:</strong> <span th:text="${avv.luogo}"></span></p>
                     </div>
 
-                    <!-- link cliccabile sull'intera scheda -->
                     <a th:href="@{/segnalazioni/{id}(id=${avv.id})}" class="stretched-link"></a>
 
-                    <!-- Admin controls -->
                     <div sec:authorize="hasAuthority('ADMIN')" class="admin-controls">
-                        <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn btn-sm btn-warning"
-                            title="Modifica">
+                        <a th:href="@{'/segnalazioni/modifica/' + ${avv.id}}" class="btn btn-sm btn-warning" title="Modifica">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post"
-                            onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
+                        <form th:action="@{'/segnalazioni/elimina/' + ${avv.id}}" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare questa segnalazione?');">
                             <input type="hidden" name="_method" value="delete" />
                             <button type="submit" class="btn btn-sm btn-danger" title="Elimina">
                                 <i class="fa-solid fa-trash"></i>
@@ -79,6 +74,7 @@
                         </form>
                     </div>
                 </div>
+                <div id="nessunRisultatoSegnalazioni" class="alert alert-warning d-none">Nessuna segnalazione trovata.</div>
             </div>
 
             <!-- DENUNCE -->
@@ -88,22 +84,17 @@
                     <img th:src="${den.foto}" alt="Foto Denuncia">
                     <div>
                         <p><strong>Razza:</strong> <span th:text="${den.razza}"></span></p>
-                        <p><strong>Data:</strong> <span
-                                th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}"></span></p>
+                        <p><strong>Data:</strong> <span th:text="${#temporals.format(den.dataOra, 'dd/MM/yyyy')}"></span></p>
                         <p><strong>Via:</strong> <span th:text="${den.luogo}"></span></p>
                     </div>
 
-                    <!-- link cliccabile sull'intera scheda -->
                     <a th:href="@{/segnalazioni/{id}(id=${den.id})}" class="stretched-link"></a>
 
-                    <!-- Admin controls -->
                     <div sec:authorize="hasAuthority('ADMIN')" class="admin-controls">
-                        <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn btn-sm btn-warning"
-                            title="Modifica">
+                        <a th:href="@{'/segnalazioni/modifica/' + ${den.id}}" class="btn btn-sm btn-warning" title="Modifica">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post"
-                            onsubmit="return confirm('Sei sicuro di voler eliminare questa denuncia?');">
+                        <form th:action="@{'/segnalazioni/elimina/' + ${den.id}}" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare questa denuncia?');">
                             <input type="hidden" name="_method" value="delete" />
                             <button type="submit" class="btn btn-sm btn-danger" title="Elimina">
                                 <i class="fa-solid fa-trash"></i>
@@ -111,15 +102,17 @@
                         </form>
                     </div>
                 </div>
+                <div id="nessunRisultatoDenunce" class="alert alert-warning d-none">Nessuna denuncia trovata.</div>
             </div>
         </div>
     </main>
-
 
     <!-- Footer -->
     <footer>
         &copy; 2025 Tutti i diritti riservati.
     </footer>
+
+    <!-- Script -->
     <script src="/js/ricercaForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
