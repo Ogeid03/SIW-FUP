@@ -220,7 +220,7 @@ footer {
 /* EXTRA */
 .hero {
     margin-top: 0;
-    background: url('/img/bannerHPprova.jpg') center/cover no-repeat;
+    background: url('/img/bannerHPprova.jpg') 90% center/cover no-repeat;
     height: 60%;
     color: white;
     padding: 100px 20px;
@@ -392,6 +392,8 @@ form button:active {
     transition: box-shadow 0.3s, transform 0.2s;
     position: relative;
     z-index: 1;
+    min-height: 420px;
+    height: 100%;
 }
 
 .home-card:hover {
@@ -400,14 +402,14 @@ form button:active {
 }
 
 .hero.home-card {
-    background: linear-gradient(120deg, rgba(255,179,71,0.85) 60%, rgba(255,251,230,0.7) 100%), url('/img/bannerHPprova.jpg') left center/cover no-repeat;
+    background: linear-gradient(120deg, rgba(255,179,71,0.65) 40%, rgba(255,251,230,0.4) 100%), url('/img/bannerHPprova.jpg') 95% center/cover no-repeat;
     color: #003366;
     align-items: flex-start;
     position: relative;
 }
 
 .segnalazione-invito.home-card {
-    background: linear-gradient(120deg, rgba(255,179,71,0.85) 60%, rgba(255,251,230,0.7) 100%), url('/img/bannerHPprova3.png') left center/cover no-repeat;
+    background: linear-gradient(120deg, rgba(255,179,71,0.65) 40%, rgba(255,251,230,0.4) 100%), url('/img/bannerHPprova3.png') left center/cover no-repeat;
     color: #003366;
     align-items: flex-start;
     position: relative;
