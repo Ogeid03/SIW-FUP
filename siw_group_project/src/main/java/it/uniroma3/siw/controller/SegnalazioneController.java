@@ -84,7 +84,7 @@ public class SegnalazioneController {
             return "segnalazione";
         }
 
-        return "not-found";
+        return "error";
     }
 
 }
