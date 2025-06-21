@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Segnalazione</title>
-    <link rel="stylesheet" th:href="@{/css/styleSegnalazione.css}">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/styleMultiform.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-
     <!-- Header -->
     <header>
         <a href="/" class="logo" aria-label="Home"><span class="paw">🐾</span> <span>Find Your Pet</span></a>
@@ -21,8 +20,7 @@
                     <a href="/login">Accedi</a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
-                    <a href="/account"><i class="fa-solid fa-user"></i> Ciao <span th:text="${nomeUtente}">Utente</span>
-                    </a>
+                    <a href="/account"><i class="fa-solid fa-user"></i> Ciao <span th:text="${nomeUtente}">Utente</span></a>
                 </li>
                 <li><a href="/ricerca">Consulta Segnalazioni</a></li>
                 <li class="dropdown">
@@ -32,8 +30,7 @@
                         <li><a href="/about">About Us</a></li>
                         <li><a href="/segnala">Contattaci</a></li>
                         <li sec:authorize="isAuthenticated()">
-                            <a href="#"
-                                onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+                            <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -45,51 +42,35 @@
             <button onclick="window.history.back()" class="btn btn-warning mb-3">
                 <i class="fa-solid fa-arrow-left"></i> Torna indietro
             </button>
-
         </div>
-        <div class="card-wrapper" th:classappend="${tipo == 'denuncia'} ? ' denuncia'">
-            <h1
+        <div class="recap-box">
+            <h1 class="section-title"
                 th:text="${tipo == 'denuncia' ? 'Denuncia - 000' + segnalazione.id : 'Avvistamento - 000' + segnalazione.id}">
             </h1>
-
-            <div class="container">
-                <!-- Colonna sinistra -->
-                <div class="photo-box">
-                    <img th:src="${segnalazione.foto}" alt="Foto segnalazione">
+            <div class="row">
+                <div class="col-md-5 text-center">
+                    <img th:src="${segnalazione.foto}" alt="Foto segnalazione" class="img-fluid">
                 </div>
-
-                <!-- Colonna destra -->
-                <div class="summary-box">
-                    <p><strong><i class="fa-solid fa-location-dot"></i> Luogo:</strong> <span
-                            th:text="${segnalazione.luogo}"></span></p>
-                    <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span
-                            th:text="${segnalazione.specie}"></span></p>
-                    <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span
-                            th:text="${segnalazione.razza}"></span>
-                    </p>
-                    <p><strong><i class="fa-solid fa-menus-mars"></i> Sesso:</strong> <span
-                            th:text="${segnalazione.codSesso}"></span>
-                    </p>
-                    <p><strong><i class="fa-solid fa-align-left"></i> Descrizione Fisica:</strong> <span
-                            th:text="${segnalazione.descrizioneFisica}"></span></p>
-
-                    <!-- Solo se è una denuncia -->
-                    <div th:if="${tipo == 'denuncia'}">
-                        <p><strong>Nome:</strong> <span th:text="${segnalazione.nome}"></span></p>
-                        <p><strong>Premio Offerto:</strong> <span th:text="${segnalazione.premioOfferto}"></span></p>
-                        <p><strong>Età:</strong> <span th:text="${segnalazione.eta}"></span></p>
+                <div class="col-md-7">
+                    <div class="summary-box">
+                        <p><strong><i class="fa-solid fa-location-dot"></i> Luogo:</strong> <span th:text="${segnalazione.luogo}"></span></p>
+                        <p><strong><i class="fa-solid fa-paw"></i> Specie:</strong> <span th:text="${segnalazione.specie}"></span></p>
+                        <p><strong><i class="fa-solid fa-dog"></i> Razza:</strong> <span th:text="${segnalazione.razza}"></span></p>
+                        <p><strong><i class="fa-solid fa-venus-mars"></i> Sesso:</strong> <span th:text="${segnalazione.codSesso}"></span></p>
+                        <p><strong><i class="fa-solid fa-align-left"></i> Descrizione Fisica:</strong> <span th:text="${segnalazione.descrizioneFisica}"></span></p>
+                        <!-- Solo se è una denuncia -->
+                        <div th:if="${tipo == 'denuncia'}">
+                            <p><strong>Nome:</strong> <span th:text="${segnalazione.nome}"></span></p>
+                            <p><strong>Premio Offerto:</strong> <span th:text="${segnalazione.premioOfferto}"></span></p>
+                            <p><strong>Età:</strong> <span th:text="${segnalazione.eta}"></span></p>
+                        </div>
+                        <!-- Solo se è un avvistamento -->
+                        <div th:if="${tipo == 'avvistamento'}">
+                            <p><strong><i class="fa-solid fa-heartbeat"></i> Stato di Salute Apparente:</strong> <span th:text="${segnalazione.statoSalute}"></span></p>
+                            <p><strong><i class="fa-solid fa-hand-holding-medical"></i> Azioni Intraprese:</strong> <span th:text="${segnalazione.azioniIntraprese}"></span></p>
+                        </div>
+                        <p><strong><i class="fa-solid fa-circle-info"></i> Informazioni Extra:</strong> <span th:text="${segnalazione.informazioniExtra}"></span></p>
                     </div>
-
-                    <!-- Solo se è un avvistamento -->
-                    <div th:if="${tipo == 'avvistamento'}">
-                        <p><strong><i class="fa-solid fa-heartbeat"></i> Stato di Salute Apparente:</strong> <span
-                                th:text="${segnalazione.statoSalute}"></span></p>
-                        <p><strong><i class="fa-solid fa-hand-holding-medical"></i> Azioni Intraprese:</strong> <span
-                                th:text="${segnalazione.azioniIntraprese}"></span></p>
-                    </div>
-
-                    <p><strong><i class="fa-solid fa-circle-info"></i> Informazioni Extra:</strong> <span
-                            th:text="${segnalazione.informazioniExtra}"></span></p>
                 </div>
             </div>
         </div>
@@ -98,19 +79,13 @@
             <form th:action="@{/messaggi/invia}" method="post" th:object="${messaggio}" class="chat-form">
                 <input type="hidden" name="codDestinatarioId" th:value="${destinatarioId}" />
                 <input type="hidden" name="codSegnalazioneId" th:value="${segnalazione.id}" />
-
-
                 <div class="input-group">
-                    <textarea th:field="*{contenuto}" id="contenuto" placeholder="Scrivi qui il tuo messaggio..."
-                        required></textarea>
+                    <textarea th:field="*{contenuto}" id="contenuto" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
                     <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </form>
         </div>
-
-
         <div class="similar-sightings-section mt-5">
-
             <!-- Carosello per DENUNCE RILEVANTI -->
             <div th:if="${tipo == 'avvistamento'}">
                 <h2 class="text-center mb-4">Denunce Rilevanti</h2>
@@ -133,13 +108,11 @@
                                         th:text="${den.specie} + ', ' + ${den.razza} + ', ' + ${den.luogo}"></p>
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#relevantCarousel"
-                                data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#relevantCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon"></span>
                                 <span class="visually-hidden">Precedente</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#relevantCarousel"
-                                data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#relevantCarousel" data-bs-slide="next">
                                 <span class="carousel-control-next-icon"></span>
                                 <span class="visually-hidden">Successivo</span>
                             </button>
@@ -147,7 +120,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Carosello per AVVISTAMENTI SIMILI -->
             <div th:if="${tipo == 'denuncia'}">
                 <h2 class="text-center mb-4">Avvistamenti Rilevanti</h2>
@@ -170,13 +142,11 @@
                                         th:text="${avv.specie} + ', ' + ${avv.razza} + ', ' + ${avv.luogo}"></p>
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#similarCarousel"
-                                data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#similarCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon"></span>
                                 <span class="visually-hidden">Precedente</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#similarCarousel"
-                                data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#similarCarousel" data-bs-slide="next">
                                 <span class="carousel-control-next-icon"></span>
                                 <span class="visually-hidden">Successivo</span>
                             </button>
@@ -190,9 +160,7 @@
     <footer>
         &copy; 2025 Tutti i diritti riservati.
     </footer>
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
