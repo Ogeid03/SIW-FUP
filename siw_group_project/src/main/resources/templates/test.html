@@ -36,25 +36,73 @@
     margin-bottom: 40px;
   }
 
-  header h1 {
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #003049;
     font-weight: 700;
     font-size: 1.5rem;
   }
 
-  header nav button {
-    background-color: #d62828;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.25s ease;
-    margin-left: 12px;
+  .paw {
+    margin-right: 8px;
   }
 
-  header nav button:hover {
-    background-color: #a22020;
+  nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu {
+    display: flex;
+    list-style: none;
+  }
+
+  .menu li {
+    margin-left: 20px;
+  }
+
+  .menu a {
+    text-decoration: none;
+    color: #003049;
+    font-weight: 600;
+    transition: color 0.25s ease;
+  }
+
+  .menu a:hover {
+    color: #d62828;
+  }
+
+  .dropdown {
+    position: relative;
+  }
+
+  .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+  }
+
+  .submenu li {
+    width: 200px;
+  }
+
+  .submenu a {
+    padding: 10px 15px;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .dropdown:hover .submenu {
+    display: block;
   }
 
   main {
@@ -135,12 +183,30 @@
 <body>
 
 <header>
-  <h1>Animali Smarriti</h1>
-  <nav>
-    <button onclick="alert('Vai a segnalazione smarrimento')">Segnala Smarrimento</button>
-    <button onclick="alert('Vai a segnalazione avvistamento')">Segnala Avvistamento</button>
-  </nav>
-</header>
+    <a href="/" class="logo" aria-label="Home"><span class="paw">🐾</span> <span>Find Your Pet</span></a>
+    <nav>
+      <ul class="menu">
+        <li sec:authorize="!isAuthenticated()">
+          <a href="/login">Accedi</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+          <a href="/account"><i class="fa-solid fa-user"></i> Ciao <span th:text="${nomeUtente}">Utente</span> </a>
+        </li>
+        <li><a href="/ricerca">Consulta Segnalazioni</a></li>
+        <li class="dropdown">
+          <a href="#"><i class="fa-solid fa-bars"></i></a>
+          <ul class="submenu">
+            <li sec:authorize="isAuthenticated()"><a href="/account">Account</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/segnala">Contattaci</a></li>
+            <li sec:authorize="isAuthenticated()">
+              <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
 <main>
   <section class="hero">

@@ -5,17 +5,23 @@
     <meta charset="UTF-8">
     <title>Segnala un contenuto</title>
     <link rel="stylesheet" href="/css/styleMultiform.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
     <header>
-        <a href="/"><img src="/img/LongLogo.png" alt="Logo" class="longLogo"></a>
+        <a href="/" class="logo" aria-label="Home"><span class="paw">🐾</span> <span>Find Your Pet</span></a>
         <nav>
             <ul class="menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
+                <li sec:authorize="!isAuthenticated()">
+                    <a href="/login">Accedi</a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a href="/account"><i class="fa-solid fa-user"></i> Ciao <span th:text="${nomeUtente}">Utente</span> </a>
+                </li>
+                <li><a href="/ricerca">Consulta Segnalazioni</a></li>
                 <li class="dropdown">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                     <ul class="submenu">
@@ -26,7 +32,6 @@
                             <a href="#"
                                 onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
                         </li>
-
                     </ul>
                 </li>
             </ul>
