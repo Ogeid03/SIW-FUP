@@ -74,7 +74,8 @@
                 </div>
             </div>
         </div>
-        <div class="chat">
+        <!-- Box chat visibile solo se l'utente NON è il proprietario della segnalazione -->
+        <div class="chat" th:if="${utenteLoggato != null} and ${segnalazione.codUtente != null} and ${utenteLoggato.id} != ${segnalazione.codUtente.id}">
             <h2>Invia un messaggio</h2>
             <form th:action="@{/messaggi/invia}" method="post" th:object="${messaggio}" class="chat-form">
                 <input type="hidden" name="codDestinatarioId" th:value="${destinatarioId}" />

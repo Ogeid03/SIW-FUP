@@ -11,15 +11,19 @@ import it.uniroma3.siw.model.Avvistamento;
 import it.uniroma3.siw.model.Denuncia;
 import it.uniroma3.siw.model.Messaggio;
 import it.uniroma3.siw.service.SegnalazioneService;
+import it.uniroma3.siw.service.UtenteService;
 
 @Controller
 public class SegnalazioneController {
 
     @Autowired
     private final SegnalazioneService segnalazioneService;
+    @Autowired
+    private UtenteService utenteService;
 
-    public SegnalazioneController(SegnalazioneService segnalazioneService) {
+    public SegnalazioneController(SegnalazioneService segnalazioneService, UtenteService utenteService) {
         this.segnalazioneService = segnalazioneService;
+        this.utenteService = utenteService;
     }
 
     @GetMapping("/segnalazioni/{id:[0-9]+}")
@@ -48,9 +52,9 @@ public class SegnalazioneController {
             messaggio.setCodDestinatario(avvistamento.getCodUtente());
             messaggio.setCodSegnalazione(avvistamento);
             model.addAttribute("messaggio", messaggio);
-
-            // Qui aggiungi l'id destinatario separato
             model.addAttribute("destinatarioId", avvistamento.getCodUtente().getId());
+            // AGGIUNGI UTENTE AUTENTICATO
+            model.addAttribute("utenteLoggato", utenteService.getUtenteAutenticato());
 
             return "segnalazione";
         }
@@ -77,9 +81,9 @@ public class SegnalazioneController {
             messaggio.setCodDestinatario(denuncia.getCodUtente());
             messaggio.setCodSegnalazione(denuncia);
             model.addAttribute("messaggio", messaggio);
-
-            // Qui aggiungi l'id destinatario separato
             model.addAttribute("destinatarioId", denuncia.getCodUtente().getId());
+            // AGGIUNGI UTENTE AUTENTICATO
+            model.addAttribute("utenteLoggato", utenteService.getUtenteAutenticato());
 
             return "segnalazione";
         }
