@@ -78,16 +78,21 @@ nav {
 }
 
 .menu a {
-    color: white;
-    text-decoration: none;
-    padding: 1rem;
+    color: #fff;
+    text-decoration: none !important;
+    padding: 0.7rem 1.2rem;
     display: block;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    font-size: 1.08rem;
+    border-radius: 1.2rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
 .menu a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
+    background: none;
+    color: orange;
+    text-decoration: none;
+    box-shadow: none;
 }
 
 .submenu li {
@@ -339,7 +344,7 @@ form button:active {
     margin: 0 0 2vw 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: flex-start;
     transition: box-shadow 0.3s, transform 0.2s;
     position: relative;
@@ -378,6 +383,18 @@ form button:active {
     font-size: 1.3em;
     margin-bottom: 1.2em;
     font-weight: 500;
+}
+
+/* Allineamento verticale dei bottoni nelle home-card */
+.hero-content, .invito-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.button-container {
+    margin-top: auto;
 }
 
 @media (max-width: 900px) {
@@ -462,4 +479,33 @@ main.error-page {
 .error-message {
   color: red;
   display: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 2.1rem;
+    padding-left: 0;
+    margin-right: 1.2rem;
+    color: #fff; /* testo bianco di default */
+    background: none;
+    border: none;
+    box-shadow: none;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none !important;
+    transition: color 0.2s;
+}
+.logo .paw {
+    color: #ffb347 !important; /* zampa sempre arancione */
+    margin-right: 0.5rem;
+    font-size: 1.2em;
+    transition: none;
+}
+.logo span {
+    color: #fff;
+    transition: color 0.2s;
+}
+.logo:hover span {
+    color: #ffb347;
 }
