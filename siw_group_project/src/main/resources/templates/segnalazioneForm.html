@@ -37,9 +37,10 @@
           </ul>
         </li>
       </ul>
-      <form id="logoutForm" th:action="@{/logout}" method="post"></form>
     </nav>
   </header>
+
+  <form id="logoutForm" th:action="@{/logout}" method="post" style="display:none"></form>
 
   <main>
     <form id="multiStepForm" th:action="@{/conferma-avvistamento}" th:object="${segnalazione}" method="post"

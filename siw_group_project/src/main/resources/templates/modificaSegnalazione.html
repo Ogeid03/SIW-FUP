@@ -43,6 +43,8 @@
         </nav>
     </header>
 
+    <form id="logoutForm" th:action="@{/logout}" method="post" style="display:none"></form>
+
     <main>
         <form th:action="@{${tipoSegnalazione == 'denuncia'} ? '/segnalazioni/modifica/denuncia/' + ${segnalazione.id} : '/segnalazioni/modifica/avvistamento/' + ${segnalazione.id}}"
             th:object="${segnalazione}" method="post" enctype="multipart/form-data">

@@ -2,38 +2,45 @@
 
 header {
     width: 100%;
-    background: #1976d2;
+    background: linear-gradient(90deg, #1976d2 60%, #21a1ff 100%);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px;
-    min-height: 76px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 0 40px;
+    min-height: 84px;
+    box-shadow: 0 6px 24px rgba(25,118,210,0.10);
     z-index: 100;
+    backdrop-filter: blur(4px);
+    border-bottom: 2.5px solid #eaf1ff;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 2.3rem;
+    font-weight: 800;
     color: #fff;
     text-decoration: none;
-    gap: 0.5rem;
-    transition: color 0.2s;
+    gap: 0.7rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 12px rgba(33,161,255,0.13);
+    transition: color 0.2s, text-shadow 0.2s;
 }
 .logo .paw {
-    color: #ff9900;
-    font-size: 2.1rem;
-    margin-right: 0.3rem;
+    color: #ffb300;
+    font-size: 2.5rem;
+    margin-right: 0.4rem;
     vertical-align: middle;
+    filter: drop-shadow(0 0 8px #ffb30088);
+    transition: filter 0.2s;
 }
 .logo:hover {
-    color: #ff9900;
+    color: #ffb300;
+    text-shadow: 0 2px 18px #ffb30055;
 }
 .logo:hover .paw {
-    color: #ff9900;
+    filter: drop-shadow(0 0 16px #ffb300cc);
 }
 
 nav {
@@ -45,38 +52,49 @@ nav {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 1.5rem;
+    gap: 2.2rem;
     margin: 0;
     padding: 0;
 }
 .menu a {
     color: #fff;
     text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: color 0.2s;
+    font-size: 1.18rem;
+    font-weight: 600;
+    padding: 0.45rem 1.2rem;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.06);
+    transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(33,161,255,0.07);
+    position: relative;
 }
 .menu a:hover {
-    color: #ff9900;
+    color: #ffb300;
+    background: rgba(255,255,255,0.18);
+    box-shadow: 0 4px 16px #ffb30033;
 }
 .menu .dropdown {
     position: relative;
 }
 .menu .dropdown > a {
-    font-size: 1.3rem;
-    padding: 0 0.5rem;
+    font-size: 1.35rem;
+    padding: 0 0.7rem;
+    background: none;
+    box-shadow: none;
 }
 .menu .submenu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 110%;
     right: 0;
-    background: #1976d2;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    min-width: 180px;
+    background: linear-gradient(100deg, #1976d2 70%, #21a1ff 100%);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(33,161,255,0.13);
+    min-width: 200px;
     z-index: 10;
-    padding: 0.5rem 0;
+    padding: 0.7rem 0.2rem;
+    border: 1.5px solid #eaf1ff;
+    animation: fadeIn 0.25s;
 }
 .menu .dropdown:hover .submenu,
 .menu .dropdown:focus-within .submenu {
@@ -87,25 +105,47 @@ nav {
 }
 .menu .submenu a {
     color: #fff;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 1.05rem;
+    font-weight: 500;
     display: block;
     width: 100%;
+    border-radius: 14px;
+    padding: 0.5rem 1rem;
+    background: none;
+    transition: background 0.18s, color 0.18s;
 }
 .menu .submenu a:hover {
-    color: #ff9900;
-    background: rgba(255,153,0,0.07);
+    color: #ffb300;
+    background: rgba(255,255,255,0.13);
 }
-@media (max-width: 700px) {
+@media (max-width: 900px) {
     header {
         flex-direction: column;
         align-items: flex-start;
         padding: 0 10px;
+        min-height: 70px;
     }
     .logo {
         font-size: 1.5rem;
     }
     .menu {
-        gap: 0.7rem;
+        gap: 1rem;
     }
+}
+@media (max-width: 600px) {
+    .logo {
+        font-size: 1.1rem;
+    }
+    .menu a {
+        font-size: 1rem;
+        padding: 0.35rem 0.7rem;
+    }
+    .menu .submenu {
+        min-width: 140px;
+        border-radius: 12px;
+    }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
