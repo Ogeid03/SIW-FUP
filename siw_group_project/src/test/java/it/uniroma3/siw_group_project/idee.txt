@@ -2,15 +2,15 @@
 
 🛑 ? Più razze (es. [xcane] [xlupo]) va cambiato in list(razza) ---> DIEGO (inutile)
 🛑🛑 - Carica Online
-🛑 ? Meno zoom gatto home
 🛑 ? in riepilogo fare 2 colonne e aggiungere in fondo la foto a largehzza piena
 🛑 ? messaggi popup resoconto azioni
-🛑 - aggiungi FAQ a menu a tendina e pure about (??) e cambia design FAQ (guarda ds)
-
 
 BUG TROVATI:
-        - style
-        - si può scrivere da solo
+        - campi obbligatori sbagliati
+        - homepage senza link home sul logo e con sfumatura blu sul cane
+        - bg risposte messaggi troppo chiaro (non si vede la data)
+        - fix css sesso
+        - più di una foto
 
 ⬜ - No copie di avvistamenti (equals luogo e razza) -- magari si aggiorna la data ???  ----> DIEGO (non ha senso)
 ⬜ ? Disegni animali estetica sito ----> DIEGO (evitabile)

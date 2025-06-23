@@ -72,7 +72,7 @@
                 </select>
 
                 <label>Razza:</label>
-                <select id="razza" th:field="*{razza}">
+                <select id="razza" th:field="*{razza}" th:attr="data-selected=*{razza}" required>
                     <option value="">-- Seleziona una razza --</option>
                 </select>
 

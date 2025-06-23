@@ -74,14 +74,15 @@
         <p class="required-message">Questo campo è obbligatorio.</p>
 
         <label for="razza">Razza:</label>
-        <select id="razza" name="razza">
+        <select id="razza" name="razza" required>
           <option value="">-- Seleziona una razza --</option>
         </select>
+        <p class="required-message">Questo campo è obbligatorio.</p>
       </div>
 
       <!-- Step 3 -->
       <div class="step">
-        <label>Sesso (opzionale):</label><br>
+        <label>Sesso:</label><br>
         <div class="radio-group">
           <label for="maschio">
             <input type="radio" id="maschio" name="codSesso" value="MASCHIO">
@@ -102,10 +103,10 @@
         <input type="text" id="descrizione" name="descrizione" placeholder="Colore, Lunghezza pelo, Caratteristiche mantello, ..." maxlength="255">
 
         <label for="salute">Stato Salute Apparente:</label>
-        <input type="text" id="salute" name="salute" maxlength="255">
+        <input type="text" id="salute" name="salute" maxlength="255" placeholder="Evidenziare eventuali ferite o malesseri dell'animale">
 
         <label for="azione">Azioni Intraprese:</label>
-        <input type="text" id="azione" name="azione" maxlength="255">
+        <input type="text" id="azione" name="azione" maxlength="255" placeholder="es. chimata protezione animali, lasciati cibo e acqua, ...">
       </div>
 
       <!-- Step 4 -->
