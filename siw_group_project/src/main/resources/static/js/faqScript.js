@@ -9,11 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
         question.addEventListener("click", () => {
             const isVisible = answer.style.display === "block";
 
-            // Chiude tutte le risposte
+            
             document.querySelectorAll(".faq .answer").forEach(a => a.style.display = "none");
             document.querySelectorAll(".faq .icon").forEach(i => i.textContent = "+");
 
-            // Se non era visibile, apri questa
             if (!isVisible) {
                 answer.style.display = "block";
                 icon.textContent = "−";

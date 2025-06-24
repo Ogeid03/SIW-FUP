@@ -50,13 +50,13 @@ public class DenunciaController {
         if (!file.isEmpty()) {
         try {
             String uploadDir = "uploads/";
-            Files.createDirectories(Paths.get(uploadDir)); // crea la cartella se non esiste
+            Files.createDirectories(Paths.get(uploadDir)); 
 
             String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
             Path path = Paths.get(uploadDir + filename);
             Files.write(path, file.getBytes());
 
-            // Qui assegni il path relativo, non il MultipartFile
+            
             denuncia.setFoto("/uploads/" + filename);
 
             
@@ -64,7 +64,7 @@ public class DenunciaController {
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("errore", "Errore durante il caricamento dell’immagine.");
-            return "denunciaForm"; // torna alla form se fallisce
+            return "denunciaForm"; 
         }
     }
 

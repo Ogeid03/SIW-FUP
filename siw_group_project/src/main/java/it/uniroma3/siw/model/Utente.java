@@ -74,18 +74,18 @@ public class Utente {
         this.password = password;
     }
 
-    // Equals method basato solo sul telefono
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Utente utente = (Utente) o;
-        return Objects.equals(telefono, utente.telefono); // Confronta solo il telefono
+        return Objects.equals(telefono, utente.telefono); 
     }
 
-    // HashCode method basato solo sul telefono
+
     @Override
     public int hashCode() {
-        return Objects.hash(telefono); // Usa solo il telefono per generare il hashCode
+        return Objects.hash(telefono); 
     }
 }

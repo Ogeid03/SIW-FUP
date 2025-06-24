@@ -51,7 +51,6 @@ public String dettagliSegnalazione(@PathVariable Long id, Model model) {
             model.addAttribute("rilevanti", List.of());
         }
 
-        // Solo se l'utente NON è il proprietario
         if (utenteLoggato != null && avvistamento.getCodUtente() != null &&
                 !utenteLoggato.getId().equals(avvistamento.getCodUtente().getId())) {
             Messaggio messaggio = new Messaggio();

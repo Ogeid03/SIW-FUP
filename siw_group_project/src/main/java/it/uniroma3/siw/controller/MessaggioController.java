@@ -98,15 +98,14 @@ public class MessaggioController {
         Utente utenteLoggato = utenteService.getUtenteByEmail(principal.getName());
         Utente utenteSelezionato = utenteService.getUtenteById(utenteId);
 
-        // Recupera messaggi tra i due utenti (in entrambi i sensi)
+    
         List<Messaggio> messaggi = messaggioService.getConversazioneCompleta(utenteLoggato, utenteSelezionato);
 
-        // Invertiamo la lista per mostrare i messaggi dal più vecchio al più recente
-        // (in fondo)
+       
         List<Messaggio> messaggiInversi = new ArrayList<>(messaggi);
         Collections.reverse(messaggiInversi);
 
-        // Lista utenti con cui ha chattato
+       
         List<Utente> utentiConConversazioni = trovaUtentiConConversazioni(utenteLoggato);
         model.addAttribute("messaggio", new Messaggio());
         model.addAttribute("messaggi", messaggiInversi);

@@ -23,20 +23,20 @@ public class UtenteService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // Metodo di login che verifica il nome utente e la password
+   
     public boolean authenticate(String email, String password) {
         Utente utente = utenteRepository.findByEmail(email);
         if (utente == null) {
             return false;
         }
-        // Confronta la password con quella cifrata nel database
+        
         return passwordEncoder.matches(password, utente.getPassword());
     }
 
-    // Metodo per registrare un nuovo utente
+    
     public void register(Utente utente, String password) {
         utente.setPassword(passwordEncoder.encode(password));
-        utente.setRuolo(Ruolo.USER); // Imposta il ruolo di default
+        utente.setRuolo(Ruolo.USER); 
         utenteRepository.save(utente);
     }
 

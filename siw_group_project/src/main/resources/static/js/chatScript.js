@@ -26,20 +26,19 @@ function caricaMessaggi() {
               `;
                 chatBox.appendChild(div);
             });
-            // Scroll automatico in fondo
             chatBox.scrollTop = chatBox.scrollHeight;
         })
         .catch(console.error);
 }
 
-// Chiama la funzione al caricamento pagina
+
 window.onload = function () {
     caricaMessaggi();
 };
 
 window.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('formMessaggio');
-  if (!form) return; // se non c'è il form, esci
+  if (!form) return; 
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();

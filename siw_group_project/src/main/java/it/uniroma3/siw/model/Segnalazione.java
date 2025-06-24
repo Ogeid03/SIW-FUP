@@ -135,7 +135,7 @@ public abstract class Segnalazione {
         this.codStatus = codStatus;
     }
 
-    // Equals basato su ID
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

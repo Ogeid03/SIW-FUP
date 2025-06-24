@@ -30,7 +30,6 @@ public class AvvistamentoService {
     }
 
     public List<Denuncia> trovaDenunceSimili(Segnalazione denuncia) {
-        // Esempio grezzo: puoi raffinarlo molto!
         return denunciaRepository.findBySpecieAndRazzaAndLuogoContainingIgnoreCase(
             denuncia.getSpecie(), 
             denuncia.getRazza(), 

@@ -1,11 +1,13 @@
 ⬜ -> ✅
 
 🛑🛑 - Carica Online
-🛑 ? in riepilogo fare 2 colonne e aggiungere in fondo la foto a largehzza piena
 🛑 ? messaggi popup resoconto azioni
 
 BUG TROVATI:
         - più di una foto
+        - style in HTML da eliminare
+        - Non fa vedere le denunce rilevanti
+        - Duplicazione degli utenti
 
 ⬜ ? Modifica e recupera account
 ⬜ ? Elimina file inutili (es. di "recap" uno solo non 2)

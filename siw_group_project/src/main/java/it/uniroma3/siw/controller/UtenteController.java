@@ -118,7 +118,7 @@ public class UtenteController {
         if (originale == null || !(originale instanceof Denuncia))
             return "redirect:/error";
 
-        // Se il file è stato caricato ed è valido
+        
         if (file != null && !file.isEmpty()) {
             try {
                 String uploadDir = "uploads/";
@@ -160,7 +160,7 @@ public class UtenteController {
         Segnalazione originale = segnalazioneService.getSegnalazioneById(id).orElse(null);
         if (originale == null || !(originale instanceof Avvistamento))
             return "redirect:/error";
-        // Se il file è stato caricato ed è valido
+      
         if (file != null && !file.isEmpty()) {
             try {
                 String uploadDir = "uploads/";
@@ -190,14 +190,14 @@ public class UtenteController {
         return "redirect:/account";
     }
 
-    // Metodo helper per campi comuni
+   
     private void setCampiComuni(Segnalazione originale, Segnalazione segnalazioneBase) {
         originale.setSpecie(segnalazioneBase.getSpecie());
         originale.setRazza(segnalazioneBase.getRazza());
         originale.setLuogo(segnalazioneBase.getLuogo());
         originale.setCodSesso(segnalazioneBase.getCodSesso());
         originale.setDescrizioneFisica(segnalazioneBase.getDescrizioneFisica());
-        // Aggiorna la foto solo se segnalazioneBase.getFoto() non è null e non vuota
+    
         if (segnalazioneBase.getFoto() != null && !segnalazioneBase.getFoto().isEmpty()) {
             originale.setFoto(segnalazioneBase.getFoto());
         }

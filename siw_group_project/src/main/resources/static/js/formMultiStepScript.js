@@ -17,7 +17,6 @@ function validateStep(index) {
   let valid = true;
 
   inputs.forEach(input => {
-    // Trova il messaggio di errore subito dopo l'input, se esiste
     const requiredMessage = input.nextElementSibling && input.nextElementSibling.classList.contains('required-message')
       ? input.nextElementSibling
       : null;
@@ -25,10 +24,10 @@ function validateStep(index) {
     if (input.hasAttribute('required') && !input.value.trim()) {
       valid = false;
       input.classList.add('invalid');
-      if (requiredMessage) requiredMessage.classList.add('active'); // mostra messaggio
+      if (requiredMessage) requiredMessage.classList.add('active'); 
     } else {
       input.classList.remove('invalid');
-      if (requiredMessage) requiredMessage.classList.remove('active'); // nascondi messaggio
+      if (requiredMessage) requiredMessage.classList.remove('active');
     }
   });
 
@@ -40,7 +39,6 @@ function validateStep(index) {
       const luogoInput = document.getElementById('luogo');
       luogoInput.classList.add('invalid');
       suggestionMessage.textContent = 'Seleziona un luogo valido dalla lista.';
-      // Se vuoi, puoi mostrare il messaggio obbligatorio sotto "luogo" in modo simile
     } else {
       suggestionMessage.textContent = '';
       document.getElementById('luogo').classList.remove('invalid');

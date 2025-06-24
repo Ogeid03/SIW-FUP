@@ -25,7 +25,7 @@ specieSelect.addEventListener("change", () => {
     updateRazze(specieSelect.value);
 });
 
-// Precaricamento razza esistente
+
 document.addEventListener("DOMContentLoaded", () => {
     const currentSpecie = specieSelect.value;
     const currentRazza = razzaSelect.getAttribute("data-selected");
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Anteprima immagine
+
 document.getElementById("file").addEventListener('change', function () {
     const file = this.files[0];
     const preview = document.getElementById("preview");
@@ -48,7 +48,6 @@ document.getElementById("file").addEventListener('change', function () {
     }
 });
 
-// Mappa e autocomplete
 const map = L.map('map').setView([41.9028, 12.4964], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap'

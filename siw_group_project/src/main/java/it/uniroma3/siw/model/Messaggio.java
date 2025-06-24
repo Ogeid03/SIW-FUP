@@ -75,7 +75,7 @@ public class Messaggio {
         this.codSegnalazione = codSegnalazione;
     }
 
-    // Equals e hashCode basati su ID
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

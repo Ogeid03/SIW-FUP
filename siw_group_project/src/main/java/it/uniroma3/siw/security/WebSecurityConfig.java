@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    // Metodo per la configurazione della sicurezza HTTP
+ 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -24,21 +24,21 @@ public class WebSecurityConfig {
                         .requestMatchers("/segnalazioni/modifica/**", "/segnalazioni/elimina/**").authenticated()
                         .anyRequest().authenticated())
                 .formLogin(login -> login
-                        .loginPage("/login") // Imposta la pagina di login
+                        .loginPage("/login")
                         .permitAll())
                 .logout(logout -> logout.invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .clearAuthentication(true)
                         .permitAll());
 
-        ; // Consenti il logout senza autenticazione
+        ; 
 
         return http.build();
     }
 
-    // Bean per il PasswordEncoder
+    
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Usa BCrypt per codificare le password
+        return new BCryptPasswordEncoder(); // Usa BCrypt
     }
 }
