@@ -268,14 +268,30 @@ form button:active {
 }
 
 .hero.home-card {
-    background: linear-gradient(120deg, rgba(255,179,71,0.65) 40%, rgba(255,251,230,0.4) 100%), url('/img/bannerHPprova.jpg') 95% center/cover no-repeat;
+    background: 
+        linear-gradient(to left, rgba(255,255,255,0.15), rgba(255,255,255,0.05)),
+        linear-gradient(to left, 
+            rgba(52, 109, 240, 0.55) 0%, 
+            rgba(52, 109, 240, 0.35) 15%, 
+            rgba(52, 109, 240, 0.15) 30%, 
+            rgba(52, 109, 240, 0.05) 40%, 
+            rgba(52, 109, 240, 0) 50%),
+        url('/img/bannerHPprova.jpg') 95% center/cover no-repeat;
     color: #003366;
     align-items: flex-start;
     position: relative;
 }
 
 .segnalazione-invito.home-card {
-    background: linear-gradient(120deg, rgba(255,179,71,0.65) 40%, rgba(255,251,230,0.4) 100%), url('/img/bannerHPprova3.png') left center/cover no-repeat;
+    background: 
+        linear-gradient(to right, rgba(255,255,255,0.15), rgba(255,255,255,0.05)),
+        linear-gradient(to right, 
+            rgba(255,179,71,0.6) 0%, 
+            rgba(255,179,71,0.4) 15%, 
+            rgba(255,179,71,0.2) 30%, 
+            rgba(255,251,230,0.1) 40%, 
+            rgba(255,251,230,0) 50%),
+        url('/img/bannerHPprova3.png') left center/cover no-repeat;
     color: #003366;
     align-items: flex-start;
     position: relative;
