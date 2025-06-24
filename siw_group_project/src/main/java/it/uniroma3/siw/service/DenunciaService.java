@@ -26,7 +26,6 @@ public class DenunciaService {
     }
 
     public List<Avvistamento> trovaAvvistamentiSimili(Segnalazione avvistamento) {
-        // Esempio grezzo: puoi raffinarlo molto!
         return avvistamentoRepository.findBySpecieAndRazzaAndLuogoContainingIgnoreCase(
                 avvistamento.getSpecie(),
                 avvistamento.getRazza(),
