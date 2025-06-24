@@ -6,19 +6,20 @@
     max-width: 100%;
 }
 
-html, body {
-  overflow-x: hidden;
+html,
+body {
+    overflow-x: hidden;
 }
 
 
 /* Stile generale */
 body {
     font-family: Arial, sans-serif;
-    height: 100vh; 
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
-    overflow: auto; 
+    justify-content: space-between;
+    overflow: auto;
 }
 
 /* Main Content */
@@ -27,7 +28,8 @@ main {
     text-align: center;
     padding: 0;
     flex-grow: 1;
-    overflow-y: auto; /* Permette lo scroll solo al contenuto principale */
+    overflow-y: auto;
+    /* Permette lo scroll solo al contenuto principale */
     max-width: 2000px;
 }
 
@@ -58,7 +60,7 @@ main {
     min-width: 220px;
 }
 
-#buttonSegnala{
+#buttonSegnala {
     background: linear-gradient(135deg, orange, rgb(200, 130, 1));
 }
 
@@ -92,12 +94,13 @@ footer {
     padding: 100px 20px;
     text-align: left;
 }
+
 .hero-content h1 {
     font-size: 3em;
     margin-bottom: 0.5em;
 }
 
-.hero-text{
+.hero-text {
     font-size: 2em;
     margin-bottom: 0.5em;
 }
@@ -123,12 +126,15 @@ footer {
 
 .gif-fixed {
     position: fixed;
-    bottom: -20px;       /* distanza dal basso */
-    right: -20px;        /* distanza da destra */
-    width: 20%;       /* dimensione della GIF */     
+    bottom: -20px;
+    /* distanza dal basso */
+    right: -20px;
+    /* distanza da destra */
+    width: 20%;
+    /* dimensione della GIF */
     height: auto;
-    z-index: 1000;     
-    pointer-events: none; 
+    z-index: 1000;
+    pointer-events: none;
 }
 
 /*.segnalazione-invito{
@@ -138,14 +144,14 @@ footer {
     margin-top: 2rem;
 } */
 
-.segnalazione-invito{
+.segnalazione-invito {
     background: url('/img/bannerHPprova3.png') left center/cover no-repeat;
     /*background-size: 80% 180%;  */
     height: 60%;
     color: white;
     padding: 100px 20px;
     text-align: right;
-    
+
 }
 
 .invito-container h1 {
@@ -218,7 +224,7 @@ form button[type="submit"] {
     border-radius: 12px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    
+
 }
 
 form button:hover {
@@ -248,7 +254,7 @@ form button:active {
     max-width: 520px;
     background: linear-gradient(120deg, #fafdff 60%, #eaf1ff 100%);
     border-radius: 2.5rem;
-    box-shadow: 0 8px 32px rgba(52,109,240,0.10), 0 1.5px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 32px rgba(52, 109, 240, 0.10), 0 1.5px 8px rgba(0, 0, 0, 0.08);
     padding: 3.5rem 2.5rem 2.5rem 2.5rem;
     margin: 0 0 2vw 0;
     display: flex;
@@ -263,18 +269,18 @@ form button:active {
 }
 
 .home-card:hover {
-    box-shadow: 0 16px 48px rgba(52,109,240,0.18), 0 3px 16px rgba(0,0,0,0.13);
+    box-shadow: 0 16px 48px rgba(52, 109, 240, 0.18), 0 3px 16px rgba(0, 0, 0, 0.13);
     transform: translateY(-6px) scale(1.02);
 }
 
 .hero.home-card {
-    background: 
-        linear-gradient(to left, rgba(255,255,255,0.15), rgba(255,255,255,0.05)),
-        linear-gradient(to left, 
-            rgba(52, 109, 240, 0.55) 0%, 
-            rgba(52, 109, 240, 0.35) 15%, 
-            rgba(52, 109, 240, 0.15) 30%, 
-            rgba(52, 109, 240, 0.05) 40%, 
+
+    background: linear-gradient(120deg, rgba(255, 179, 71, 0.65) 40%, rgba(255, 251, 230, 0.4) 100%),
+        linear-gradient(to left,
+            rgba(52, 109, 240, 0.55) 0%,
+            rgba(52, 109, 240, 0.35) 15%,
+            rgba(52, 109, 240, 0.15) 30%,
+            rgba(52, 109, 240, 0.05) 40%,
             rgba(52, 109, 240, 0) 50%),
         url('/img/bannerHPprova.jpg') 95% center/cover no-repeat;
     color: #003366;
@@ -283,41 +289,40 @@ form button:active {
 }
 
 .segnalazione-invito.home-card {
-    background: 
-        linear-gradient(to right, rgba(255,255,255,0.15), rgba(255,255,255,0.05)),
-        linear-gradient(to right, 
-            rgba(255,179,71,0.6) 0%, 
-            rgba(255,179,71,0.4) 15%, 
-            rgba(255,179,71,0.2) 30%, 
-            rgba(255,251,230,0.1) 40%, 
-            rgba(255,251,230,0) 50%),
+
+    background: linear-gradient(120deg, rgba(255, 179, 71, 0.50) 20%, rgba(255, 251, 230, 0.4) 100%),
+        
         url('/img/bannerHPprova3.png') left center/cover no-repeat;
     color: #003366;
     align-items: flex-start;
     position: relative;
 }
 
-.hero-content h1, .invito-content h1 {
+.hero-content h1,
+.invito-content h1 {
     font-size: 2.5em;
     margin-bottom: 0.5em;
     font-weight: 800;
     letter-spacing: 1px;
 }
 
-.hero-content p, .invito-content p {
+.hero-content p,
+.invito-content p {
     font-size: 1.3em;
     margin-bottom: 1.2em;
     font-weight: 500;
 }
 
 /* Allineamento verticale dei bottoni nelle home-card */
-.hero-content, .invito-content {
+.hero-content,
+.invito-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
     width: 100%;
 }
+
 .button-container {
     margin-top: auto;
 }
@@ -328,6 +333,7 @@ form button:active {
         gap: 2vw;
         align-items: center;
     }
+
     .home-card {
         max-width: 98vw;
         min-width: 0;
@@ -402,6 +408,6 @@ main.error-page {
 }
 
 .error-message {
-  color: red;
-  display: none;
+    color: red;
+    display: none;
 }
