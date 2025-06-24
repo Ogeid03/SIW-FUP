@@ -8,6 +8,7 @@ BUG TROVATI:
         - style in HTML da eliminare
         - Non fa vedere le denunce rilevanti
         - Duplicazione degli utenti
+        - Pagina di recap di tutte le segnalazioni su mappa
 
 ⬜ ? Modifica e recupera account
 ⬜ ? Elimina file inutili (es. di "recap" uno solo non 2)
