@@ -21,7 +21,7 @@ public class WebSecurityConfig {
                                 "/segnalazioni/{id:[0-9]+}",
                                 "/ricerca", "/error", "/about", "/favicon.ico","/uploads/**")
                         .permitAll() // Consenti l'accesso a login e register senza autenticazione
-                        .requestMatchers("/segnalazioni/modifica/**", "/segnalazioni/elimina/**").hasAuthority("ADMIN")
+                        .requestMatchers("/segnalazioni/modifica/**", "/segnalazioni/elimina/**").authenticated()
                         .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginPage("/login") // Imposta la pagina di login

@@ -106,7 +106,7 @@
         <label for="descrizione">Descrizione Fisica:</label>
         <input type="text" id="descrizione" name="descrizioneFisica" placeholder="Colore, Lunghezza pelo, Caratteristiche mantello, ..." th:field="*{descrizioneFisica}" />
 
-        <label for="eta" class="required">Età:</label>
+        <label for="eta">Età:</label>
         <select name="eta" id="eta" class="form-select">
           <option value="">Seleziona...</option>
           <option value="Cucciolo">Cucciolo</option>
@@ -121,7 +121,7 @@
       <!-- Step 4 -->
       <div class="step">
         <label for="info">Informazioni Extra:</label>
-        <textarea id="info" name="info" maxlength="255" placeholder="max 255 caratteri"></textarea>
+        <textarea id="info" name="informazioniExtra" maxlength="255" placeholder="max 255 caratteri"></textarea>
 
         <label for="file" class="required">Carica una foto:</label>
         <input type="file" id="file" name="file" accept="image/*" required />

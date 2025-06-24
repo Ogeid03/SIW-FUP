@@ -114,7 +114,7 @@
                     <option value="">-- Seleziona stato --</option>
                     <option value="ATTIVO">Attivo</option>
                     <option value="RISOLTO">Risolto</option>
-                    <option value="MANUTENZIONE">Manutenzione</option>
+                    <option value="MANUTENZIONE" sec:authorize="hasAuthority('ADMIN')">Manutenzione</option>
                 </select>
 
             </div>
