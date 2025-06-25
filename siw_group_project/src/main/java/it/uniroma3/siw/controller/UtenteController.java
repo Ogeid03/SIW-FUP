@@ -50,9 +50,15 @@ public class UtenteController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute Utente utente,
-            @RequestParam("password") String password) {
-        utenteService.register(utente, password);
-        return "login";
+            @RequestParam("password") String password, Model model) {
+                try{
+                    utenteService.register(utente, password);
+                    return "login";
+                } catch (IllegalArgumentException e) {
+                    model.addAttribute("erroreRegistrazione", e.getMessage());
+                    model.addAttribute("utente", utente);
+                    return "register";
+                }
     }
 
     @GetMapping("/account")

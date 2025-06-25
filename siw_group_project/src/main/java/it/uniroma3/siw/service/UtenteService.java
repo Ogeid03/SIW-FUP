@@ -35,6 +35,9 @@ public class UtenteService implements UserDetailsService {
 
     
     public void register(Utente utente, String password) {
+        if((utenteRepository.findByEmail(utente.getEmail())!= null) || (utenteRepository.findByNomeUtente(utente.getNomeUtente()) != null)) {
+            throw new IllegalArgumentException("erroreRegistrazione");
+        }
         utente.setPassword(passwordEncoder.encode(password));
         utente.setRuolo(Ruolo.USER); 
         utenteRepository.save(utente);
