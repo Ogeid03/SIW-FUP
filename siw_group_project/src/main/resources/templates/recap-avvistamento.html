@@ -66,8 +66,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <img th:src="${segnalazione.foto}" alt="Foto avvistamento" class="img-fluid"
-                        style="max-width:100%;height:auto;">
+                    <img th:src="${segnalazione.foto}" alt="Foto avvistamento" class="img-fluid">
                 </div>
             </div>
             <form action="/salva-avvistamento" method="post" th:object="${segnalazione}" class="confirm-form">

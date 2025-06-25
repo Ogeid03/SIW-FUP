@@ -69,8 +69,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <img th:src="${denuncia.foto}" alt="Foto denuncia" class="img-fluid"
-                        style="max-width:100%;height:auto;">
+                    <img th:src="${denuncia.foto}" alt="Foto denuncia" class="img-fluid">
                 </div>
             </div>
             <form action="/salva-denuncia" method="post" th:object="${denuncia}" class="confirm-form">

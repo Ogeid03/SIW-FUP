@@ -42,7 +42,7 @@
         </nav>
     </header>
 
-    <form id="logoutForm" th:action="@{/logout}" method="post" style="display:none"></form>
+    <form id="logoutForm" th:action="@{/logout}" method="post"></form>
 
     <main>
         <form th:action="@{${tipoSegnalazione == 'denuncia'} ? '/segnalazioni/modifica/denuncia/' + ${segnalazione.id} : '/segnalazioni/modifica/avvistamento/' + ${segnalazione.id}}"
@@ -58,7 +58,7 @@
                 <p id="suggestionMessage" class="suggestion-message"></p>
                 <input type="hidden" id="lat" name="latitudine" th:value="*{latitudine}" />
                 <input type="hidden" id="lon" name="longitudine" th:value="*{longitudine}" />
-                <div id="map" style="height: 250px; margin-bottom: 20px;"></div>
+                <div id="map"></div>
 
                 <!-- Specie e Razza -->
                 <label class="required">Specie:</label>
@@ -102,7 +102,7 @@
                 <!-- Foto -->
                 <label>Foto attuale:</label>
                 <div th:if="*{foto}">
-                    <img th:src="*{foto}" alt="Immagine attuale" style="max-width: 200px;" />
+                    <img th:src="*{foto}" alt="Immagine attuale" />
                 </div>
 
                 <label for="file">Carica nuova foto:</label>
